@@ -1,0 +1,14 @@
+prepare-commit-msg:
+  parallel: true
+  scripts:
+    'commitizen.sh':
+      interactive: true
+      runner: sh
+
+pre-commit:
+  parallel: true
+  commands:
+    biome-check:
+      glob: "src/**/*.{js,ts,jsx,tsx}"
+      run: pnpm dlx @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+      stage_fixed: true
