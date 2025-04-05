@@ -36,62 +36,62 @@ export const Default: Story = {
 export const Primary: Story = {
     args: {
         intent: "primary",
-        children: "Primary Button",
+        children: "Button",
     },
 };
 
 export const Secondary: Story = {
     args: {
         intent: "secondary",
-        children: "Secondary Button",
+        children: "Button",
     },
 };
 
 export const Danger: Story = {
     args: {
         intent: "danger",
-        children: "Danger Button",
+        children: "Button",
     },
 };
 
 export const Warning: Story = {
     args: {
         intent: "warning",
-        children: "Warning Button",
+        children: "Button",
     },
 };
 
 export const Outline: Story = {
     args: {
         intent: "outline",
-        children: "Outline Button",
+        children: "Button",
     },
 };
 
 export const Plain: Story = {
     args: {
         intent: "plain",
-        children: "Plain Button",
+        children: "Button",
     },
 };
 
 export const Circle: Story = {
     args: {
         shape: "circle",
-        children: "C",
+        children: "Button",
     },
 };
 
 export const Small: Story = {
     args: {
         size: "sm",
-        children: "Small Button",
+        children: "Button",
     },
 };
 
 export const Large: Story = {
     args: {
         size: "lg",
-        children: "Large Button",
+        children: "Button",
     },
 };

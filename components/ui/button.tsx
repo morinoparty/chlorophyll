@@ -73,7 +73,7 @@ export const buttonStyles = cva({
         },
         shape: {
             square: { borderRadius: "md" },
-            circle: { borderRadius: "full", aspectRatio: "1/1" },
+            circle: { borderRadius: "full"},
         },
     },
     defaultVariants: {

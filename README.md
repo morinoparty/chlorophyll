@@ -1,36 +1,79 @@
 # 🌿 Chlorophyll 🌿
 
-:::warning
-このプロジェクトは、現在開発中です。
-:::
+> [!WARNING]
+> This project is currently under development.
 
-## ✨ プロジェクトについて
-Chlorophyllは、モダンで使いやすいUIコンポーネントライブラリです。ReactとTypeScriptを使用して作られています。
+## ✨ About the Project
+Chlorophyll is a modern and user-friendly UI component library built with React and TypeScript.
 
-## 🛠 技術スタック
+## 🛠 Tech Stack
 - 🎨 **Language**: TypeScript
 - ⚛️ **Framework**: React
 - 🎯 **CSS Library**: PandaCSS
-- 🎭 **Headless UI**: React Aria
+- 🎭 **Headless Library**: React Aria
 
-## 🚀 開発環境のセットアップ
+## 🚀 Setting Up the Development Environment
 
-### 🎯 UIコンポーネントの確認
+### 🎯 Check UI Components
 ```bash
-pnpm run storybook
+pnpm run dev:storybook
 ```
 
-### 💾 コミット
+### 💾 Commit
 ```bash
 pnpm run commit
 ```
 
-## 📦 インストール方法
+## 📦 Installation
+
+1. Install PandaCSS
+
+[Getting Started - PandaCSS](https://panda-css.com/docs/overview/getting-started#framework-guides)
+
+2. Install React Aria
 ```bash
-pnpm i @moripa/chlorophyll
+pnpm add react-aria-components
 ```
 
-## 📖 使い方
+3. Install the Panda Preset
+```bash
+pnpm add @moripa/chlorophyll-preset -D
+```
+
+```ts
+import { defineConfig } from '@pandacss/dev'
+import { createPreset } from '@moripa/chlorophyll-preset'
+import mori from '@moripa/chlorophyll-preset/colors/accent/mori'
+import stone from '@moripa/chlorophyll-preset/colors/base/stone'
+
+export default defineConfig({
+  preflight: true,
+  presets: [createPreset({ accentColor: mori, grayColor: stone, radius: 'sm' })],
+  include: ['./src/**/*.{js,jsx,ts,tsx}'],
+  jsxFramework: 'react',
+  outdir: 'styled-system',
+})
+```
+
+4. Path alias
+tsconfig.json
+```ts 
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ss/*": ["./styled-system/*"]
+    }
+  }
+}
+```
+
+5. Add your first component
+```bash
+pnpm dlx @moripa/chlorophyll-cli add button
+```
+
+## 📖 Usage
 ```tsx
 import { Button } from '@moripa/chlorophyll';
 
@@ -41,13 +84,13 @@ function App() {
 }
 ```
 
-## 🤝 コントリビューション
-プロジェクトへの貢献は大歓迎です！以下の手順で参加できます：
+## 🤝 Contribution
+Contributions are welcome! Follow these steps to participate:
 
-1. このリポジトリをフォーク
-2. 新しいブランチを作成
-3. 変更をコミット
-4. プルリクエストを作成
+1. Fork this repository
+2. Create a new branch
+3. Commit your changes
+4. Create a pull request
 
 ---
 Made with 💚 by Morino party team
