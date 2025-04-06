@@ -17,6 +17,11 @@ export default defineWorkspace([
             // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
             storybookTest({ configDir: path.join(dirname, ".storybook") }),
         ],
+        resolve: {
+            alias: {
+                "@ss": "./styled-system",
+            },
+        },
         test: {
             name: "storybook",
             browser: {

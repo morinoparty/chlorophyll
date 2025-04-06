@@ -19,6 +19,9 @@
                 "name": "next"
             }
         ],
+        "paths": {
+            "@ss/*": ["./styled-system/*"]
+        },
         "types": ["@cloudflare/workers-types/2023-07-01", "axe-playwright"]
     },
     "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

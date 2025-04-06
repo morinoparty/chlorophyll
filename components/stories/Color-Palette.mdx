@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import {  ColorGrid } from './ColorPalette';
+
+# カラーパレット
+
+このページでは、Chlorophyllデザインシステムで使用されているカラーパレットを表示しています。
+各カラーは、Panda CSSのトークンシステムを通じて利用可能です。
+
+## 使用方法
+
+カラートークンは以下のように使用できます：
+
+```tsx
+// コンポーネント内で
+<div className={css({ backgroundColor: "green.500", color: "white" })} />
+
+// スタイル定義内で
+const styles = {
+  container: css({
+    backgroundColor: 'blue.100',
+    color: 'gray.800',
+  })
+}
+```
+
+## カラーパレット一覧
+export const Colors = ["green", "blue", "gray", "red", "yellow"]
+
+<ColorGrid colors={Colors} />
+
