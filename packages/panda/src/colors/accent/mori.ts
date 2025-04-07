@@ -1,34 +1,29 @@
 import type { SemanticTokens } from "@pandacss/dev";
 import type { ColorPalette } from "../../create-preset";
-import { colors } from "../color-palette";
+import { colors } from "../../theme/tokens/color";
 
 // accentカラー（主にmori）のセマンティックトークンを定義
 const semanticTokens: SemanticTokens["colors"] = {
-    background: {
+    palette: {
+        default: { value: "{colors.green.500}" },
+        emphasized: { value: "{colors.green.600}" },
+        foreground: { value: "{colors.green.700}" },
+        text: { value: "{colors.green.700}" },
+    },
+    bg: {
+        canvas: { value: "{colors.white}" },
         default: { value: "{colors.white}" },
-        emphasized: { value: "{colors.green.800}" },
-        muted: { value: "{colors.green.100}" },
+        subtle: { value: "{colors.gray.200}" },
+        muted: { value: "{colors.gray.300}" },
+        emphasized: { value: "{colors.green.700}" },
+        disabled: { value: "{colors.gray.400}" },
     },
     fg: {
         default: { value: "{colors.gray.900}" },
-        emphasized: { value: "{colors.green.900}" },
-        muted: { value: "{colors.green.700}" },
-    },
-    border: {
-        default: { value: "{colors.gray.200}" },
-        emphasized: { value: "{colors.green.200}" },
-    },
-    primary: {
-        default: { value: "{colors.green.500}" },
-        emphasized: { value: "{colors.green.600}" },
-    },
-    success: {
-        default: { value: "{colors.green.500}" },
-        emphasized: { value: "{colors.green.600}" },
-    },
-    info: {
-        default: { value: "{colors.blue.500}" },
-        emphasized: { value: "{colors.blue.600}" },
+        muted: { value: "{colors.gray.600}" },
+        subtle: { value: "{colors.gray.400}" },
+        disabled: { value: "{colors.gray.400}" },
+        error: { value: "{colors.red.500}" },
     },
 };
 

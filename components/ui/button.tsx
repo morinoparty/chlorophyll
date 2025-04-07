@@ -4,7 +4,7 @@ import {
     type ButtonProps as ButtonPrimitiveProps,
     composeRenderProps,
 } from "react-aria-components";
-import { type ButtonStylesProps, buttonStyles } from "./styles/button.styles";
+import { button } from "@ss/recipes";
 
 interface ButtonProps extends ButtonPrimitiveProps {
     intent?: "primary" | "secondary" | "danger" | "warning" | "outline" | "plain";
@@ -19,13 +19,12 @@ const Button = ({ className, intent, size, shape, ref, ...props }: ButtonProps) 
         <ButtonPrimitive
             ref={ref}
             {...props}
-            className={composeRenderProps(className, (className) =>
-                buttonStyles({
+            className={composeRenderProps(className, (className, renderProps) =>
+                button({
                     intent,
                     size,
                     shape,
-                    className,
-                } as ButtonStylesProps),
+                }).concat(" ", className || ""),
             )}
         >
             {(values) => <>{typeof props.children === "function" ? props.children(values) : props.children}</>}

@@ -1,6 +1,6 @@
 import type { SemanticTokens } from "@pandacss/dev";
 import type { ColorPalette } from "../../create-preset";
-import { colors } from "../color-palette";
+import { colors } from "../../theme/tokens/color";
 
 // baseカラー（主にstone）のセマンティックトークンを定義
 const semanticTokens: SemanticTokens["colors"] = {

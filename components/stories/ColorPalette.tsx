@@ -19,7 +19,6 @@ const titleStyle = css({
     justifyContent: "center",
 });
 
-
 export const ColorGrid = ({
     colors,
 }: {
@@ -77,7 +76,53 @@ const Variable = ({
                         alignItems: "center",
                     }}
                     key={varValue}
-                >{varValue}</div>
+                >
+                    {varValue}
+                </div>
+            ))}
+        </div>
+    );
+};
+
+const semanticTokens = [
+    {
+        name: "bg",
+        tokens: ["canvas", "default", "subtle", "muted", "emphasized", "disabled"],
+    },
+    {
+        name: "fg",
+        tokens: ["default", "muted", "subtle", "disabled", "error"],
+    },
+    {
+        name: "palette",
+        tokens: ["default", "emphasized", "foreground", "text"],
+    },
+];
+
+export const SemanticTokens = () => {
+    return (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "1rem" }}>
+            {semanticTokens.map((v) => (
+                <div key={v.name} style={{ border: "1px solid #eee", borderRadius: "8px", overflow: "hidden" }}>
+                    <div style={{ padding: "0.5rem 1rem", fontWeight: "bold", backgroundColor: "#f5f5f5" }}>
+                        {v.name}
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
+                        {v.tokens.map((token) => (
+                            <div
+                                style={{
+                                    backgroundColor: `var(--colors-${v.name}-${token})`,
+                                    padding: "1rem",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                }}
+                                key={token}
+                            >
+                                {token}
+                            </div>
+                        ))}
+                    </div>
+                </div>
             ))}
         </div>
     );
