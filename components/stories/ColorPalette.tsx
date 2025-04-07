@@ -19,6 +19,30 @@ const titleStyle = css({
     justifyContent: "center",
 });
 
+
+const getContrastColor = (color: string) => {
+    // CSS変数の値を取得
+    const element = document.createElement('div');
+    element.style.backgroundColor = color;
+    document.body.appendChild(element);
+    const computedColor = window.getComputedStyle(element).backgroundColor;
+    document.body.removeChild(element);
+
+    // RGB値を取得
+    const rgb = computedColor.match(/\d+/g)?.map(Number);
+    if (!rgb) return "#000000";
+
+    const [r, g, b] = rgb.map(v => v / 255);
+
+    // 最大値と最小値を取得
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+
+    // 明度を計算
+    const lightness = (max + min) / 2;
+    return lightness > 0.5 ? "#000000" : "#ffffff";
+};
+
 export const ColorGrid = ({
     colors,
 }: {
@@ -84,41 +108,69 @@ const Variable = ({
     );
 };
 
-const semanticTokens = [
-    {
-        name: "bg",
-        tokens: ["canvas", "default", "subtle", "muted", "emphasized", "disabled"],
-    },
-    {
-        name: "fg",
-        tokens: ["default", "muted", "subtle", "disabled", "error"],
-    },
-    {
-        name: "palette",
-        tokens: ["default", "emphasized", "foreground", "text"],
-    },
-];
+const semanticTokens = {
+    "accent" : [
+        {
+            name: "bg",
+            tokens: ["canvas", "default", "subtle", "muted", "emphasized", "disabled"],
+        },
+        {
+            name: "fg",
+            tokens: ["default", "muted", "subtle", "disabled", "error"],
+        },
+        {
+            name: "palette",
+            tokens: ["default", "emphasized", "foreground", "text"],
+        },
+    ],
+    "base" : [
+        {
+            name: "border",
+            tokens: ["default", "emphasized"],
+        },
+        {
+            name: "neutral",
+            tokens: ["default", "emphasized"],
+        },
+        {
+            name: "card",
+            tokens: ["default", "emphasized"],
+        },
+        {
+            name: "shadow",
+            tokens: ["default", "emphasized"],
+        },
+    ],
+};
 
-export const SemanticTokens = () => {
+export const SemanticTokenPalette = () => {
     return (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "1rem" }}>
-            {semanticTokens.map((v) => (
-                <div key={v.name} style={{ border: "1px solid #eee", borderRadius: "8px", overflow: "hidden" }}>
-                    <div style={{ padding: "0.5rem 1rem", fontWeight: "bold", backgroundColor: "#f5f5f5" }}>
-                        {v.name}
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
-                        {v.tokens.map((token) => (
-                            <div
-                                style={{
-                                    backgroundColor: `var(--colors-${v.name}-${token})`,
-                                    padding: "1rem",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
-                                key={token}
-                            >
-                                {token}
+        <div>
+            {Object.entries(semanticTokens).map(([key, semanticToken]) => (
+                <div key={key}>
+                    {key}
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "1rem" }}>
+                        {semanticToken.map((v) => (
+                            <div key={v.name} style={{ border: "1px solid #eee", borderRadius: "8px", overflow: "hidden" }}>
+                                <div style={{ padding: "0.5rem 1rem", fontWeight: "bold", backgroundColor: "#f5f5f5" }}>
+                                    {v.name}
+                                </div>
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
+                                    {v.tokens.map((token) => (
+                                        <div
+                                            style={{
+                                                backgroundColor: `var(--colors-${v.name}-${token})`,
+                                                padding: "1rem",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                color: getContrastColor(`var(--colors-${v.name}-${token})`),
+                                            }}
+                                            key={token}
+                                        >
+                                            {token}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         ))}
                     </div>

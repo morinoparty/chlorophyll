@@ -4,16 +4,6 @@ import { colors } from "../../theme/tokens/color";
 
 // baseカラー（主にstone）のセマンティックトークンを定義
 const semanticTokens: SemanticTokens["colors"] = {
-    background: {
-        default: { value: "{colors.white}" },
-        emphasized: { value: "{colors.gray.50}" },
-        muted: { value: "{colors.gray.100}" },
-    },
-    fg: {
-        default: { value: "{colors.gray.900}" },
-        emphasized: { value: "{colors.gray.800}" },
-        muted: { value: "{colors.gray.600}" },
-    },
     border: {
         default: { value: "{colors.gray.200}" },
         emphasized: { value: "{colors.gray.300}" },

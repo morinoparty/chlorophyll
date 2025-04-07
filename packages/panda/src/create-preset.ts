@@ -20,8 +20,8 @@ export const createPreset = (option: PresetOptions) => {
     // セマンティックトークンを定義
     const semanticTokens: SemanticTokens = {
         colors: {
-            ...(accentColor.semanticTokens || {}),
             ...(baseColor.semanticTokens || {}),
+            ...(accentColor.semanticTokens || {}),
         },
         radii: {
             default: {

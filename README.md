@@ -79,7 +79,7 @@ import { Button } from '@moripa/chlorophyll';
 
 function App() {
   return (
-    <Button>クリックしてね！</Button>
+    <Button>Click me!</Button>
   );
 }
 ```

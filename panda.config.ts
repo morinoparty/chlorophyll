@@ -7,7 +7,7 @@ export default defineConfig({
     // Whether to use css reset
     preflight: true,
 
-    presets: [createPreset({ accentColor: mori, baseColor: stone, radius: "md" })],
+    presets: [createPreset({ accentColor: mori, baseColor: stone, radius: "lg" })],
 
     // Where to look for your css declarations
     include: ["./components/**/*.{js,jsx,ts,tsx,mdx}", "./packages/panda/src/**/*.{js,jsx,ts,tsx}"],

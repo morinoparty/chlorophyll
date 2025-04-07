@@ -1,20 +1,20 @@
 import { Meta, Story, Canvas } from '@storybook/blocks';
-import {  ColorGrid, SemanticTokens } from './ColorPalette';
+import { ColorGrid, SemanticTokenPalette } from './ColorPalette';
 
-# カラーパレット
+# About Color Palette
 
-このページでは、Chlorophyllデザインシステムで使用されているカラーパレットを表示しています。
-各カラーは、Panda CSSのトークンシステムを通じて利用可能です。
+This page displays the color palette used in the Chlorophyll design system.
+Each color is available through the Panda CSS token system.
 
-## 使用方法
+## Usage
 
-カラートークンは以下のように使用できます：
+Color tokens can be used as follows:
 
 ```tsx
-// コンポーネント内で
+// In a component
 <div className={css({ backgroundColor: "green.500", color: "white" })} />
 
-// スタイル定義内で
+// In a style definition
 const styles = {
   container: css({
     backgroundColor: 'blue.100',
@@ -23,11 +23,11 @@ const styles = {
 }
 ```
 
-## カラーパレット一覧
+## Color Palette List
 export const Colors = ["green", "blue", "gray", "red", "yellow"]
 
 <ColorGrid colors={Colors} />
 
 ## Semantic Tokens
 
-<SemanticTokens />
+<SemanticTokenPalette />
