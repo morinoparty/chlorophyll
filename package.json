@@ -8,10 +8,15 @@
         "check": "biome check ./ --write",
         "dev:storybook": "storybook dev -p 6006",
         "build:storybook": "storybook build",
-        "commit": "cz"
+        "serve:storybook": "pnpm dlx http-server storybook-static -p 6006 --silent",
+        "commit": "cz",
+        "test:storybook": "test-storybook --junit",
+        "test:vrt": "storycap --serverCmd \"pnpm serve:storybook\" --outputDir ./reports/vrt http://localhost:6006",
+        "test:runner": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test:storybook\""
     },
     "dependencies": {
         "@fontsource-variable/noto-sans-jp": "^5.2.5",
+        "lucide-react": "^0.487.0",
         "react": "^19.0.0",
         "react-aria-components": "^1.7.1",
         "react-dom": "^19.0.0"
@@ -20,6 +25,7 @@
         "@biomejs/biome": "1.9.4",
         "@chromatic-com/storybook": "^3",
         "@pandacss/dev": "^0.53.3",
+        "@park-ui/panda-preset": "^0.43.1",
         "@storybook/addon-a11y": "^8.6.12",
         "@storybook/addon-essentials": "^8.6.12",
         "@storybook/addon-onboarding": "^8.6.12",
@@ -28,6 +34,8 @@
         "@storybook/react": "^8.6.12",
         "@storybook/react-vite": "^8.6.12",
         "@storybook/test": "^8.6.12",
+        "@storybook/test-runner": "^0.22.0",
+        "@types/node": "^22.14.0",
         "@types/react": "^19.0.10",
         "@types/react-dom": "^19.0.4",
         "@vitejs/plugin-react": "^4.3.4",
@@ -40,9 +48,10 @@
         "cz-emoji": "1.3.2-canary.2",
         "globals": "^15.15.0",
         "lefthook": "^1.11.4",
-        "playwright": "^1.51.1",
+        "puppeteer": "^24.6.0",
         "storybook": "^8.6.12",
         "storybook-design-token": "^3.2.0",
+        "storycap": "^5.0.1",
         "typescript": "~5.7.2",
         "vite": "^6.2.0",
         "vitest": "^3.1.1"
@@ -51,5 +60,9 @@
     "engines": {
         "yarn": "please use pnpm",
         "npm": "please use pnpm"
+    },
+    "jest-junit": {
+        "outputDirectory": "reports",
+        "outputName": "junit.xml"
     }
 }

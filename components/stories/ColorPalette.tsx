@@ -14,15 +14,15 @@ const titleStyle = css({
     margin: "4px",
     padding: "4px",
     flex: "1",
+    minWidth: "128px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
 });
 
-
 const getContrastColor = (color: string) => {
     // CSS変数の値を取得
-    const element = document.createElement('div');
+    const element = document.createElement("div");
     element.style.backgroundColor = color;
     document.body.appendChild(element);
     const computedColor = window.getComputedStyle(element).backgroundColor;
@@ -32,7 +32,7 @@ const getContrastColor = (color: string) => {
     const rgb = computedColor.match(/\d+/g)?.map(Number);
     if (!rgb) return "#000000";
 
-    const [r, g, b] = rgb.map(v => v / 255);
+    const [r, g, b] = rgb.map((v) => v / 255);
 
     // 最大値と最小値を取得
     const max = Math.max(r, g, b);
@@ -88,7 +88,7 @@ const Variable = ({
 }) => {
     return (
         <div className={commonStyle}>
-            <div className={titleStyle}></div>
+            <div className={titleStyle}>Variable</div>
             {variable.map((varValue) => (
                 <div
                     style={{
@@ -109,36 +109,24 @@ const Variable = ({
 };
 
 const semanticTokens = {
-    "accent" : [
-        {
-            name: "bg",
-            tokens: ["canvas", "default", "subtle", "muted", "emphasized", "disabled"],
-        },
+    accent: [
         {
             name: "fg",
             tokens: ["default", "muted", "subtle", "disabled", "error"],
         },
         {
             name: "palette",
-            tokens: ["default", "emphasized", "foreground", "text"],
+            tokens: ["default", "emphasized", "fg", "text"],
         },
     ],
-    "base" : [
+    base: [
+        {
+            name: "bg",
+            tokens: ["canvas", "default", "subtle", "muted", "emphasized", "disabled"],
+        },
         {
             name: "border",
-            tokens: ["default", "emphasized"],
-        },
-        {
-            name: "neutral",
-            tokens: ["default", "emphasized"],
-        },
-        {
-            name: "card",
-            tokens: ["default", "emphasized"],
-        },
-        {
-            name: "shadow",
-            tokens: ["default", "emphasized"],
+            tokens: ["default", "muted", "subtle", "disabled", "outline", "error"],
         },
     ],
 };
@@ -148,10 +136,26 @@ export const SemanticTokenPalette = () => {
         <div>
             {Object.entries(semanticTokens).map(([key, semanticToken]) => (
                 <div key={key}>
-                    {key}
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "1rem" }}>
+                    <div
+                        className={css({
+                            fontSize: "1.5rem",
+                            margin: "16px 0",
+                        })}
+                    >
+                        {key}
+                    </div>
+                    <div
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+                            gap: "1rem",
+                        }}
+                    >
                         {semanticToken.map((v) => (
-                            <div key={v.name} style={{ border: "1px solid #eee", borderRadius: "8px", overflow: "hidden" }}>
+                            <div
+                                key={v.name}
+                                style={{ border: "1px solid #eee", borderRadius: "8px", overflow: "hidden" }}
+                            >
                                 <div style={{ padding: "0.5rem 1rem", fontWeight: "bold", backgroundColor: "#f5f5f5" }}>
                                     {v.name}
                                 </div>

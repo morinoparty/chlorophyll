@@ -2,15 +2,15 @@ import { defineTokens } from "@pandacss/dev";
 
 export const yellow = defineTokens.colors({
     yellow: {
-        50: { value: "#FEFCE8" },
-        100: { value: "#FEF9C3" },
-        200: { value: "#FEF08A" },
-        300: { value: "#FDE047" },
-        400: { value: "#FACC15" },
-        500: { value: "#EAB308" },
-        600: { value: "#CA8A04" },
-        700: { value: "#A16207" },
-        800: { value: "#854D0E" },
-        900: { value: "#713F12" },
+        50: { value: "rgb(254, 252, 232)" },  // 最も明るい黄
+        100: { value: "rgb(254, 249, 195)" }, // 明るい黄
+        200: { value: "rgb(254, 240, 138)" }, // やや明るい黄
+        300: { value: "rgb(253, 224, 71)" },  // 中間の明るさの黄
+        400: { value: "rgb(250, 204, 21)" },  // やや暗い黄
+        500: { value: "rgb(234, 179, 8)" },   // 標準の黄
+        600: { value: "rgb(202, 138, 4)" },   // やや濃い黄
+        700: { value: "rgb(161, 98, 7)" },    // 濃い黄
+        800: { value: "rgb(133, 77, 14)" },   // より濃い黄
+        900: { value: "rgb(113, 63, 18)" },   // 最も濃い黄
     },
 });

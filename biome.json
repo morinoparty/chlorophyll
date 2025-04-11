@@ -13,7 +13,15 @@
         "enabled": true,
         "indentStyle": "space",
         "indentWidth": 4,
-        "ignore": [".next", "node_modules", "public", "styled-system", "src/components/ui", "env.d.ts"],
+        "ignore": [
+            ".next",
+            "node_modules",
+            "public",
+            "styled-system",
+            "src/components/ui",
+            "env.d.ts",
+            "storybook-static"
+        ],
         "lineWidth": 120
     },
     "organizeImports": {
@@ -21,7 +29,15 @@
     },
     "linter": {
         "enabled": true,
-        "ignore": [".next", "node_modules", "public", "styled-system", "src/components/ui", "env.d.ts"],
+        "ignore": [
+            ".next",
+            "node_modules",
+            "public",
+            "styled-system",
+            "src/components/ui",
+            "env.d.ts",
+            "storybook-static"
+        ],
         "rules": {
             "recommended": true,
             "correctness": {

@@ -1,10 +1,10 @@
 "use client";
+import { button } from "@ss/recipes";
 import {
     Button as ButtonPrimitive,
     type ButtonProps as ButtonPrimitiveProps,
     composeRenderProps,
 } from "react-aria-components";
-import { button } from "@ss/recipes";
 
 interface ButtonProps extends ButtonPrimitiveProps {
     intent?: "primary" | "secondary" | "danger" | "warning" | "outline" | "plain";

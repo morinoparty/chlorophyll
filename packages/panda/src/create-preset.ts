@@ -1,10 +1,9 @@
 import { type SemanticTokens, type Tokens, definePreset } from "@pandacss/dev";
-import { tokens } from "./theme/tokens";
 import { recipes } from "./theme/recipes";
+import { tokens } from "./theme/tokens";
 
 export interface ColorPalette {
     name: string;
-    tokens: Tokens["colors"];
     semanticTokens: SemanticTokens["colors"];
 }
 
@@ -35,12 +34,7 @@ export const createPreset = (option: PresetOptions) => {
         presets: ["@pandacss/preset-base"],
         theme: {
             extend: {
-                tokens: {
-                    ...tokens,
-                    colors: {
-                        ...tokens.colors,
-                    },
-                },
+                tokens,
                 semanticTokens,
                 recipes: {
                     ...recipes,

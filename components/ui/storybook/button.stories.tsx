@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ArrowRightIcon } from "lucide-react";
 import { Button } from "../components/button";
 
 // メタデータを定義する
@@ -69,10 +70,11 @@ export const Large: StoryObj<typeof Button> = {
     render: () => <Button size="lg">Button</Button>,
 };
 
-export const XLarge: StoryObj<typeof Button> = {
-    render: () => <Button size="xl">Button</Button>,
-};
-
-export const ExtraSmall: StoryObj<typeof Button> = {
-    render: () => <Button size="xs">Button</Button>,
+export const WithIcon: StoryObj<typeof Button> = {
+    render: () => (
+        <Button>
+            Button
+            <ArrowRightIcon  />
+        </Button>
+    ),
 };

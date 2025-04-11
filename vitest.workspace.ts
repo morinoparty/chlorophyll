@@ -18,9 +18,12 @@ export default defineWorkspace([
             storybookTest({ configDir: path.join(dirname, ".storybook") }),
         ],
         resolve: {
-            alias: {
-                "@ss": "./styled-system",
-            },
+            alias: [
+                {
+                    find: "@ss",
+                    replacement: `${__dirname}/styled-system`,
+                },
+            ],
         },
         test: {
             name: "storybook",
