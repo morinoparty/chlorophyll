@@ -1,4 +1,4 @@
-import { type SemanticTokens, type Tokens, definePreset } from "@pandacss/dev";
+import { type SemanticTokens, definePreset } from "@pandacss/dev";
 import { recipes } from "./theme/recipes";
 import { tokens } from "./theme/tokens";
 

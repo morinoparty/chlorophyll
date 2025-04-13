@@ -30,3 +30,14 @@ styled-system
 styled-system-studio
 
 generated
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+reports/*
+storybook-static/*
+
+tests/e2e/*.ts-snapshots\*

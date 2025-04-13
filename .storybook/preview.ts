@@ -1,7 +1,16 @@
 import "../components/style.css";
-
+import "@fontsource-variable/noto-sans-jp";
 import type { Preview } from "@storybook/react";
+import { withScreenshot } from "storycap";
 
+export const decorators = [withScreenshot];
+export const parameters = {
+    screenshot: {
+        provider: {
+            name: "storycap",
+        },
+    },
+};
 const preview: Preview = {
     parameters: {
         actions: { argTypesRegex: "^on[A-Z].*" },

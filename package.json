@@ -6,13 +6,15 @@
     "scripts": {
         "prepare": "panda codegen",
         "check": "biome check ./ --write",
-        "dev:storybook": "storybook dev -p 6006",
-        "build:storybook": "storybook build",
-        "serve:storybook": "pnpm dlx http-server storybook-static -p 6006 --silent",
+        "dev": "storybook dev -p 6006",
+        "build": "storybook build",
+        "serve": "pnpm dlx http-server storybook-static -p 6006 --silent",
         "commit": "cz",
-        "test:storybook": "test-storybook --junit",
-        "test:vrt": "storycap --serverCmd \"pnpm serve:storybook\" --outputDir ./reports/vrt http://localhost:6006",
-        "test:runner": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test:storybook\""
+        "test": "test-storybook --junit",
+        "test:vrt": "playwright test",
+        "test:runner": "pnpm dlx concurrently -k -s first \"pnpm serve\" \"pnpm dlx wait-on tcp:6006 && pnpm test\"",
+        "reg-suit": "reg-suit run --config reg-suit.config.js",
+        "kill": "kill $(lsof -t -i:6006)"
     },
     "dependencies": {
         "@fontsource-variable/noto-sans-jp": "^5.2.5",
@@ -26,6 +28,7 @@
         "@chromatic-com/storybook": "^3",
         "@pandacss/dev": "^0.53.3",
         "@park-ui/panda-preset": "^0.43.1",
+        "@playwright/test": "^1.51.1",
         "@storybook/addon-a11y": "^8.6.12",
         "@storybook/addon-essentials": "^8.6.12",
         "@storybook/addon-onboarding": "^8.6.12",

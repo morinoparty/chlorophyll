@@ -74,7 +74,7 @@ export const WithIcon: StoryObj<typeof Button> = {
     render: () => (
         <Button>
             Button
-            <ArrowRightIcon  />
+            <ArrowRightIcon />
         </Button>
     ),
 };

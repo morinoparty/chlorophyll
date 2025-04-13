@@ -24,6 +24,24 @@ pnpm run dev:storybook
 pnpm run commit
 ```
 
+## 🧪 Testing
+
+### Install dependencies
+```bash
+pnpm dlx playwright install --with-deps
+```
+
+### 🎯 Check UI Components
+```bash
+pnpm run test:runner
+```
+
+### 🎯 Check VRT
+```bash
+pnpm run test:vrt
+```
+
+
 ## 📦 Installation
 
 1. Install PandaCSS
