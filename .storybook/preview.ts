@@ -22,6 +22,23 @@ const preview: Preview = {
             },
         },
 
+        screenshot: {
+            fullPage: true,
+            delay: 0,
+            viewports: {
+                desktop: {
+                    width: 1920,
+                    height: 1080,
+                },
+                mobile: {
+                    width: 375,
+                    height: 667,
+                    isMobile: true,
+                    hasTouch: true,
+                },
+            },
+        },
+
         a11y: {
             // Optional selector to inspect
             test: "todo",

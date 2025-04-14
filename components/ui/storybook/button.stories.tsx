@@ -28,52 +28,53 @@ const meta: Meta<typeof Button> = {
 
 export default meta; // メタデータをエクスポート
 
+const input = "Test"
 // デフォルトのボタンストーリー
 export const Default: StoryObj<typeof Button> = {
-    render: (args) => <Button {...args}>Button</Button>,
+    render: (args) => <Button {...args}>{input}</Button>,
 };
 
 // 各種ボタンのストーリーを定義
 export const Primary: StoryObj<typeof Button> = {
-    render: () => <Button intent="primary">Button</Button>,
+    render: () => <Button intent="primary">{input}</Button>,
 };
 
 export const Secondary: StoryObj<typeof Button> = {
-    render: () => <Button intent="secondary">Button</Button>,
+    render: () => <Button intent="secondary">{input}</Button>,
 };
 
 export const Danger: StoryObj<typeof Button> = {
-    render: () => <Button intent="danger">Button</Button>,
+    render: () => <Button intent="danger">{input}</Button>,
 };
 
 export const Warning: StoryObj<typeof Button> = {
-    render: () => <Button intent="warning">Button</Button>,
+    render: () => <Button intent="warning">{input}</Button>,
 };
 
 export const Outline: StoryObj<typeof Button> = {
-    render: () => <Button intent="outline">Button</Button>,
+    render: () => <Button intent="outline">{input}</Button>,
 };
 
 export const Plain: StoryObj<typeof Button> = {
-    render: () => <Button intent="plain">Button</Button>,
+    render: () => <Button intent="plain">{input}</Button>,
 };
 
 export const Circle: StoryObj<typeof Button> = {
-    render: () => <Button shape="circle">Button</Button>,
+    render: () => <Button shape="circle">{input}</Button>,
 };
 
 export const Small: StoryObj<typeof Button> = {
-    render: () => <Button size="sm">Button</Button>,
+    render: () => <Button size="sm">{input}</Button>,
 };
 
 export const Large: StoryObj<typeof Button> = {
-    render: () => <Button size="lg">Button</Button>,
+    render: () => <Button size="lg">{input}</Button>,
 };
 
 export const WithIcon: StoryObj<typeof Button> = {
     render: () => (
         <Button>
-            Button
+            {input}
             <ArrowRightIcon />
         </Button>
     ),
