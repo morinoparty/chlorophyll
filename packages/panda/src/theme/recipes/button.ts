@@ -9,7 +9,7 @@ export const button = defineRecipe({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: "default",
-        fontWeight: "semibold",
+        fontWeight: "medium",
         isolation: "isolate",
         position: "relative",
         transitionDuration: "normal",

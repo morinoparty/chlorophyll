@@ -12,7 +12,6 @@ export default defineConfig({
 
     presets: [
         "@pandacss/preset-base",
-        createParkPreset({ accentColor: grass, grayColor: neutral, radius: "md" }),
         createMoriPreset({ accentColor: mori, baseColor: stone, radius: "md" }),
     ],
 
@@ -22,15 +21,6 @@ export default defineConfig({
     // Files to exclude
     exclude: [],
 
-    globalCss: {
-        extend: {
-            tokens: {
-                fontFamily: {
-                    body: { value: "Noto Sans, sans-serif" },
-                },
-            },
-        },
-    },
 
     jsxFramework: "react",
     // The output directory for your css system

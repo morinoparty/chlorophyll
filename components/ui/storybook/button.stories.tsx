@@ -28,7 +28,7 @@ const meta: Meta<typeof Button> = {
 
 export default meta; // メタデータをエクスポート
 
-const input = "Test"
+const input = "Button"
 // デフォルトのボタンストーリー
 export const Default: StoryObj<typeof Button> = {
     render: (args) => <Button {...args}>{input}</Button>,
