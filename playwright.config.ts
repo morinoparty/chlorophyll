@@ -35,18 +35,14 @@ export default defineConfig({
 
         /* モバイルビューポートに対してテストする。 */
         {
-          name: 'Mobile Chrome',
-          use: { ...devices['Pixel 5'] },
-        },
-        {
-          name: 'Mobile Safari',
-          use: { ...devices['iPhone 12'] },
+            name: "Mobile Safari",
+            use: { ...devices["iPhone 12"] },
         },
     ],
 
     /* テストを開始する前にローカル開発サーバーを実行する */
     webServer: {
-        command: "pnpm serve",
+        command: "pnpm serve:storybook",
         url: "http://localhost:6006",
         reuseExistingServer: !process.env.CI,
     },

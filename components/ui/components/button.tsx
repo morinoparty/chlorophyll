@@ -1,3 +1,3 @@
-import { Button } from "./styled/button";
+import { Button, type ButtonProps } from "./styled/button";
 
-export { Button };
+export { Button, type ButtonProps };

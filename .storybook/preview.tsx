@@ -1,17 +1,17 @@
 import "../components/style.css";
 import "@fontsource-variable/noto-sans-jp";
 import type { Preview } from "@storybook/react";
-import { withScreenshot } from "storycap";
+import React from "react";
 
-export const decorators = [withScreenshot];
-export const parameters = {
-    screenshot: {
-        provider: {
-            name: "storycap",
-        },
-    },
-};
 const preview: Preview = {
+    decorators: [
+        (Story) => (
+            <div className="base">
+                <Story />
+            </div>
+        ),
+    ],
+
     parameters: {
         actions: { argTypesRegex: "^on[A-Z].*" },
 
@@ -19,6 +19,23 @@ const preview: Preview = {
             matchers: {
                 color: /(background|color)$/i,
                 date: /Date$/,
+            },
+        },
+
+        screenshot: {
+            fullPage: true,
+            delay: 0,
+            viewports: {
+                desktop: {
+                    width: 1920,
+                    height: 1080,
+                },
+                mobile: {
+                    width: 375,
+                    height: 667,
+                    isMobile: true,
+                    hasTouch: true,
+                },
             },
         },
 

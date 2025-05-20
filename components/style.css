@@ -3,3 +3,7 @@
 :root {
     --noto-sans-jp: "Noto Sans JP Variable", sans-serif;
 }
+
+.base {
+    font-family: var(--noto-sans-jp);
+}

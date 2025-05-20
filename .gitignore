@@ -40,4 +40,10 @@ generated
 reports/*
 storybook-static/*
 
-tests/e2e/*.ts-snapshots\*
+tests/e2e/*.ts-snapshots/*
+
+storycap/*
+
+chrome/*
+
+vrt/*

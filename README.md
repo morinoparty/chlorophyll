@@ -16,12 +16,12 @@ Chlorophyll is a modern and user-friendly UI component library built with React 
 
 ### 🎯 Check UI Components
 ```bash
-pnpm run dev:storybook
+pnpm run dev
 ```
 
 ### 💾 Commit
 ```bash
-pnpm run commit
+pnpm cz
 ```
 
 ## 🧪 Testing
