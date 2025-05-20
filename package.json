@@ -59,5 +59,6 @@
     "jest-junit": {
         "outputDirectory": "reports",
         "outputName": "junit.xml"
-    }
+    },
+    "packageManager": "pnpm@10.10.0"
 }
