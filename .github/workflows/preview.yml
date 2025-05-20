@@ -1,0 +1,62 @@
+name: Preview
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - name: Install
+        run: pnpm install
+
+      - name: Build pages
+        run: pnpm run build
+        
+      - name: Deploy storybook preview
+        id: deploy-storybook-preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_KEY }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: versions upload --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}" -c wrangler-storybook.jsonc
+
+      - name: print deployment-url
+        env:
+          STORYBOOK_DEPLOYMENT_URL: ${{ steps.deploy-storybook-preview.outputs.deployment-url }}
+        run: |
+          echo $STORYBOOK_DEPLOYMENT_URL
+
+      - name: Create comment file
+        id: create-comment-file
+        env:
+          STORYBOOK_DEPLOYMENT_URL: ${{ steps.deploy-storybook-preview.outputs.deployment-url }}
+        run: |
+          cat  << EOF > comment.md
+          ## 🚀 Deploying ${{ github.event.repository.name }} with Cloudflare Workers
+          <table>
+            <tr>
+              <th scope="row">Preview URL</th>
+              <td><a href="$STORYBOOK_DEPLOYMENT_URL">$STORYBOOK_DEPLOYMENT_URL</a></td>
+            </tr>
+          </table>
+          EOF
+
+      - name: Create PR comment
+        if: ${{ steps.deploy-pages-preview.outcome == 'success' && steps.deploy-storybook-preview.outcome == 'success' }}
+        run: gh pr comment ${{ github.event.number }} --body-file comment.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
