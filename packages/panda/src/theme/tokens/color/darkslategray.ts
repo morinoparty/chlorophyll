@@ -14,4 +14,3 @@ export const darkslategray = defineTokens.colors({
         900: { value: "rgb(20, 75, 45)" }, // 最も濃い色
     },
 });
-

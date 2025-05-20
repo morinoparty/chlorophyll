@@ -35,8 +35,8 @@ export default defineConfig({
 
         /* モバイルビューポートに対してテストする。 */
         {
-          name: 'Mobile Safari',
-          use: { ...devices['iPhone 12'] },
+            name: "Mobile Safari",
+            use: { ...devices["iPhone 12"] },
         },
     ],
 
