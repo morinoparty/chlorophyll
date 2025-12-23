@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import type { StoriesJson, StoryInfo } from "./types";
 
-
 // Storybookのストーリー情報を取得する
 export function getStoryInfos(): StoryInfo[] {
     // Storybookのビルド結果からストーリー情報を取得

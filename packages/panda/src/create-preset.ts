@@ -1,6 +1,6 @@
-import { type SemanticTokens, definePreset } from "@pandacss/dev";
+import { definePreset, type SemanticTokens } from "@pandacss/dev";
 import { recipes } from "./theme/recipes";
-import { tokens } from "./theme/tokens";
+import { globalFontFace, textStyles, tokens } from "./theme/tokens";
 
 export interface ColorPalette {
     name: string;
@@ -32,10 +32,12 @@ export const createPreset = (option: PresetOptions) => {
     return definePreset({
         name: "@moripa/panda-preset",
         presets: ["@pandacss/preset-base"],
+        globalFontface: globalFontFace,
         theme: {
             extend: {
                 tokens,
                 semanticTokens,
+                textStyles,
                 recipes: {
                     ...recipes,
                 },

@@ -20,7 +20,7 @@
             }
         ],
         "paths": {
-            "@ss/*": ["./styled-system/*"]
+            "styled-system/*": ["./styled-system/*"]
         },
         "types": ["@cloudflare/workers-types/2023-07-01", "axe-playwright"]
     },

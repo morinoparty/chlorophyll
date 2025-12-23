@@ -7,7 +7,7 @@ export default defineConfig({
     resolve: {
         alias: [
             {
-                find: "@ss/",
+                find: "styled-system/",
                 replacement: `${__dirname}/styled-system/`,
             },
         ],

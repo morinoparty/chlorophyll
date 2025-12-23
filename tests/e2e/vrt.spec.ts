@@ -15,7 +15,7 @@ storyInfos.map(({ url, title, name }) => {
         await page.close();
 
         // スクリーンショットをテスト結果に添付
-        testInfo.attach(`${title}: ${name}`, {
+        await testInfo.attach(`${title}: ${name}`, {
             body: screenshot,
             contentType: "image/png",
         });
