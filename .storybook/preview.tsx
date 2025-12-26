@@ -1,12 +1,11 @@
 import "../components/style.css";
-import "@fontsource-variable/noto-sans-jp";
 import type { Preview } from "@storybook/react";
-import React from "react";
+import { css } from "styled-system/css";
 
 const preview: Preview = {
     decorators: [
         (Story) => (
-            <div className="base">
+            <div className={css({ textStyle: "body" })}>
                 <Story />
             </div>
         ),
