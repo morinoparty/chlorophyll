@@ -5,6 +5,7 @@ import { createPreset as createMoriPreset } from "../packages/panda/src/create-p
 export default defineConfig({
     // Whether to use css reset
     preflight: true,
+    prefix: "ma",
 
     presets: ["@pandacss/preset-base", createMoriPreset({ accentColor: mori, baseColor: stone, radius: "md" })],
 

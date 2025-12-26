@@ -1,8 +1,8 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { css } from "styled-system/css";
-import { Footer } from "~/components/Footer";
-import { Header } from "~/components/Header";
-import appCss from "~/styles/app.css?url";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import appCss from "../styles/app.css?url";
 
 export const Route = createRootRoute({
     head: () => ({
@@ -12,7 +12,7 @@ export const Route = createRootRoute({
             { name: "description", content: "Chlorophyll - A design system for Morinoparty projects" },
         ],
         links: [
-            { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+            { rel: "icon", type: "image/svg+xml", href: "/chlorophyll.svg" },
             { rel: "stylesheet", href: appCss },
         ],
     }),
@@ -28,6 +28,7 @@ function RootComponent() {
             <body
                 className={css({
                     margin: 0,
+                    colorPalette: "mori",
                     minHeight: "100vh",
                     display: "flex",
                     textStyle: "body",
@@ -44,16 +45,7 @@ function RootComponent() {
                         width: "100%",
                     })}
                 >
-                    <div
-                        className={css({
-                            maxWidth: "7xl",
-                            marginX: "auto",
-                            paddingX: { base: "4", md: "6" },
-                            paddingY: "6",
-                        })}
-                    >
-                        <Outlet />
-                    </div>
+                    <Outlet />
                 </main>
                 <Footer />
                 <Scripts />
@@ -65,11 +57,11 @@ function RootComponent() {
 function ThemeScript() {
     return (
         <script
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
             dangerouslySetInnerHTML={{
                 __html: `
           (function() {
-            const theme = localStorage.getItem('theme') ||
-              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', theme);
             document.documentElement.classList.toggle('dark', theme === 'dark');
           })();

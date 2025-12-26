@@ -10,7 +10,6 @@
         "lib": ["DOM", "DOM.Iterable", "ES2022"],
         "baseUrl": ".",
         "paths": {
-            "~/*": ["./app/*"],
             "styled-system/*": ["./styled-system/*"]
         }
     },

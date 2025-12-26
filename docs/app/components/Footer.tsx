@@ -28,7 +28,7 @@ export function Footer() {
                 {/* Left Section */}
                 <div className={stack({ gap: "2" })}>
                     <div className={hstack({ gap: "2" })}>
-                        <img src="/favicon.svg" alt="Chlorophyll" className={css({ width: "5", height: "5" })} />
+                        <img src="/chlorophyll.svg" alt="Chlorophyll" className={css({ width: "5", height: "5" })} />
                         <span
                             className={css({
                                 fontWeight: "semibold",

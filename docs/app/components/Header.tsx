@@ -37,8 +37,8 @@ export function Header() {
                         fontSize: "lg",
                     })}
                 >
-                    <img src="/favicon.svg" alt="Chlorophyll" className={css({ width: "6", height: "6" })} />
-                    <span className={css({ display: { base: "none", sm: "inline" } })}>Chlorophyll</span>
+                    <img src="/chlorophyll.svg" alt="Chlorophyll" className={css({ width: "6", height: "6" })} />
+                    <span>Chlorophyll</span>
                 </a>
 
                 {/* Navigation */}
