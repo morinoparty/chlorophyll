@@ -11,7 +11,7 @@
         "serve:storybook": "pnpm dlx http-server storybook-static -p 6006 --silent",
         "test": "test-storybook --junit",
         "test:vrt": "playwright test",
-        "test:ci": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test\"",
+        "test:runner": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test\"",
         "kill": "kill $(lsof -t -i:6006)"
     },
     "dependencies": {

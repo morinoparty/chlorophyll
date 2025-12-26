@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm
@@ -18,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Test with Gradle
-        run: pnpm test:ci
+      - name: Test
+        run: pnpm test:runner
 
       - name: Publish test results
         uses: mikepenz/action-junit-report@v5
