@@ -17,40 +17,65 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
       - uses: pnpm/action-setup@v4
         with:
           run_install: false
+
       - name: Install
         run: pnpm install
 
-      - name: Build pages
+      - name: Build storybook
         run: pnpm run build
-        
+
+      - name: Install docs dependencies
+        run: pnpm install
+        working-directory: docs
+
+      - name: Build docs
+        run: pnpm run build
+        working-directory: docs
+
       - name: Deploy storybook preview
         id: deploy-storybook-preview
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_KEY }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: versions upload --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}" -c wrangler-storybook.jsonc
+          command: versions upload -c wrangler-storybook.jsonc --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}"
+
+      - name: Deploy docs preview
+        id: deploy-docs-preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_KEY }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: versions upload -c wrangler-docs.jsonc --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}"
 
       - name: print deployment-url
         env:
           STORYBOOK_DEPLOYMENT_URL: ${{ steps.deploy-storybook-preview.outputs.deployment-url }}
+          DOCS_DEPLOYMENT_URL: ${{ steps.deploy-docs-preview.outputs.deployment-url }}
         run: |
           echo $STORYBOOK_DEPLOYMENT_URL
+          echo $DOCS_DEPLOYMENT_URL
 
       - name: Create comment file
         id: create-comment-file
         env:
           STORYBOOK_DEPLOYMENT_URL: ${{ steps.deploy-storybook-preview.outputs.deployment-url }}
+          DOCS_DEPLOYMENT_URL: ${{ steps.deploy-docs-preview.outputs.deployment-url }}
         run: |
           cat  << EOF > comment.md
           ## 🚀 Deploying ${{ github.event.repository.name }} with Cloudflare Workers
           <table>
             <tr>
-              <th scope="row">Preview URL</th>
+              <th scope="row">Storybook</th>
               <td><a href="$STORYBOOK_DEPLOYMENT_URL">$STORYBOOK_DEPLOYMENT_URL</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Docs</th>
+              <td><a href="$DOCS_DEPLOYMENT_URL">$DOCS_DEPLOYMENT_URL</a></td>
             </tr>
           </table>
           EOF

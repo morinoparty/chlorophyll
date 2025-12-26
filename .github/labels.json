@@ -1,0 +1,57 @@
+[
+    {
+        "name": "bug",
+        "color": "#FC2C2B",
+        "description": "Type: Bug fix"
+    },
+    {
+        "name": "requirement",
+        "color": "#EF2816",
+        "description": "Type: Implementation required"
+    },
+    {
+        "name": "test",
+        "color": "#23E523",
+        "description": "Type: Test"
+    },
+    {
+        "name": "enhancement",
+        "color": "#375E97",
+        "description": "Type: Feature improvement"
+    },
+    {
+        "name": "document",
+        "color": "#3B62BD",
+        "description": "Type: Documentation changes"
+    },
+    {
+        "name": "chore",
+        "color": "#E2601E",
+        "description": "Type: Tools or library changes"
+    },
+    {
+        "name": "refactor",
+        "color": "#AFD38D",
+        "description": "Type: Refactoring"
+    },
+    {
+        "name": "duplicate",
+        "color": "#CCCCCC",
+        "description": "Type: Duplicate"
+    },
+    {
+        "name": "wontfix",
+        "color": "#CCCCCC",
+        "description": "Type: Won't fix"
+    },
+    {
+        "name": "dependencies",
+        "color": "#5319E7",
+        "description": "Type: Security update"
+    },
+    {
+        "name": "not-reviewed",
+        "color": "#F9C1CF",
+        "description": "Type: Not reviewed"
+    }
+]

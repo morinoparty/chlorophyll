@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@ark-ui/react": "^5.30.0",
+        "@pandacss/studio": "^1.7.1",
         "lucide-react": "^0.562.0",
         "react": "^19.2.3",
         "react-dom": "^19.2.3"
