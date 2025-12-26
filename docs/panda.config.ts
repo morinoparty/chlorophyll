@@ -9,7 +9,7 @@ export default defineConfig({
     presets: ["@pandacss/preset-base", createMoriPreset({ accentColor: mori, baseColor: stone, radius: "md" })],
 
     // Where to look for your css declarations
-    include: ["./src/**/*.{ts,tsx,js,jsx,astro}", "./pages/**/*.{ts,tsx,js,jsx,astro}"],
+    include: ["./app/**/*.{ts,tsx,js,jsx}"],
     // Files to exclude
     exclude: [],
 

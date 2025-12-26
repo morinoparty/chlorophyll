@@ -1,6 +1,6 @@
 import { definePreset, type SemanticTokens } from "@pandacss/dev";
 import { recipes } from "./theme/recipes";
-import { globalFontFace, textStyles, tokens } from "./theme/tokens";
+import { globalFontFace, textStyles, tokens } from "./theme/reference-tokens";
 
 export interface ColorPalette {
     name: string;

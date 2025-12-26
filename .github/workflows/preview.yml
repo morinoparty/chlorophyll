@@ -46,7 +46,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_KEY }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: versions upload -c wrangler-docs.jsonc --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}"
+          workingDirectory: docs
+          command: versions upload --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}"
 
       - name: print deployment-url
         env:

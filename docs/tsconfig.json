@@ -1,13 +1,18 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "include": [".astro/types.d.ts", "**/*"],
     "compilerOptions": {
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "jsx": "react-jsx",
+        "lib": ["DOM", "DOM.Iterable", "ES2022"],
         "baseUrl": ".",
         "paths": {
+            "~/*": ["./app/*"],
             "styled-system/*": ["./styled-system/*"]
-        },
-        "jsx": "react-jsx",
-        "jsxImportSource": "react"
+        }
     },
-    "exclude": ["dist"]
+    "include": ["app/**/*.ts", "app/**/*.tsx", "styled-system/**/*.ts"]
 }
