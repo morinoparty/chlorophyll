@@ -11,7 +11,7 @@
         "serve:storybook": "pnpm dlx http-server storybook-static -p 6006 --silent",
         "test": "test-storybook --junit",
         "test:vrt": "playwright test",
-        "test:runner": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test\"",
+        "test:ci": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test\"",
         "kill": "kill $(lsof -t -i:6006)"
     },
     "dependencies": {
@@ -41,6 +41,7 @@
         "cz-emoji": "1.3.2-canary.2",
         "globals": "^16.5.0",
         "lefthook": "^2.0.12",
+        "playwright": "^1.57.0",
         "storybook": "^10.1.10",
         "storybook-design-token": "^5.0.0",
         "typescript": "~5.9.3",
