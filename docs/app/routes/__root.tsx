@@ -28,7 +28,6 @@ function RootComponent() {
             <body
                 className={css({
                     margin: 0,
-                    colorPalette: "mori",
                     minHeight: "100vh",
                     display: "flex",
                     textStyle: "body",

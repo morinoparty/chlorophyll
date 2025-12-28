@@ -9,21 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ThemeRouteRouteImport } from './routes/theme/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ThemeIndexRouteImport } from './routes/theme/index'
 import { Route as DocsIndexRouteImport } from './routes/docs/index'
 import { Route as ComponentsIndexRouteImport } from './routes/components/index'
 import { Route as DocsGettingStartedIndexRouteImport } from './routes/docs/getting-started/index'
+import { Route as ThemeDesignTokensRefrenceColorsIndexRouteImport } from './routes/theme/design-tokens/refrence-colors/index'
 
+const ThemeRouteRoute = ThemeRouteRouteImport.update({
+  id: '/theme',
+  path: '/theme',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThemeIndexRoute = ThemeIndexRouteImport.update({
-  id: '/theme/',
-  path: '/theme/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ThemeRouteRoute,
 } as any)
 const DocsIndexRoute = DocsIndexRouteImport.update({
   id: '/docs/',
@@ -40,13 +47,21 @@ const DocsGettingStartedIndexRoute = DocsGettingStartedIndexRouteImport.update({
   path: '/docs/getting-started/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThemeDesignTokensRefrenceColorsIndexRoute =
+  ThemeDesignTokensRefrenceColorsIndexRouteImport.update({
+    id: '/design-tokens/refrence-colors/',
+    path: '/design-tokens/refrence-colors/',
+    getParentRoute: () => ThemeRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/theme': typeof ThemeRouteRouteWithChildren
   '/components': typeof ComponentsIndexRoute
   '/docs': typeof DocsIndexRoute
-  '/theme': typeof ThemeIndexRoute
+  '/theme/': typeof ThemeIndexRoute
   '/docs/getting-started': typeof DocsGettingStartedIndexRoute
+  '/theme/design-tokens/refrence-colors': typeof ThemeDesignTokensRefrenceColorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,39 +69,64 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsIndexRoute
   '/theme': typeof ThemeIndexRoute
   '/docs/getting-started': typeof DocsGettingStartedIndexRoute
+  '/theme/design-tokens/refrence-colors': typeof ThemeDesignTokensRefrenceColorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/theme': typeof ThemeRouteRouteWithChildren
   '/components/': typeof ComponentsIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/theme/': typeof ThemeIndexRoute
   '/docs/getting-started/': typeof DocsGettingStartedIndexRoute
+  '/theme/design-tokens/refrence-colors/': typeof ThemeDesignTokensRefrenceColorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/components' | '/docs' | '/theme' | '/docs/getting-started'
+  fullPaths:
+    | '/'
+    | '/theme'
+    | '/components'
+    | '/docs'
+    | '/theme/'
+    | '/docs/getting-started'
+    | '/theme/design-tokens/refrence-colors'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/components' | '/docs' | '/theme' | '/docs/getting-started'
+  to:
+    | '/'
+    | '/components'
+    | '/docs'
+    | '/theme'
+    | '/docs/getting-started'
+    | '/theme/design-tokens/refrence-colors'
   id:
     | '__root__'
     | '/'
+    | '/theme'
     | '/components/'
     | '/docs/'
     | '/theme/'
     | '/docs/getting-started/'
+    | '/theme/design-tokens/refrence-colors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ThemeRouteRoute: typeof ThemeRouteRouteWithChildren
   ComponentsIndexRoute: typeof ComponentsIndexRoute
   DocsIndexRoute: typeof DocsIndexRoute
-  ThemeIndexRoute: typeof ThemeIndexRoute
   DocsGettingStartedIndexRoute: typeof DocsGettingStartedIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/theme': {
+      id: '/theme'
+      path: '/theme'
+      fullPath: '/theme'
+      preLoaderRoute: typeof ThemeRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -96,10 +136,10 @@ declare module '@tanstack/react-router' {
     }
     '/theme/': {
       id: '/theme/'
-      path: '/theme'
-      fullPath: '/theme'
+      path: '/'
+      fullPath: '/theme/'
       preLoaderRoute: typeof ThemeIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ThemeRouteRoute
     }
     '/docs/': {
       id: '/docs/'
@@ -122,14 +162,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsGettingStartedIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/theme/design-tokens/refrence-colors/': {
+      id: '/theme/design-tokens/refrence-colors/'
+      path: '/design-tokens/refrence-colors'
+      fullPath: '/theme/design-tokens/refrence-colors'
+      preLoaderRoute: typeof ThemeDesignTokensRefrenceColorsIndexRouteImport
+      parentRoute: typeof ThemeRouteRoute
+    }
   }
 }
 
+interface ThemeRouteRouteChildren {
+  ThemeIndexRoute: typeof ThemeIndexRoute
+  ThemeDesignTokensRefrenceColorsIndexRoute: typeof ThemeDesignTokensRefrenceColorsIndexRoute
+}
+
+const ThemeRouteRouteChildren: ThemeRouteRouteChildren = {
+  ThemeIndexRoute: ThemeIndexRoute,
+  ThemeDesignTokensRefrenceColorsIndexRoute:
+    ThemeDesignTokensRefrenceColorsIndexRoute,
+}
+
+const ThemeRouteRouteWithChildren = ThemeRouteRoute._addFileChildren(
+  ThemeRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ThemeRouteRoute: ThemeRouteRouteWithChildren,
   ComponentsIndexRoute: ComponentsIndexRoute,
   DocsIndexRoute: DocsIndexRoute,
-  ThemeIndexRoute: ThemeIndexRoute,
   DocsGettingStartedIndexRoute: DocsGettingStartedIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,0 +1,130 @@
+import { Link, useRouterState } from "@tanstack/react-router";
+import { sva } from "styled-system/css";
+
+const themeSidebarStyles = sva({
+    slots: ["root", "nav", "section", "sectionTitle", "list", "link"],
+    base: {
+        root: {
+            display: "block",
+            width: "64",
+            flexShrink: 0,
+            position: "sticky",
+            top: "16",
+            height: "calc(100vh - 4rem)",
+            overflowY: "auto",
+            paddingY: "6",
+            paddingLeft: "4",
+        },
+        nav: {
+            display: "flex",
+            flexDirection: "column",
+            gap: "8",
+        },
+        section: {
+            display: "flex",
+            flexDirection: "column",
+        },
+        sectionTitle: {
+            fontSize: "xl",
+            fontVariationSettings: "'wght'600",
+            color: "fg.default",
+        },
+        list: {
+            display: "flex",
+            flexDirection: "column",
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+        },
+        link: {
+            display: "block",
+            fontSize: "md",
+            textDecoration: "none",
+            transition: "colors",
+        },
+    },
+    variants: {
+        active: {
+            true: {
+                link: {
+                    color: "accent.default",
+                    fontWeight: "medium",
+                    _hover: {
+                        color: "accent.default",
+                    },
+                },
+            },
+            false: {
+                link: {
+                    color: "fg.muted",
+                    fontWeight: "normal",
+                    _hover: {
+                        color: "fg.default",
+                    },
+                },
+            },
+        },
+    },
+    defaultVariants: {
+        active: false,
+    },
+});
+
+interface NavItem {
+    title: string;
+    href: string;
+}
+
+interface NavSection {
+    title: string;
+    items: NavItem[];
+}
+
+const navigation: NavSection[] = [
+    {
+        title: "Reference Token",
+        items: [
+            { title: "Colors", href: "/theme/design-tokens/refrence-colors" },
+            { title: "Radii", href: "/theme/design-tokens/radii" },
+        ],
+    },
+    {
+        title: "Semantic Token",
+        items: [
+            { title: "Colors", href: "/theme/semantic-tokens/colors" },
+            { title: "Typography", href: "/theme/semantic-tokens/typography" },
+        ],
+    },
+];
+
+export function ThemeSidebar() {
+    const routerState = useRouterState();
+    const currentPath = routerState.location.pathname;
+    const styles = themeSidebarStyles();
+    const activeStyles = themeSidebarStyles({ active: true });
+
+    return (
+        <aside className={styles.root}>
+            <nav className={styles.nav}>
+                {navigation.map((section) => (
+                    <div key={section.title} className={styles.section}>
+                        <h4 className={styles.sectionTitle}>{section.title}</h4>
+                        <ul className={styles.list}>
+                            {section.items.map((item) => {
+                                const isActive = currentPath === item.href || currentPath === `${item.href}/`;
+                                const linkStyles = isActive ? activeStyles : styles;
+                                return (
+                                    <li key={item.href}>
+                                        <Link to={item.href} className={linkStyles.link}>
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                ))}
+            </nav>
+        </aside>
+    );
+}

@@ -5,9 +5,9 @@
     "version": "0.0.1",
     "scripts": {
         "prepare": "panda codegen",
-        "dev": "vite dev --host",
-        "build": "vite build",
-        "deploy": "vite build && wrangler deploy",
+        "dev": "panda spec && vite dev --host",
+        "build": "panda spec && vite build",
+        "deploy": "pnpm build && wrangler deploy",
         "cf-typegen": "wrangler types"
     },
     "dependencies": {
@@ -15,6 +15,7 @@
         "@chlorophyll/react": "workspace:*",
         "@tanstack/react-router": "^1.143.11",
         "@tanstack/react-start": "^1.143.11",
+        "colorjs.io": "^0.6.0",
         "lucide-react": "^0.562.0",
         "react": "^19.2.3",
         "react-dom": "^19.2.3"

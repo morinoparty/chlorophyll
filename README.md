@@ -96,7 +96,7 @@ function App() {
 }
 ```
 
-[token](https://946d07e9-color-palette.nikomaru.workers.dev/?min=0.1&max=0.98&length=15&chroma=0.085&data=[{%22colorValue%22%3A%22rgba(73%2C+139%2C+108%2C+1)%22%2C%22colorId%22%3A%22mori%22%2C%22uniqueId%22%3A1}%2C{%22colorValue%22%3A%22rgba(59%2C+149%2C+155%2C+1)%22%2C%22colorId%22%3A%22umi%22%2C%22uniqueId%22%3A2}])
+[token](https://946d07e9-color-palette.nikomaru.workers.dev/?min=0.1&max=0.98&length=15&chroma=0.085&data=[{%22colorValue%22%3A%22rgba(57%2C+110%2C+86%2C+1)%22%2C%22colorId%22%3A%22mori%22%2C%22uniqueId%22%3A1}%2C{%22colorValue%22%3A%22rgba(59%2C+149%2C+155%2C+1)%22%2C%22colorId%22%3A%22umi%22%2C%22uniqueId%22%3A2}])
 
 ## 🤝 Contribution
 Contributions are welcome! Follow these steps to participate:

@@ -25,7 +25,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            "styled-system/": `${__dirname}/styled-system/`,
+            "styled-system/*": `${__dirname}/styled-system/*`,
         },
     },
     server: {
