@@ -18,7 +18,7 @@ const headerStyles = sva({
             display: "flex",
             maxWidth: "7xl",
             marginX: "auto",
-            paddingX: { base: "4", md: "6" },
+            paddingX: { base: "4" },
             height: "16",
             alignItems: "center",
             justifyContent: "space-between",

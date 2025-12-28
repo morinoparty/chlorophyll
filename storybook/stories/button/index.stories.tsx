@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ArrowRightIcon } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "@chlorophyll/ui";
 
 // メタデータを定義する
 const meta: Meta<typeof Button> = {

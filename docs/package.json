@@ -1,16 +1,18 @@
 {
-    "name": "chlorophyll-docs",
+    "name": "@chlorophyll/docs",
+    "private": true,
     "type": "module",
     "version": "0.0.1",
     "scripts": {
         "prepare": "panda codegen",
         "dev": "vite dev --host",
-        "build" : "vite build",
+        "build": "vite build",
         "deploy": "vite build && wrangler deploy",
         "cf-typegen": "wrangler types"
     },
     "dependencies": {
         "@ark-ui/react": "^5.30.0",
+        "@chlorophyll/ui": "workspace:*",
         "@tanstack/react-router": "^1.143.11",
         "@tanstack/react-start": "^1.143.11",
         "lucide-react": "^0.562.0",
@@ -22,6 +24,7 @@
         "@pandacss/dev": "^1.7.2",
         "@types/react": "^19.2.7",
         "@types/react-dom": "^19.2.3",
+        "@vitejs/plugin-react": "^5.1.2",
         "autoprefixer": "^10.4.23",
         "typescript": "^5.9.3",
         "vite": "^7.3.0",

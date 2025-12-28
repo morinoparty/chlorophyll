@@ -5,7 +5,11 @@ export default defineConfig({
     preflight: true,
     prefix: "ma",
     presets: ["@pandacss/preset-base", createPreset({ accentColor: mori, baseColor: stone, radius: "md" })],
-    include: ["./app/**/*.{ts,tsx,js,jsx}"],
+    include: [
+        "./stories/**/*.{ts,tsx}",
+        "./.storybook/**/*.{ts,tsx}",
+        "../packages/ui/src/**/*.{ts,tsx}",
+    ],
     exclude: [],
     jsxFramework: "react",
     outdir: "styled-system",

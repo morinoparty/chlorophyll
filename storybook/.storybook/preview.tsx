@@ -1,11 +1,11 @@
-import "../components/style.css";
+import '../src/index.css'
 import type { Preview } from "@storybook/react";
 import { css } from "styled-system/css";
 
 const preview: Preview = {
     decorators: [
         (Story) => (
-            <div className={css({ textStyle: "body" })}>
+            <div className={css({ textStyle: "body", colorPalette: "mori" })}>
                 <Story />
             </div>
         ),
