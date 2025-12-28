@@ -17,8 +17,8 @@ export const mori = defineTokens.colors({
         1300: { value: "oklch(0.20000000000000018 0.081 161.78561342886607 / 1)" },
         1400: { value: "oklch(0.13500000000000012 0.081 161.78561342886607 / 1)" },
         1500: { value: "oklch(0.07000000000000017 0.081 161.78561342886607 / 1)" },
-        default: { value: "var(--ma-colors-mori-600)" },
-        fg: { value: "oklch(0.20000000000000018 0.081 161.78561342886607 / 1)" },
+        default: { value: "{colors.mori.900}" },
+        fg: { value: "white" },
         emphasized: { value: "oklch(0.5900000000000001 0.081 161.78561342886607 / 1)" },
     },
 });

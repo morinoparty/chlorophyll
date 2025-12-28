@@ -24,7 +24,7 @@ export const createPreset = (option: PresetOptions) => {
         },
         radii: {
             default: {
-                value: `var(--radii-${radius})`,
+                value: `{radii.${radius}}`,
             },
         },
     };

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ThemeIndexRouteImport } from './routes/theme/index'
 import { Route as DocsIndexRouteImport } from './routes/docs/index'
 import { Route as ComponentsIndexRouteImport } from './routes/components/index'
 import { Route as DocsGettingStartedIndexRouteImport } from './routes/docs/getting-started/index'
@@ -17,6 +18,11 @@ import { Route as DocsGettingStartedIndexRouteImport } from './routes/docs/getti
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThemeIndexRoute = ThemeIndexRouteImport.update({
+  id: '/theme/',
+  path: '/theme/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsIndexRoute = DocsIndexRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/components': typeof ComponentsIndexRoute
   '/docs': typeof DocsIndexRoute
+  '/theme': typeof ThemeIndexRoute
   '/docs/getting-started': typeof DocsGettingStartedIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/components': typeof ComponentsIndexRoute
   '/docs': typeof DocsIndexRoute
+  '/theme': typeof ThemeIndexRoute
   '/docs/getting-started': typeof DocsGettingStartedIndexRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,28 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/components/': typeof ComponentsIndexRoute
   '/docs/': typeof DocsIndexRoute
+  '/theme/': typeof ThemeIndexRoute
   '/docs/getting-started/': typeof DocsGettingStartedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/components' | '/docs' | '/docs/getting-started'
+  fullPaths: '/' | '/components' | '/docs' | '/theme' | '/docs/getting-started'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/components' | '/docs' | '/docs/getting-started'
-  id: '__root__' | '/' | '/components/' | '/docs/' | '/docs/getting-started/'
+  to: '/' | '/components' | '/docs' | '/theme' | '/docs/getting-started'
+  id:
+    | '__root__'
+    | '/'
+    | '/components/'
+    | '/docs/'
+    | '/theme/'
+    | '/docs/getting-started/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComponentsIndexRoute: typeof ComponentsIndexRoute
   DocsIndexRoute: typeof DocsIndexRoute
+  ThemeIndexRoute: typeof ThemeIndexRoute
   DocsGettingStartedIndexRoute: typeof DocsGettingStartedIndexRoute
 }
 
@@ -76,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/theme/': {
+      id: '/theme/'
+      path: '/theme'
+      fullPath: '/theme'
+      preLoaderRoute: typeof ThemeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs/': {
@@ -106,6 +129,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComponentsIndexRoute: ComponentsIndexRoute,
   DocsIndexRoute: DocsIndexRoute,
+  ThemeIndexRoute: ThemeIndexRoute,
   DocsGettingStartedIndexRoute: DocsGettingStartedIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,59 +1,61 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { css } from "styled-system/css";
+import { Link, createFileRoute } from "@tanstack/react-router";
+import { sva } from "styled-system/css";
 import { Button } from "../../../components/react/src/components/ui/button";
 
 export const Route = createFileRoute("/")({
     head: () => ({
-        meta: [{ title: "Chlorophyll - Design System" }],
+        meta: [{ title: "Chlorophyll - Morinoparty Design System" }],
     }),
     component: Home,
 });
 
+const homeStyles = sva({
+    slots: ["root", "title", "description", "actions"],
+    base: {
+        root: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "60vh",
+            textAlign: "center",
+            gap: "6",
+        },
+        title: {
+            fontSize: "4xl",
+            fontWeight: "bold",
+            color: "fg.default",
+        },
+        description: {
+            fontSize: "lg",
+            color: "fg.muted",
+            maxWidth: "lg",
+        },
+        actions: {
+            display: "flex",
+            gap: "4",
+            flexWrap: "wrap",
+            justifyContent: "center",
+        },
+    },
+});
+
 function Home() {
+    const styles = homeStyles();
+
     return (
-        <div
-            className={css({
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "60vh",
-                textAlign: "center",
-                gap: "6",
-            })}
-        >
-            <h1
-                className={css({
-                    fontSize: "4xl",
-                    fontWeight: "bold",
-                    color: "fg.default",
-                })}
-            >
-                Chlorophyll
-            </h1>
-            <p
-                className={css({
-                    fontSize: "lg",
-                    color: "fg.muted",
-                    maxWidth: "lg",
-                })}
-            >
+        <div className={styles.root}>
+            <h1 className={styles.title}>Chlorophyll</h1>
+            <p className={styles.description}>
                 A design system for Morinoparty projects built with Panda CSS and Ark UI
             </p>
-            <div
-                className={css({
-                    display: "flex",
-                    gap: "4",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                })}
-            >
-                <a href="/docs/getting-started">
+            <div className={styles.actions}>
+                <Link to="/docs/getting-started">
                     <Button>Get Started</Button>
-                </a>
-                <a href="/components">
+                </Link>
+                <Link to="/components">
                     <Button>Components</Button>
-                </a>
+                </Link>
             </div>
         </div>
     );

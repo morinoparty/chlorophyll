@@ -1,7 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { css } from "styled-system/css";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
+import { Footer } from "../components/footer";
+import { Header } from "../components/header";
 import appCss from "../styles/app.css?url";
 
 export const Route = createRootRoute({
@@ -61,9 +61,14 @@ function ThemeScript() {
             dangerouslySetInnerHTML={{
                 __html: `
           (function() {
-            const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-            document.documentElement.classList.toggle('dark', theme === 'dark');
+            // Mode (light/dark)
+            const mode = localStorage.getItem('mode') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-mode', mode);
+            document.documentElement.classList.toggle('dark', mode === 'dark');
+
+            // Color Theme (mori/umi)
+            const colorTheme = localStorage.getItem('color-theme') || 'mori';
+            document.documentElement.setAttribute('data-color-theme', colorTheme);
           })();
         `,
             }}
