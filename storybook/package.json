@@ -41,7 +41,8 @@
         "storybook-design-token": "^5.0.0",
         "typescript": "~5.9.3",
         "vite": "^7.3.0",
-        "vitest": "^4.0.16"
+        "vitest": "^4.0.16",
+        "wrangler": "^4.55.0"
     },
     "jest-junit": {
         "outputDirectory": "reports",
