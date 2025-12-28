@@ -17,9 +17,9 @@ importers:
       '@ark-ui/react':
         specifier: ^5.30.0
         version: 5.30.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@chlorophyll/ui':
+      '@chlorophyll/react':
         specifier: workspace:*
-        version: link:../packages/ui
+        version: link:../packages/react
       '@tanstack/react-router':
         specifier: ^1.143.11
         version: 1.144.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -67,7 +67,7 @@ importers:
         specifier: ^4.55.0
         version: 4.56.0
 
-  packages/ui:
+  packages/react:
     dependencies:
       '@ark-ui/react':
         specifier: ^5.30.0
@@ -97,9 +97,9 @@ importers:
 
   storybook:
     dependencies:
-      '@chlorophyll/ui':
+      '@chlorophyll/react':
         specifier: workspace:*
-        version: link:../packages/ui
+        version: link:../packages/react
       lucide-react:
         specifier: ^0.562.0
         version: 0.562.0(react@19.2.3)

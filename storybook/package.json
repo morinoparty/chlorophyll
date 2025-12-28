@@ -13,7 +13,7 @@
         "test:runner": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test\""
     },
     "dependencies": {
-        "@chlorophyll/ui": "workspace:*",
+        "@chlorophyll/react": "workspace:*",
         "lucide-react": "^0.562.0",
         "react": "^19.2.3",
         "react-dom": "^19.2.3"

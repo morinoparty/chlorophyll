@@ -1,5 +1,5 @@
+import { createPreset, mori, stone } from "@chlorophyll/react/preset";
 import { defineConfig } from "@pandacss/dev";
-import { mori, stone, createPreset } from "@chlorophyll/ui/preset";
 
 export default defineConfig({
     preflight: true,

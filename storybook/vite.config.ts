@@ -10,11 +10,11 @@ export default defineConfig({
                 replacement: `${__dirname}/styled-system/`,
             },
             {
-                find: "@chlorophyll/ui/style.css",
+                find: "@chlorophyll/react/style.css",
                 replacement: `${__dirname}/../packages/ui/style.css`,
             },
             {
-                find: "@chlorophyll/ui",
+                find: "@chlorophyll/react",
                 replacement: `${__dirname}/../packages/ui/src`,
             },
         ],

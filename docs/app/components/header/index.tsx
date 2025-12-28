@@ -82,11 +82,7 @@ export function Header() {
             <div className={styles.container}>
                 {/* Logo */}
                 <Link to="/" className={styles.logo}>
-                    <img
-                        src="/chlorophyll.svg"
-                        alt="Chlorophyll"
-                        className={styles.logoIcon}
-                    />
+                    <img src="/chlorophyll.svg" alt="Chlorophyll" className={styles.logoIcon} />
                     <span className={styles.logoText}>Chlorophyll</span>
                 </Link>
 

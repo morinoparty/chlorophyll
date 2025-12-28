@@ -34,6 +34,7 @@ jobs:
           apiToken: ${{ secrets.CF_API_KEY }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           workingDirectory: storybook
+          packageManager: pnpm
           command: versions upload --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}"
 
       - name: Deploy docs preview
@@ -43,6 +44,7 @@ jobs:
           apiToken: ${{ secrets.CF_API_KEY }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           workingDirectory: docs
+          packageManager: pnpm
           command: versions upload --message "Deployed pages by GitHub Actions branch ${{ github.ref_name }}"
 
       - name: print deployment-url

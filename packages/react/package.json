@@ -1,5 +1,5 @@
 {
-    "name": "@chlorophyll/ui",
+    "name": "@chlorophyll/react",
     "version": "0.0.1",
     "type": "module",
     "main": "./src/index.ts",
@@ -16,12 +16,7 @@
         "./components": {
             "types": "./src/components/index.ts",
             "import": "./src/components/index.ts"
-        },
-        "./styled-system/*": {
-            "types": "./styled-system/*",
-            "import": "./styled-system/*"
-        },
-        "./style.css": "./style.css"
+        }
     },
     "scripts": {
         "prepare": "panda codegen",

@@ -11,4 +11,4 @@ export const fontSizes = defineTokens.fontSizes({
     "3xl": { value: "1.875rem" },
     "4xl": { value: "2.25rem" },
     "5xl": { value: "3rem" },
-})
+});

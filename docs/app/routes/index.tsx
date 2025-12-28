@@ -1,6 +1,6 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
-import { Button } from "@chlorophyll/ui";
+import { Button } from "../../../packages/react";
 
 export const Route = createFileRoute("/")({
     head: () => ({
