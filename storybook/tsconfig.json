@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "styled-system/*": ["./styled-system/*"],
+            "@chlorophyll/react": ["../packages/ui/src"],
+            "@chlorophyll/react/*": ["../packages/ui/src/*"]
+        }
+    },
+    "include": [
+        "stories/**/*.ts",
+        "stories/**/*.tsx",
+        ".storybook/**/*.ts",
+        ".storybook/**/*.tsx",
+        "styled-system/**/*.ts",
+        "tests/**/*.ts"
+    ]
+}

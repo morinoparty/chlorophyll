@@ -22,13 +22,13 @@ jobs:
         run: pnpm install
 
       - name: Build Storybook
-        run: pnpm run build
+        run: pnpm --filter @chlorophyll/storybook build
 
       - name: Test
-        run: pnpm test:runner
+        run: pnpm --filter @chlorophyll/storybook test:runner
 
       - name: Publish test results
         uses: mikepenz/action-junit-report@v5
         if: success() || failure()
         with:
-          report_paths: '**/reports/junit.xml'
+          report_paths: 'storybook/reports/junit.xml'

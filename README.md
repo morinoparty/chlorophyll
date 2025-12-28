@@ -10,18 +10,13 @@ Chlorophyll is a modern and user-friendly UI component library built with React 
 - 🎨 **Language**: TypeScript
 - ⚛️ **Framework**: React
 - 🎯 **CSS Library**: PandaCSS
-- 🎭 **Headless Library**: React Aria
+- 🎭 **Headless Library**: Ark UI
 
 ## 🚀 Setting Up the Development Environment
 
 ### 🎯 Check UI Components
 ```bash
 pnpm run dev
-```
-
-### 💾 Commit
-```bash
-pnpm cz
 ```
 
 ## 🧪 Testing
@@ -50,12 +45,11 @@ pnpm run test:vrt
 
 2. Install React Aria
 ```bash
-pnpm add react-aria-components
-```
+pnpm add 
 
 3. Install the Panda Preset
 ```bash
-pnpm add @moripa/chlorophyll-preset -D
+pnpm add @ark-ui/react
 ```
 
 ```ts
@@ -75,7 +69,7 @@ export default defineConfig({
 
 4. Path alias
 tsconfig.json
-```ts 
+```json
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -101,6 +95,8 @@ function App() {
   );
 }
 ```
+
+[token](https://946d07e9-color-palette.nikomaru.workers.dev/?min=0.1&max=0.98&length=15&chroma=0.085&data=[{%22colorValue%22%3A%22rgba(73%2C+139%2C+108%2C+1)%22%2C%22colorId%22%3A%22mori%22%2C%22uniqueId%22%3A1}%2C{%22colorValue%22%3A%22rgba(59%2C+149%2C+155%2C+1)%22%2C%22colorId%22%3A%22umi%22%2C%22uniqueId%22%3A2}])
 
 ## 🤝 Contribution
 Contributions are welcome! Follow these steps to participate:

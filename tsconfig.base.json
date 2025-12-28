@@ -8,10 +8,8 @@
         "skipLibCheck": true,
         "jsx": "react-jsx",
         "lib": ["DOM", "DOM.Iterable", "ES2022"],
-        "baseUrl": ".",
-        "paths": {
-            "styled-system/*": ["./styled-system/*"]
-        }
-    },
-    "include": ["app/**/*.ts", "app/**/*.tsx", "styled-system/**/*.ts"]
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true
+    }
 }

@@ -26,8 +26,8 @@ dist-ssr
 *storybook.log
 
 ## Panda
-styled-system
-styled-system-studio
+**/styled-system
+**/styled-system-studio
 
 generated
 
@@ -37,13 +37,13 @@ generated
 /blob-report/
 /playwright/.cache/
 
-reports/*
-storybook-static/*
+**/reports/*
+**/storybook-static/*
 
-tests/e2e/*.ts-snapshots/*
+**/tests/e2e/*.ts-snapshots/*
 
-storycap/*
+**/storycap/*
 
-chrome/*
+**/chrome/*
 
 vrt/*

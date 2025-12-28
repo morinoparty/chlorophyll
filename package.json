@@ -4,59 +4,21 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "prepare": "panda codegen",
         "check": "biome check ./ --write",
-        "dev": "storybook dev -p 6006",
-        "build": "storybook build",
-        "serve:storybook": "http-server storybook-static -p 6006 --silent",
-        "test": "test-storybook --junit",
-        "test:vrt": "playwright test",
-        "test:runner": "pnpm dlx concurrently -k -s first \"pnpm serve:storybook\" \"pnpm dlx wait-on tcp:6006 && pnpm test\"",
-        "kill": "kill $(lsof -t -i:6006)"
-    },
-    "dependencies": {
-        "@ark-ui/react": "^5.30.0",
-        "@pandacss/studio": "^1.7.1",
-        "lucide-react": "^0.562.0",
-        "react": "^19.2.3",
-        "react-dom": "^19.2.3"
+        "build": "pnpm -r build",
+        "dev:docs": "pnpm --filter @chlorophyll/docs dev",
+        "dev:storybook": "pnpm --filter @chlorophyll/storybook dev",
+        "test": "pnpm --filter @chlorophyll/storybook test",
+        "test:vrt": "pnpm --filter @chlorophyll/storybook test:vrt",
+        "prepare": "pnpm -r prepare"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.3.10",
-        "@pandacss/dev": "^1.7.1",
-        "@playwright/test": "^1.57.0",
-        "@storybook/addon-a11y": "^10.1.10",
-        "@storybook/addon-onboarding": "^10.1.10",
-        "@storybook/react": "^10.1.10",
-        "@storybook/react-vite": "^10.1.10",
-        "@storybook/test-runner": "^0.24.2",
-        "@types/node": "^25.0.3",
-        "@types/react": "^19.2.7",
-        "@types/react-dom": "^19.2.3",
-        "@vitejs/plugin-react": "^5.1.2",
-        "@vitest/browser": "^4.0.16",
-        "@vitest/coverage-v8": "^4.0.16",
-        "axe-playwright": "^2.2.2",
-        "commitizen": "^4.3.1",
-        "cz-emoji": "1.3.2-canary.2",
-        "globals": "^16.5.0",
-        "http-server": "^14.1.1",
-        "lefthook": "^2.0.12",
-        "playwright": "^1.57.0",
-        "storybook": "^10.1.10",
-        "storybook-design-token": "^5.0.0",
-        "typescript": "~5.9.3",
-        "vite": "^7.3.0",
-        "vitest": "^4.0.16"
+        "@biomejs/biome": "2.3.10"
     },
     "license": "CC0-1.0",
     "engines": {
         "yarn": "please use pnpm",
         "npm": "please use pnpm"
-    },
-    "jest-junit": {
-        "outputDirectory": "reports",
-        "outputName": "junit.xml"
     },
     "packageManager": "pnpm@10.26.1"
 }
