@@ -33,7 +33,7 @@ export const Route = createFileRoute("/theme/design-tokens/refrence-colors/")({
     component: RouteComponent,
 });
 
-const colorScales = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500] as const;
+const colorScales = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
 const brandColors = ["mori", "umi"] as const;
 
 const getColorTokens = (color: (typeof brandColors)[number]): ColorToken[] =>

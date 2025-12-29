@@ -32,8 +32,8 @@ function RootComponent() {
                     display: "flex",
                     textStyle: "body",
                     flexDirection: "column",
-                    bg: "bg.canvas",
-                    color: "fg.default",
+                    bg: "colorPalette.bg",
+                    color: "colorPalette.fg",
                 })}
             >
                 <ThemeScript />
