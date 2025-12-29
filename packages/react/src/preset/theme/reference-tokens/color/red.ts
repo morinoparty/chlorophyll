@@ -1,0 +1,62 @@
+import { defineTokens } from "@pandacss/dev";
+
+export const red = defineTokens.colors({
+    red: {
+        // light: 1(明るい) → 12(暗い)
+        light: {
+            1: { value: "oklch(0.997 0.003 25)" },
+            2: { value: "oklch(0.982 0.01 25)" },
+            3: { value: "oklch(0.957 0.025 25)" },
+            4: { value: "oklch(0.924 0.04 25)" },
+            5: { value: "oklch(0.893 0.052 25)" },
+            6: { value: "oklch(0.856 0.062 25)" },
+            7: { value: "oklch(0.796 0.08 25)" },
+            8: { value: "oklch(0.723 0.1 25)" },
+            9: { value: "oklch(0.628 0.19 25)" },
+            10: { value: "oklch(0.598 0.185 25)" },
+            11: { value: "oklch(0.553 0.175 25)" },
+            12: { value: "oklch(0.358 0.1 25)" },
+            // alpha
+            a1: { value: "color(display-p3 0.675 0.024 0.024 / 0.012)" },
+            a2: { value: "color(display-p3 0.863 0.024 0.024 / 0.028)" },
+            a3: { value: "color(display-p3 0.792 0.008 0.008 / 0.075)" },
+            a4: { value: "color(display-p3 1 0.008 0.008 / 0.134)" },
+            a5: { value: "color(display-p3 0.918 0.008 0.008 / 0.189)" },
+            a6: { value: "color(display-p3 0.831 0.02 0.004 / 0.251)" },
+            a7: { value: "color(display-p3 0.741 0.016 0.004 / 0.33)" },
+            a8: { value: "color(display-p3 0.698 0.012 0.004 / 0.428)" },
+            a9: { value: "color(display-p3 0.749 0.008 0 / 0.675)" },
+            a10: { value: "color(display-p3 0.714 0.012 0 / 0.714)" },
+            a11: { value: "color(display-p3 0.744 0.234 0.222)" },
+            a12: { value: "color(display-p3 0.36 0.115 0.143)" },
+        },
+        // dark: 1(暗い) → 12(明るい)
+        dark: {
+            1: { value: "oklch(0.182 0.02 25)" },
+            2: { value: "oklch(0.21 0.025 25)" },
+            3: { value: "oklch(0.29 0.07 25)" },
+            4: { value: "oklch(0.34 0.1 25)" },
+            5: { value: "oklch(0.39 0.11 25)" },
+            6: { value: "oklch(0.45 0.11 25)" },
+            7: { value: "oklch(0.52 0.12 25)" },
+            8: { value: "oklch(0.62 0.15 25)" },
+            9: { value: "oklch(0.628 0.19 25)" },
+            10: { value: "oklch(0.68 0.17 25)" },
+            11: { value: "oklch(0.79 0.12 25)" },
+            12: { value: "oklch(0.91 0.06 25)" },
+            // alpha
+            a1: { value: "color(display-p3 0.984 0.071 0.071 / 0.03)" },
+            a2: { value: "color(display-p3 0.996 0.282 0.282 / 0.055)" },
+            a3: { value: "color(display-p3 1 0.169 0.271 / 0.156)" },
+            a4: { value: "color(display-p3 1 0.118 0.267 / 0.236)" },
+            a5: { value: "color(display-p3 1 0.212 0.314 / 0.303)" },
+            a6: { value: "color(display-p3 1 0.318 0.38 / 0.374)" },
+            a7: { value: "color(display-p3 1 0.4 0.424 / 0.475)" },
+            a8: { value: "color(display-p3 1 0.431 0.431 / 0.635)" },
+            a9: { value: "color(display-p3 1 0.388 0.384 / 0.82)" },
+            a10: { value: "color(display-p3 1 0.463 0.447 / 0.853)" },
+            a11: { value: "color(display-p3 1 0.57 0.55)" },
+            a12: { value: "color(display-p3 0.971 0.826 0.852)" },
+        },
+    },
+});

@@ -32,9 +32,9 @@ export const button = defineRecipe({
     variants: {
         intent: {
             primary: {
-                bg: "colorPalette.default",
-                color: "colorPalette.fg",
-                _hover: { bg: "colorPalette.emphasized" },
+                bg: "colorPalette.solid",
+                color: "white",
+                _hover: { bg: "colorPalette.bg.emphasized" },
             },
             secondary: {
                 bg: "bg.subtle",

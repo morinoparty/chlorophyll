@@ -6,18 +6,18 @@ const semanticTokens: SemanticTokens["colors"] = {
     bg: {
         canvas: { value: "{colors.white}" },
         default: { value: "{colors.white}" },
-        subtle: { value: "{colors.gray.50}" },
-        muted: { value: "{colors.gray.100}" },
-        emphasized: { value: "{colors.gray.200}" },
-        disabled: { value: "{colors.gray.300}" },
+        subtle: { value: "{colors.gray.100}" },
+        muted: { value: "{colors.gray.200}" },
+        emphasized: { value: "{colors.gray.300}" },
+        disabled: { value: "{colors.gray.500}" },
     },
     border: {
-        default: { value: "{colors.gray.300}" },
-        muted: { value: "{colors.gray.200}" },
-        subtle: { value: "{colors.gray.100}" },
-        disabled: { value: "{colors.gray.400}" },
-        outline: { value: "{colors.gray.500}" },
-        error: { value: "{colors.red.500}" },
+        default: { value: "{colors.gray.500}" },
+        muted: { value: "{colors.gray.300}" },
+        subtle: { value: "{colors.gray.200}" },
+        disabled: { value: "{colors.gray.600}" },
+        outline: { value: "{colors.gray.800}" },
+        error: { value: "{colors.red.800}" },
     },
 };
 

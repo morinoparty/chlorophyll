@@ -1,6 +1,7 @@
 import { definePreset, type SemanticTokens } from "@pandacss/dev";
 import { recipes } from "./theme/recipes";
 import { globalFontFace, textStyles, tokens } from "./theme/reference-tokens";
+import { semanticTokens as defaultSemanticToken } from "./theme/semantic-token";
 
 export interface ColorPalette {
     name: string;
@@ -8,20 +9,17 @@ export interface ColorPalette {
 }
 
 export interface PresetOptions {
-    accentColor: ColorPalette;
+    brandColor: "mori" | "umi";
     baseColor: ColorPalette;
     radius: "xs" | "sm" | "md" | "lg" | "xl" | "full";
 }
 
 export const createPreset = (option: PresetOptions) => {
-    const { accentColor, baseColor, radius } = option;
+    const { brandColor, baseColor, radius } = option;
 
-    // セマンティックトークンを定義
+    // // セマンティックトークンを定義
     const semanticTokens: SemanticTokens = {
-        colors: {
-            ...(baseColor.semanticTokens || {}),
-            ...(accentColor.semanticTokens || {}),
-        },
+        ...defaultSemanticToken,
         radii: {
             default: {
                 value: `{radii.${radius}}`,
@@ -33,6 +31,15 @@ export const createPreset = (option: PresetOptions) => {
         name: "@moripa/panda-preset",
         presets: ["@pandacss/preset-base"],
         globalFontface: globalFontFace,
+        globalCss: {
+            ":root": {
+                colorPalette: brandColor,
+            },
+        },
+        conditions: {
+            light: '[data-mode=light] &',
+            dark: '[data-mode=dark] &',
+        },
         theme: {
             extend: {
                 tokens,

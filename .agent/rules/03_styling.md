@@ -5,4 +5,8 @@
 - また、figmaの方で色が指定してある場合であっても、theme/semantic-tokens/colors.tsにあるtokenをできるだけ使用してください。 
   - ex) var(--mc-colors-bg-subtle)
 
+# スタイリングの方法
+- docs/ においては、panda-cssのsvaを使用してスタイルを記述してください。
+- components/ においては、panda-cssのレシピを使用してスタイルを記述してください。
+
 記述した後は、playwright mcpを利用してスクリーンショットを取得し、スタイルの確認を行ってください。サーバーはすでに5173番ポートで起動してるので、起動しようとしないでください。widthが1200px以下の場合は、widthを1200pxに設定してください。

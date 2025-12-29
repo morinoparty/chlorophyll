@@ -28,13 +28,12 @@ function RootComponent() {
             <body
                 className={css({
                     margin: 0,
-                    colorPalette: "mori",
                     minHeight: "100vh",
                     display: "flex",
                     textStyle: "body",
                     flexDirection: "column",
-                    bg: "bg.canvas",
-                    color: "fg.default",
+                    bg: "colorPalette.bg",
+                    color: "colorPalette.fg",
                 })}
             >
                 <ThemeScript />
