@@ -1,10 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { css, sva } from "styled-system/css";
-import tokensSpec from "styled-system/specs/tokens.json";
 import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
+import tokensSpec from "styled-system/specs/tokens.json";
 
 const radiiPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "grid", "card", "preview", "info", "name", "value"],
+    slots: [
+        "root",
+        "pageTitle",
+        "description",
+        "section",
+        "sectionTitle",
+        "grid",
+        "card",
+        "preview",
+        "info",
+        "name",
+        "value",
+    ],
     base: {
         root: {
             display: "flex",
@@ -114,32 +126,6 @@ function RouteComponent() {
                 <h2 className={styles.sectionTitle}>Radii Scale</h2>
                 <div className={styles.grid}>
                     {radiiTokens.map((token) => (
-                        <div key={token.name} className={styles.card}>
-                            <div
-                                className={css({
-                                    width: "20",
-                                    height: "20",
-                                    backgroundColor: "mori.solid",
-                                })}
-                                style={{ borderRadius: token.cssVar }}
-                            />
-                            <div className={styles.info}>
-                                <span className={styles.name}>{token.name}</span>
-                                <span className={styles.value}>{token.value}</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Semantic Radius</h2>
-                <p className={css({ fontSize: "sm", color: "mori.fg.muted", marginBottom: "4" })}>
-                    The <code>default</code> semantic token maps to a reference radius token based on the theme
-                    configuration.
-                </p>
-                <div className={styles.grid}>
-                    {semanticRadiiTokens.map((token) => (
                         <div key={token.name} className={styles.card}>
                             <div
                                 className={css({

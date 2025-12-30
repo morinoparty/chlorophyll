@@ -2,7 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
 
 const bordersPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "preview", "previewBox"],
+    slots: [
+        "root",
+        "pageTitle",
+        "description",
+        "section",
+        "sectionTitle",
+        "table",
+        "th",
+        "td",
+        "preview",
+        "previewBox",
+    ],
     base: {
         root: {
             display: "flex",
@@ -73,10 +84,20 @@ const borderWidthTokens = [
 
 // Border Color Tokens (colors/border.ts)
 const borderColorTokens = [
-    { name: "border", reference: "{colors.gray.6}", step: 6, description: "非インタラクティブコンポーネント（カード、セパレータ等）" },
+    {
+        name: "border",
+        reference: "{colors.gray.6}",
+        step: 6,
+        description: "非インタラクティブコンポーネント（カード、セパレータ等）",
+    },
     { name: "border.muted", reference: "{colors.gray.5}", step: 5, description: "より微妙なボーダー" },
     { name: "border.subtle", reference: "{colors.gray.4}", step: 4, description: "最も微妙なボーダー" },
-    { name: "border.interactive", reference: "{colors.gray.7}", step: 7, description: "インタラクティブコンポーネント向け" },
+    {
+        name: "border.interactive",
+        reference: "{colors.gray.7}",
+        step: 7,
+        description: "インタラクティブコンポーネント向け",
+    },
     { name: "border.emphasized", reference: "{colors.gray.8}", step: 8, description: "フォーカスリング、強調ボーダー" },
 ];
 
@@ -98,8 +119,8 @@ function RouteComponent() {
         <div className={styles.root}>
             <h1 className={styles.pageTitle}>Borders</h1>
             <p className={styles.description}>
-                ボーダートークンは、太さ（width）と色（color）の2種類があります。
-                Radix UIのスケールに基づき、用途に応じた適切なボーダーを提供します。
+                ボーダートークンは、太さ（width）と色（color）の2種類があります。 Radix
+                UIのスケールに基づき、用途に応じた適切なボーダーを提供します。
             </p>
 
             <section className={styles.section}>

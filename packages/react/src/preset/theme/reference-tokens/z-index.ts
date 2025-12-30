@@ -1,6 +1,6 @@
-import { defineSemanticTokens } from "@pandacss/dev";
+import {defineTokens} from "@pandacss/dev";
 
-export const zIndex = defineSemanticTokens.zIndex({
+export const zIndex = defineTokens.zIndex({
     hide: { value: -1 },
     base: { value: 0 },
     docked: { value: 10 },

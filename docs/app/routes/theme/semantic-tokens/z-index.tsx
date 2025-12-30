@@ -2,7 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
 
 const zIndexPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "preview", "previewLayer"],
+    slots: [
+        "root",
+        "pageTitle",
+        "description",
+        "section",
+        "sectionTitle",
+        "table",
+        "th",
+        "td",
+        "preview",
+        "previewLayer",
+    ],
     base: {
         root: {
             display: "flex",

@@ -1,8 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
+import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
 
 const spacingPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "preview", "previewBar"],
+    slots: [
+        "root",
+        "pageTitle",
+        "description",
+        "section",
+        "sectionTitle",
+        "table",
+        "th",
+        "td",
+        "preview",
+        "previewBar",
+    ],
     base: {
         root: {
             display: "flex",
@@ -62,23 +74,68 @@ const spacingPageStyles = sva({
     },
 });
 
-const componentSpacingTokens = [
-    { category: "padding", name: "xs", reference: "{spacing.1}", value: "0.25rem" },
-    { category: "padding", name: "sm", reference: "{spacing.2}", value: "0.5rem" },
-    { category: "padding", name: "md", reference: "{spacing.3}", value: "0.75rem" },
-    { category: "padding", name: "lg", reference: "{spacing.4}", value: "1rem" },
-    { category: "padding", name: "xl", reference: "{spacing.6}", value: "1.5rem" },
-    { category: "gap", name: "xs", reference: "{spacing.1}", value: "0.25rem" },
-    { category: "gap", name: "sm", reference: "{spacing.2}", value: "0.5rem" },
-    { category: "gap", name: "md", reference: "{spacing.3}", value: "0.75rem" },
-    { category: "gap", name: "lg", reference: "{spacing.4}", value: "1rem" },
-    { category: "gap", name: "xl", reference: "{spacing.6}", value: "1.5rem" },
-];
+// Description mappings for layout tokens
+const layoutDescriptions: Record<string, string> = {
+    "layout.gutter": "コンテンツ間の標準的な余白",
+    "layout.section": "セクション間の大きな余白",
+};
 
-const layoutSpacingTokens = [
-    { name: "gutter", reference: "{spacing.4}", value: "1rem", description: "コンテンツ間の標準的な余白" },
-    { name: "section", reference: "{spacing.16}", value: "4rem", description: "セクション間の大きな余白" },
-];
+interface SpacingToken {
+    name: string;
+    fullName: string;
+    reference: string;
+    cssVar: string;
+}
+
+interface LayoutSpacingToken extends SpacingToken {
+    description: string;
+}
+
+function parseSpacingTokens(): {
+    padding: SpacingToken[];
+    gap: SpacingToken[];
+    layout: LayoutSpacingToken[];
+} {
+    const spacingData = semanticTokensSpec.data.find((d) => d.type === "spacing");
+    if (!spacingData) return { padding: [], gap: [], layout: [] };
+
+    const padding: SpacingToken[] = [];
+    const gap: SpacingToken[] = [];
+    const layout: LayoutSpacingToken[] = [];
+
+    for (const token of spacingData.values) {
+        const reference = token.values.find((v) => v.condition === "base")?.value || "";
+
+        if (token.name.startsWith("component.padding.")) {
+            const name = token.name.replace("component.padding.", "");
+            padding.push({
+                name,
+                fullName: token.name,
+                reference,
+                cssVar: token.cssVar,
+            });
+        } else if (token.name.startsWith("component.gap.")) {
+            const name = token.name.replace("component.gap.", "");
+            gap.push({
+                name,
+                fullName: token.name,
+                reference,
+                cssVar: token.cssVar,
+            });
+        } else if (token.name.startsWith("layout.")) {
+            const name = token.name.replace("layout.", "");
+            layout.push({
+                name,
+                fullName: token.name,
+                reference,
+                description: layoutDescriptions[token.name] || "",
+                cssVar: token.cssVar,
+            });
+        }
+    }
+
+    return { padding, gap, layout };
+}
 
 export const Route = createFileRoute("/theme/semantic-tokens/spacing")({
     component: RouteComponent,
@@ -86,9 +143,7 @@ export const Route = createFileRoute("/theme/semantic-tokens/spacing")({
 
 function RouteComponent() {
     const styles = spacingPageStyles();
-
-    const paddingTokens = componentSpacingTokens.filter((t) => t.category === "padding");
-    const gapTokens = componentSpacingTokens.filter((t) => t.category === "gap");
+    const { padding: paddingTokens, gap: gapTokens, layout: layoutTokens } = parseSpacingTokens();
 
     return (
         <div className={styles.root}>
@@ -105,26 +160,24 @@ function RouteComponent() {
                         <tr>
                             <th className={styles.th}>Token</th>
                             <th className={styles.th}>Reference</th>
-                            <th className={styles.th}>Value</th>
                             <th className={styles.th}>Preview</th>
                         </tr>
                     </thead>
                     <tbody>
                         {paddingTokens.map((token) => (
-                            <tr key={`${token.category}-${token.name}`}>
+                            <tr key={token.fullName}>
                                 <td className={styles.td}>
-                                    <code>spacing.component.padding.{token.name}</code>
+                                    <code>spacing.{token.fullName}</code>
                                 </td>
                                 <td className={styles.td}>
                                     <code>{token.reference}</code>
                                 </td>
-                                <td className={styles.td}>{token.value}</td>
                                 <td className={styles.td}>
                                     <div className={styles.preview}>
                                         <div
                                             className={styles.previewBar}
                                             style={{
-                                                width: `calc(${token.value} * 4)`,
+                                                width: token.cssVar,
                                             }}
                                         />
                                     </div>
@@ -142,26 +195,24 @@ function RouteComponent() {
                         <tr>
                             <th className={styles.th}>Token</th>
                             <th className={styles.th}>Reference</th>
-                            <th className={styles.th}>Value</th>
                             <th className={styles.th}>Preview</th>
                         </tr>
                     </thead>
                     <tbody>
                         {gapTokens.map((token) => (
-                            <tr key={`${token.category}-${token.name}`}>
+                            <tr key={token.fullName}>
                                 <td className={styles.td}>
-                                    <code>spacing.component.gap.{token.name}</code>
+                                    <code>spacing.{token.fullName}</code>
                                 </td>
                                 <td className={styles.td}>
                                     <code>{token.reference}</code>
                                 </td>
-                                <td className={styles.td}>{token.value}</td>
                                 <td className={styles.td}>
                                     <div className={styles.preview}>
                                         <div
                                             className={styles.previewBar}
                                             style={{
-                                                width: `calc(${token.value} * 4)`,
+                                                width: token.cssVar,
                                             }}
                                         />
                                     </div>
@@ -179,20 +230,18 @@ function RouteComponent() {
                         <tr>
                             <th className={styles.th}>Token</th>
                             <th className={styles.th}>Reference</th>
-                            <th className={styles.th}>Value</th>
                             <th className={styles.th}>Description</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {layoutSpacingTokens.map((token) => (
-                            <tr key={token.name}>
+                        {layoutTokens.map((token) => (
+                            <tr key={token.fullName}>
                                 <td className={styles.td}>
-                                    <code>spacing.layout.{token.name}</code>
+                                    <code>spacing.{token.fullName}</code>
                                 </td>
                                 <td className={styles.td}>
                                     <code>{token.reference}</code>
                                 </td>
-                                <td className={styles.td}>{token.value}</td>
                                 <td className={styles.td}>{token.description}</td>
                             </tr>
                         ))}

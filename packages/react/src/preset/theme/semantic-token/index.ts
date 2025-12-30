@@ -1,11 +1,10 @@
 import { defineSemanticTokens } from "@pandacss/dev";
+import { borders } from "./borders";
 import { colors } from "./colors";
-import { fontSizes } from "./typography";
 import { radii } from "./radii";
 import { shadows } from "./shadow";
 import { spacing } from "./spacing";
-import { zIndex } from "./z-index";
-import {borders} from "./borders";
+import { fontSizes } from "./typography";
 
 export const semanticTokens = defineSemanticTokens({
     colors,
@@ -13,6 +12,5 @@ export const semanticTokens = defineSemanticTokens({
     radii,
     shadows,
     spacing,
-    zIndex,
-    borders
+    borders,
 });

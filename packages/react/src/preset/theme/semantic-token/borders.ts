@@ -1,4 +1,4 @@
-import {defineSemanticTokens} from "@pandacss/dev";
+import { defineSemanticTokens } from "@pandacss/dev";
 
 export const borders = defineSemanticTokens.borders({
     xs: {
@@ -16,4 +16,4 @@ export const borders = defineSemanticTokens.borders({
     xl: {
         value: "8px solid",
     },
-})
+});

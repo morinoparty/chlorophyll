@@ -2,6 +2,7 @@ import { definePreset, type SemanticTokens } from "@pandacss/dev";
 import { recipes } from "./theme/recipes";
 import { globalFontFace, textStyles, tokens } from "./theme/reference-tokens";
 import { semanticTokens as defaultSemanticToken } from "./theme/semantic-token";
+import { radii } from "./theme/semantic-token/radii";
 
 export interface ColorPalette {
     name: string;
@@ -21,6 +22,7 @@ export const createPreset = (option: PresetOptions) => {
     const semanticTokens: SemanticTokens = {
         ...defaultSemanticToken,
         radii: {
+            ...radii,
             default: {
                 value: `{radii.${radius}}`,
             },
@@ -37,8 +39,8 @@ export const createPreset = (option: PresetOptions) => {
             },
         },
         conditions: {
-            light: '[data-mode=light] &',
-            dark: '[data-mode=dark] &',
+            light: "[data-mode=light] &",
+            dark: "[data-mode=dark] &",
         },
         theme: {
             extend: {

@@ -1,8 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
+import { css, sva } from "styled-system/css";
+import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
 
 const radiiPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "preview", "previewBox"],
+    slots: [
+        "root",
+        "pageTitle",
+        "description",
+        "section",
+        "sectionTitle",
+        "grid",
+        "card",
+        "preview",
+        "info",
+        "name",
+        "value",
+    ],
     base: {
         root: {
             display: "flex",
@@ -28,60 +41,62 @@ const radiiPageStyles = sva({
             fontWeight: "semibold",
             color: "mori.fg",
         },
-        table: {
-            width: "full",
-            borderCollapse: "collapse",
-        },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "mori.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "mori.bg.emphasized",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "mori.fg",
-            borderBottom: "1px solid",
-            borderColor: "mori.bg.muted",
-            verticalAlign: "middle",
-        },
-        preview: {
-            display: "flex",
+        grid: {
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
             gap: "6",
+        },
+        card: {
+            display: "flex",
+            flexDirection: "column",
+            gap: "3",
             alignItems: "center",
         },
-        previewBox: {
-            width: "16",
-            height: "16",
-            backgroundColor: "mori.8",
+        preview: {
+            width: "20",
+            height: "20",
+            backgroundColor: "mori.solid",
+        },
+        info: {
+            display: "flex",
+            flexDirection: "column",
+            gap: "1",
+            alignItems: "center",
+        },
+        name: {
+            fontSize: "sm",
+            fontWeight: "medium",
+            color: "mori.fg",
+        },
+        value: {
+            fontSize: "xs",
+            color: "mori.fg.muted",
+            fontFamily: "mono",
         },
     },
 });
 
-const radiiTokens = [
-    {
-        name: "l1",
-        reference: "{radii.sm}",
-        description: "ボタン、入力フィールドなどの基本要素",
-        usage: "Button, Input, Badge",
-    },
-    {
-        name: "l2",
-        reference: "{radii.md}",
-        description: "カード内の要素、l1を含むコンポーネント",
-        usage: "Card content, Nested components",
-    },
-    {
-        name: "l3",
-        reference: "{radii.lg}",
-        description: "カード、パネルなどの複合要素",
-        usage: "Card, Panel, Dialog",
-    },
-];
+interface RadiusToken {
+    name: string;
+    value: string;
+    cssVar: string;
+}
+
+function parseSemanticRadiiTokens(): RadiusToken[] {
+    const radiiData = semanticTokensSpec.data.find((d) => d.type === "radii");
+    if (!radiiData) return [];
+
+    return radiiData.values.map((token) => {
+        const baseValue = token.values.find((v) => v.condition === "base")?.value ?? "";
+        return {
+            name: token.name,
+            value: baseValue,
+            cssVar: token.cssVar,
+        };
+    });
+}
+
+const semanticRadiiTokens = parseSemanticRadiiTokens();
 
 export const Route = createFileRoute("/theme/semantic-tokens/radii")({
     component: RouteComponent,
@@ -99,81 +114,21 @@ function RouteComponent() {
             </p>
 
             <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Layer System</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Reference</th>
-                            <th className={styles.th}>Description</th>
-                            <th className={styles.th}>Usage</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {radiiTokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>radii.{token.name}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <code>{token.reference}</code>
-                                </td>
-                                <td className={styles.td}>{token.description}</td>
-                                <td className={styles.td}>{token.usage}</td>
-                                <td className={styles.td}>
-                                    <div
-                                        className={styles.previewBox}
-                                        style={{
-                                            borderRadius: `var(--ma-radii-${token.name})`,
-                                        }}
-                                    />
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </section>
-
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Hierarchy Example</h2>
-                <div className={styles.preview}>
-                    <div
-                        style={{
-                            padding: "16px",
-                            backgroundColor: "var(--ma-colors-mori-3)",
-                            borderRadius: "var(--ma-radii-l3)",
-                        }}
-                    >
-                        <div style={{ marginBottom: "8px", fontSize: "12px", color: "var(--ma-colors-mori-fg-muted)" }}>
-                            Card (l3)
-                        </div>
-                        <div
-                            style={{
-                                padding: "12px",
-                                backgroundColor: "var(--ma-colors-mori-4)",
-                                borderRadius: "var(--ma-radii-l2)",
-                            }}
-                        >
-                            <div style={{ marginBottom: "8px", fontSize: "12px", color: "var(--ma-colors-mori-fg-muted)" }}>
-                                Content (l2)
+                <h2 className={styles.sectionTitle}>Semantic Radius</h2>
+                <p className={css({ fontSize: "sm", color: "mori.fg.muted", marginBottom: "4" })}>
+                    The <code>default</code> semantic token maps to a reference radius token based on the theme
+                    configuration.
+                </p>
+                <div className={styles.grid}>
+                    {semanticRadiiTokens.map((token) => (
+                        <div key={token.name} className={styles.card}>
+                            <div className={styles.preview} style={{ borderRadius: token.cssVar }} />
+                            <div className={styles.info}>
+                                <span className={styles.name}>{token.name}</span>
+                                <span className={styles.value}>{token.value}</span>
                             </div>
-                            <button
-                                type="button"
-                                style={{
-                                    padding: "8px 16px",
-                                    backgroundColor: "var(--ma-colors-mori-9)",
-                                    color: "white",
-                                    border: "none",
-                                    borderRadius: "var(--ma-radii-l1)",
-                                    fontSize: "14px",
-                                    cursor: "pointer",
-                                }}
-                            >
-                                Button (l1)
-                            </button>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </section>
         </div>

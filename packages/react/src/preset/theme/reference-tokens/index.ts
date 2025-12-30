@@ -4,6 +4,7 @@ import { fontSizes } from "./font-size";
 import { radii } from "./radii";
 import { sizes } from "./sizes";
 import { spacing } from "./spacing";
+import {zIndex} from "./z-index";
 
 export { globalFontFace } from "./font-face";
 export { textStyles } from "./typography";
@@ -14,4 +15,5 @@ export const tokens = defineTokens({
     sizes,
     spacing,
     radii,
+    zIndex
 });

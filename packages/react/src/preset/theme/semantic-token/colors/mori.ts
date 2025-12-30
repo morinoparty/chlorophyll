@@ -148,7 +148,7 @@ export const mori = defineSemanticTokens.colors({
         },
         bg: {
             DEFAULT: {
-                value: "{colors.mori.1}"
+                value: "{colors.mori.1}",
             },
             subtle: {
                 value: "{colors.mori.2}",

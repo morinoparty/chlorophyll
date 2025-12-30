@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
+import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
 import { SemanticColorDisplay } from "../-components/semantic-color-display";
 
 const semanticColorsPageStyles = sva({
@@ -37,21 +38,79 @@ const semanticColorsPageStyles = sva({
     },
 });
 
-const moriBgTokens = [
-    { name: "mori.bg", reference: "{colors.mori.1}", description: "デフォルト背景" },
-    { name: "mori.bg.subtle", reference: "{colors.mori.2}", description: "微妙な背景" },
-    { name: "mori.bg.muted", reference: "{colors.gray.2}", description: "控えめな背景" },
-    { name: "mori.bg.emphasized", reference: "{colors.gray.3}", description: "強調背景" },
-    { name: "mori.bg.inverted", reference: "light↔dark swap", description: "反転背景" },
-    { name: "mori.bg.panel", reference: "white / {colors.gray.1}", description: "パネル背景" },
-];
+// Description mappings for mori color tokens
+const colorDescriptions: Record<string, string> = {
+    "mori.bg": "デフォルト背景",
+    "mori.bg.subtle": "微妙な背景",
+    "mori.bg.muted": "控えめな背景",
+    "mori.bg.emphasized": "強調背景",
+    "mori.bg.inverted": "反転背景",
+    "mori.bg.panel": "パネル背景",
+    "mori.fg": "デフォルトテキスト",
+    "mori.fg.muted": "控えめなテキスト",
+    "mori.fg.subtle": "微妙なテキスト",
+    "mori.fg.inverted": "反転テキスト",
+};
 
-const moriFgTokens = [
-    { name: "mori.fg", reference: "{colors.mori.12} / white", description: "デフォルトテキスト" },
-    { name: "mori.fg.muted", reference: "{colors.gray.11}", description: "控えめなテキスト" },
-    { name: "mori.fg.subtle", reference: "{colors.mori.11}", description: "微妙なテキスト" },
-    { name: "mori.fg.inverted", reference: "light↔dark swap", description: "反転テキスト" },
-];
+interface ColorToken {
+    name: string;
+    reference: string;
+    description: string;
+    cssVar: string;
+}
+
+function parseColorTokens(): { bg: ColorToken[]; fg: ColorToken[] } {
+    const colorsData = semanticTokensSpec.data.find((d) => d.type === "colors");
+    if (!colorsData) return { bg: [], fg: [] };
+
+    const bgNames = [
+        "mori.bg",
+        "mori.bg.subtle",
+        "mori.bg.muted",
+        "mori.bg.emphasized",
+        "mori.bg.inverted",
+        "mori.bg.panel",
+    ];
+    const fgNames = ["mori.fg", "mori.fg.muted", "mori.fg.subtle", "mori.fg.inverted"];
+
+    const parseTokens = (names: string[]): ColorToken[] => {
+        return names
+            .map((name) => {
+                const token = colorsData.values.find((t) => t.name === name);
+                if (!token) return null;
+
+                const lightValue = token.values.find((v) => v.condition === "light")?.value;
+                const darkValue = token.values.find((v) => v.condition === "dark")?.value;
+                const baseValue = token.values.find((v) => v.condition === "base")?.value;
+
+                let reference: string;
+                if (baseValue) {
+                    reference = baseValue;
+                } else if (lightValue && darkValue) {
+                    if (lightValue === darkValue) {
+                        reference = lightValue;
+                    } else {
+                        reference = `${lightValue} / ${darkValue}`;
+                    }
+                } else {
+                    reference = lightValue || darkValue || "";
+                }
+
+                return {
+                    name: token.name,
+                    reference,
+                    description: colorDescriptions[name] || "",
+                    cssVar: token.cssVar,
+                };
+            })
+            .filter((t): t is ColorToken => t !== null);
+    };
+
+    return {
+        bg: parseTokens(bgNames),
+        fg: parseTokens(fgNames),
+    };
+}
 
 export const Route = createFileRoute("/theme/semantic-tokens/colors")({
     component: RouteComponent,
@@ -59,6 +118,7 @@ export const Route = createFileRoute("/theme/semantic-tokens/colors")({
 
 function RouteComponent() {
     const styles = semanticColorsPageStyles();
+    const { bg: moriBgTokens, fg: moriFgTokens } = parseColorTokens();
 
     return (
         <div className={styles.root}>

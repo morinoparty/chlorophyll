@@ -1,8 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
+import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
 
 const shadowsPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "grid", "card", "cardPreview", "cardInfo", "cardName", "cardValue"],
+    slots: [
+        "root",
+        "pageTitle",
+        "description",
+        "section",
+        "sectionTitle",
+        "grid",
+        "card",
+        "cardPreview",
+        "cardInfo",
+        "cardName",
+        "cardValue",
+    ],
     base: {
         root: {
             display: "flex",
@@ -64,43 +77,30 @@ const shadowsPageStyles = sva({
     },
 });
 
-const shadowTokens = [
-    {
-        name: "xs",
-        light: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        dark: "0 1px 2px 0 rgb(0 0 0 / 0.4)",
-    },
-    {
-        name: "sm",
-        light: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        dark: "0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4)",
-    },
-    {
-        name: "md",
-        light: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-        dark: "0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4)",
-    },
-    {
-        name: "lg",
-        light: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-        dark: "0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4)",
-    },
-    {
-        name: "xl",
-        light: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-        dark: "0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4)",
-    },
-    {
-        name: "2xl",
-        light: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
-        dark: "0 25px 50px -12px rgb(0 0 0 / 0.6)",
-    },
-    {
-        name: "inner",
-        light: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
-        dark: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
-    },
-];
+interface ShadowToken {
+    name: string;
+    light: string;
+    dark: string;
+    cssVar: string;
+}
+
+function parseShadowTokens(): ShadowToken[] {
+    const shadowsData = semanticTokensSpec.data.find((d) => d.type === "shadows");
+    if (!shadowsData) return [];
+
+    return shadowsData.values.map((token) => {
+        const lightValue = token.values.find((v) => v.condition === "light")?.value;
+        const darkValue = token.values.find((v) => v.condition === "dark")?.value;
+        const baseValue = token.values.find((v) => v.condition === "base")?.value;
+
+        return {
+            name: token.name,
+            light: lightValue || baseValue || "",
+            dark: darkValue || baseValue || "",
+            cssVar: token.cssVar,
+        };
+    });
+}
 
 export const Route = createFileRoute("/theme/semantic-tokens/shadows")({
     component: RouteComponent,
@@ -108,6 +108,7 @@ export const Route = createFileRoute("/theme/semantic-tokens/shadows")({
 
 function RouteComponent() {
     const styles = shadowsPageStyles();
+    const shadowTokens = parseShadowTokens();
 
     return (
         <div className={styles.root}>
@@ -125,7 +126,7 @@ function RouteComponent() {
                             <div
                                 className={styles.cardPreview}
                                 style={{
-                                    boxShadow: `var(--ma-shadows-${token.name})`,
+                                    boxShadow: token.cssVar,
                                 }}
                             />
                             <div className={styles.cardInfo}>
