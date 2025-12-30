@@ -1,5 +1,6 @@
 import { defineSemanticTokens } from "@pandacss/dev";
 import { blue } from "./blue";
+import { border } from "./border";
 import { gray } from "./gray";
 import { mori } from "./mori";
 import { red } from "./red";
@@ -13,4 +14,5 @@ export const colors = defineSemanticTokens.colors({
     ...red,
     ...yellow,
     ...blue,
+    ...border,
 });

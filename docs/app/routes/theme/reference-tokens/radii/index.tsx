@@ -96,7 +96,7 @@ function parseSemanticRadiiTokens(): RadiusToken[] {
     });
 }
 
-export const Route = createFileRoute("/theme/design-tokens/radii/")({
+export const Route = createFileRoute("/theme/reference-tokens/radii/")({
     component: RouteComponent,
 });
 

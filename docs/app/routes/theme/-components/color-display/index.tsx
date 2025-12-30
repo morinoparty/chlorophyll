@@ -26,6 +26,8 @@ const colorDisplayStyles = sva({
             height: "20",
             width: "full",
             borderRadius: "lg",
+            border: "sm",
+            borderColor: "border",
         },
         info: {
             display: "flex",

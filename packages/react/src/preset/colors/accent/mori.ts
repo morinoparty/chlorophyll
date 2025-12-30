@@ -8,15 +8,15 @@ const semanticTokens: SemanticTokens["colors"] = {
         emphasized: { value: "{colors.darkslategray.700/80}" },
         fg: { value: "{colors.white}" },
         text: { value: "{colors.darkslategray.700}" },
-        error: { value: "{colors.red.600}" },
-        warning: { value: "{colors.yellow.500}" },
+        error: { value: "{colors.red.7}" },
+        warning: { value: "{colors.yellow.6}" },
     },
     fg: {
-        default: { value: "{colors.gray.900}" },
-        muted: { value: "{colors.gray.600}" },
-        subtle: { value: "{colors.gray.400}" },
-        disabled: { value: "{colors.gray.400}" },
-        error: { value: "{colors.red.500}" },
+        default: { value: "{colors.gray.10}" },
+        muted: { value: "{colors.gray.7}" },
+        subtle: { value: "{colors.gray.5}" },
+        disabled: { value: "{colors.gray.5}" },
+        error: { value: "{colors.red.6}" },
     },
 };
 

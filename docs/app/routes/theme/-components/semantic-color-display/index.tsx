@@ -1,7 +1,7 @@
 import { sva } from "styled-system/css";
 
 const semanticColorDisplayStyles = sva({
-    slots: ["root", "swatchContainer", "swatch", "info", "name", "values", "valueRow", "label", "value"],
+    slots: ["root", "swatchContainer", "swatch", "info", "name", "description", "reference"],
     base: {
         root: {
             display: "flex",
@@ -15,6 +15,8 @@ const semanticColorDisplayStyles = sva({
             width: "full",
             borderRadius: "lg",
             overflow: "hidden",
+            border: "sm",
+            borderColor: "border",
         },
         swatch: {
             flex: 1,
@@ -31,22 +33,11 @@ const semanticColorDisplayStyles = sva({
             fontWeight: "medium",
             color: "mori.fg",
         },
-        values: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.5",
-        },
-        valueRow: {
-            display: "flex",
-            alignItems: "center",
-            gap: "2",
-        },
-        label: {
+        description: {
             fontSize: "xs",
             color: "mori.fg.muted",
-            width: "10",
         },
-        value: {
+        reference: {
             fontSize: "xs",
             color: "mori.fg.subtle",
             fontFamily: "mono",
@@ -56,8 +47,8 @@ const semanticColorDisplayStyles = sva({
 
 interface SemanticColorDisplayProps {
     tokenKey: string;
-    lightValue: string;
-    darkValue: string;
+    reference: string;
+    description: string;
 }
 
 function tokenToCssVar(tokenKey: string): string {
@@ -65,7 +56,7 @@ function tokenToCssVar(tokenKey: string): string {
     return `var(--ma-colors-${cssVarName})`;
 }
 
-export function SemanticColorDisplay({ tokenKey, lightValue, darkValue }: SemanticColorDisplayProps) {
+export function SemanticColorDisplay({ tokenKey, reference, description }: SemanticColorDisplayProps) {
     const styles = semanticColorDisplayStyles();
     const cssVar = tokenToCssVar(tokenKey);
 
@@ -76,16 +67,8 @@ export function SemanticColorDisplay({ tokenKey, lightValue, darkValue }: Semant
             </div>
             <div className={styles.info}>
                 <p className={styles.name}>{tokenKey}</p>
-                <div className={styles.values}>
-                    <div className={styles.valueRow}>
-                        <span className={styles.label}>light</span>
-                        <span className={styles.value}>{lightValue}</span>
-                    </div>
-                    <div className={styles.valueRow}>
-                        <span className={styles.label}>dark</span>
-                        <span className={styles.value}>{darkValue}</span>
-                    </div>
-                </div>
+                <p className={styles.description}>{description}</p>
+                <code className={styles.reference}>{reference}</code>
             </div>
         </div>
     );
