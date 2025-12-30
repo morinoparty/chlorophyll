@@ -26,7 +26,7 @@ const themeSidebarStyles = sva({
         },
         sectionTitle: {
             fontSize: "xl",
-            fontVariationSettings: "'wght'600",
+            fontVariationSettings: "'wght'700",
             color: "fg.default",
         },
         list: {
@@ -84,15 +84,20 @@ const navigation: NavSection[] = [
     {
         title: "Reference Token",
         items: [
-            { title: "Colors", href: "/theme/design-tokens/refrence-colors" },
-            { title: "Radii", href: "/theme/design-tokens/radii" },
+            { title: "Colors", href: "/theme/reference-tokens/colors" },
+            { title: "Radii", href: "/theme/reference-tokens/radii" },
         ],
     },
     {
         title: "Semantic Token",
         items: [
             { title: "Colors", href: "/theme/semantic-tokens/colors" },
+            { title: "Borders", href: "/theme/semantic-tokens/borders" },
             { title: "Typography", href: "/theme/semantic-tokens/typography" },
+            { title: "Z-Index", href: "/theme/semantic-tokens/z-index" },
+            { title: "Shadows", href: "/theme/semantic-tokens/shadows" },
+            { title: "Radii", href: "/theme/semantic-tokens/radii" },
+            { title: "Spacing", href: "/theme/semantic-tokens/spacing" },
         ],
     },
 ];

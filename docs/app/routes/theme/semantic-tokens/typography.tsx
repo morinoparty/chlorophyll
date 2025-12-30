@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { css, sva } from "styled-system/css";
-import tokensSpec from "styled-system/specs/tokens.json";
 import textStylesSpec from "styled-system/specs/text-styles.json";
+import tokensSpec from "styled-system/specs/tokens.json";
 
 const typographyPageStyles = sva({
     slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "sample"],
@@ -108,7 +108,7 @@ function parseTextStyleTokens(fontSizeTokens: FontSizeToken[]): TextStyleToken[]
         }));
 }
 
-export const Route = createFileRoute("/theme/semantic-tokens/typography/")({
+export const Route = createFileRoute("/theme/semantic-tokens/typography")({
     component: RouteComponent,
 });
 

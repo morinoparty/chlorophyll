@@ -29,11 +29,11 @@ const refrenceColorsPageStyles = sva({
     },
 });
 
-export const Route = createFileRoute("/theme/design-tokens/refrence-colors/")({
+export const Route = createFileRoute("/theme/reference-tokens/colors/")({
     component: RouteComponent,
 });
 
-const colorScales = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
+const colorScales = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 const brandColors = ["mori", "umi"] as const;
 
 const getColorTokens = (color: (typeof brandColors)[number]): ColorToken[] =>

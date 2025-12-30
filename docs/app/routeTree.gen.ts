@@ -14,11 +14,17 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ThemeIndexRouteImport } from './routes/theme/index'
 import { Route as DocsIndexRouteImport } from './routes/docs/index'
 import { Route as ComponentsIndexRouteImport } from './routes/components/index'
+import { Route as ThemeSemanticTokensZIndexRouteImport } from './routes/theme/semantic-tokens/z-index'
+import { Route as ThemeSemanticTokensIndexRouteImport } from './routes/theme/semantic-tokens/index'
 import { Route as DocsGettingStartedIndexRouteImport } from './routes/docs/getting-started/index'
-import { Route as ThemeSemanticTokensTypographyIndexRouteImport } from './routes/theme/semantic-tokens/typography/index'
-import { Route as ThemeSemanticTokensColorsIndexRouteImport } from './routes/theme/semantic-tokens/colors/index'
-import { Route as ThemeDesignTokensRefrenceColorsIndexRouteImport } from './routes/theme/design-tokens/refrence-colors/index'
-import { Route as ThemeDesignTokensRadiiIndexRouteImport } from './routes/theme/design-tokens/radii/index'
+import { Route as ThemeSemanticTokensTypographyRouteImport } from './routes/theme/semantic-tokens/typography'
+import { Route as ThemeSemanticTokensSpacingRouteImport } from './routes/theme/semantic-tokens/spacing'
+import { Route as ThemeSemanticTokensShadowsRouteImport } from './routes/theme/semantic-tokens/shadows'
+import { Route as ThemeSemanticTokensRadiiRouteImport } from './routes/theme/semantic-tokens/radii'
+import { Route as ThemeSemanticTokensColorsRouteImport } from './routes/theme/semantic-tokens/colors'
+import { Route as ThemeSemanticTokensBordersRouteImport } from './routes/theme/semantic-tokens/borders'
+import { Route as ThemeReferenceTokensRadiiIndexRouteImport } from './routes/theme/reference-tokens/radii/index'
+import { Route as ThemeReferenceTokensColorsIndexRouteImport } from './routes/theme/reference-tokens/colors/index'
 
 const ThemeRouteRoute = ThemeRouteRouteImport.update({
   id: '/theme',
@@ -45,33 +51,69 @@ const ComponentsIndexRoute = ComponentsIndexRouteImport.update({
   path: '/components/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThemeSemanticTokensZIndexRoute =
+  ThemeSemanticTokensZIndexRouteImport.update({
+    id: '/semantic-tokens/z-index',
+    path: '/semantic-tokens/z-index',
+    getParentRoute: () => ThemeRouteRoute,
+  } as any)
+const ThemeSemanticTokensIndexRoute =
+  ThemeSemanticTokensIndexRouteImport.update({
+    id: '/semantic-tokens/',
+    path: '/semantic-tokens/',
+    getParentRoute: () => ThemeRouteRoute,
+  } as any)
 const DocsGettingStartedIndexRoute = DocsGettingStartedIndexRouteImport.update({
   id: '/docs/getting-started/',
   path: '/docs/getting-started/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ThemeSemanticTokensTypographyIndexRoute =
-  ThemeSemanticTokensTypographyIndexRouteImport.update({
-    id: '/semantic-tokens/typography/',
-    path: '/semantic-tokens/typography/',
+const ThemeSemanticTokensTypographyRoute =
+  ThemeSemanticTokensTypographyRouteImport.update({
+    id: '/semantic-tokens/typography',
+    path: '/semantic-tokens/typography',
     getParentRoute: () => ThemeRouteRoute,
   } as any)
-const ThemeSemanticTokensColorsIndexRoute =
-  ThemeSemanticTokensColorsIndexRouteImport.update({
-    id: '/semantic-tokens/colors/',
-    path: '/semantic-tokens/colors/',
+const ThemeSemanticTokensSpacingRoute =
+  ThemeSemanticTokensSpacingRouteImport.update({
+    id: '/semantic-tokens/spacing',
+    path: '/semantic-tokens/spacing',
     getParentRoute: () => ThemeRouteRoute,
   } as any)
-const ThemeDesignTokensRefrenceColorsIndexRoute =
-  ThemeDesignTokensRefrenceColorsIndexRouteImport.update({
-    id: '/design-tokens/refrence-colors/',
-    path: '/design-tokens/refrence-colors/',
+const ThemeSemanticTokensShadowsRoute =
+  ThemeSemanticTokensShadowsRouteImport.update({
+    id: '/semantic-tokens/shadows',
+    path: '/semantic-tokens/shadows',
     getParentRoute: () => ThemeRouteRoute,
   } as any)
-const ThemeDesignTokensRadiiIndexRoute =
-  ThemeDesignTokensRadiiIndexRouteImport.update({
-    id: '/design-tokens/radii/',
-    path: '/design-tokens/radii/',
+const ThemeSemanticTokensRadiiRoute =
+  ThemeSemanticTokensRadiiRouteImport.update({
+    id: '/semantic-tokens/radii',
+    path: '/semantic-tokens/radii',
+    getParentRoute: () => ThemeRouteRoute,
+  } as any)
+const ThemeSemanticTokensColorsRoute =
+  ThemeSemanticTokensColorsRouteImport.update({
+    id: '/semantic-tokens/colors',
+    path: '/semantic-tokens/colors',
+    getParentRoute: () => ThemeRouteRoute,
+  } as any)
+const ThemeSemanticTokensBordersRoute =
+  ThemeSemanticTokensBordersRouteImport.update({
+    id: '/semantic-tokens/borders',
+    path: '/semantic-tokens/borders',
+    getParentRoute: () => ThemeRouteRoute,
+  } as any)
+const ThemeReferenceTokensRadiiIndexRoute =
+  ThemeReferenceTokensRadiiIndexRouteImport.update({
+    id: '/reference-tokens/radii/',
+    path: '/reference-tokens/radii/',
+    getParentRoute: () => ThemeRouteRoute,
+  } as any)
+const ThemeReferenceTokensColorsIndexRoute =
+  ThemeReferenceTokensColorsIndexRouteImport.update({
+    id: '/reference-tokens/colors/',
+    path: '/reference-tokens/colors/',
     getParentRoute: () => ThemeRouteRoute,
   } as any)
 
@@ -81,22 +123,34 @@ export interface FileRoutesByFullPath {
   '/components': typeof ComponentsIndexRoute
   '/docs': typeof DocsIndexRoute
   '/theme/': typeof ThemeIndexRoute
+  '/theme/semantic-tokens/borders': typeof ThemeSemanticTokensBordersRoute
+  '/theme/semantic-tokens/colors': typeof ThemeSemanticTokensColorsRoute
+  '/theme/semantic-tokens/radii': typeof ThemeSemanticTokensRadiiRoute
+  '/theme/semantic-tokens/shadows': typeof ThemeSemanticTokensShadowsRoute
+  '/theme/semantic-tokens/spacing': typeof ThemeSemanticTokensSpacingRoute
+  '/theme/semantic-tokens/typography': typeof ThemeSemanticTokensTypographyRoute
+  '/theme/semantic-tokens/z-index': typeof ThemeSemanticTokensZIndexRoute
   '/docs/getting-started': typeof DocsGettingStartedIndexRoute
-  '/theme/design-tokens/radii': typeof ThemeDesignTokensRadiiIndexRoute
-  '/theme/design-tokens/refrence-colors': typeof ThemeDesignTokensRefrenceColorsIndexRoute
-  '/theme/semantic-tokens/colors': typeof ThemeSemanticTokensColorsIndexRoute
-  '/theme/semantic-tokens/typography': typeof ThemeSemanticTokensTypographyIndexRoute
+  '/theme/semantic-tokens': typeof ThemeSemanticTokensIndexRoute
+  '/theme/reference-tokens/colors': typeof ThemeReferenceTokensColorsIndexRoute
+  '/theme/reference-tokens/radii': typeof ThemeReferenceTokensRadiiIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/components': typeof ComponentsIndexRoute
   '/docs': typeof DocsIndexRoute
   '/theme': typeof ThemeIndexRoute
+  '/theme/semantic-tokens/borders': typeof ThemeSemanticTokensBordersRoute
+  '/theme/semantic-tokens/colors': typeof ThemeSemanticTokensColorsRoute
+  '/theme/semantic-tokens/radii': typeof ThemeSemanticTokensRadiiRoute
+  '/theme/semantic-tokens/shadows': typeof ThemeSemanticTokensShadowsRoute
+  '/theme/semantic-tokens/spacing': typeof ThemeSemanticTokensSpacingRoute
+  '/theme/semantic-tokens/typography': typeof ThemeSemanticTokensTypographyRoute
+  '/theme/semantic-tokens/z-index': typeof ThemeSemanticTokensZIndexRoute
   '/docs/getting-started': typeof DocsGettingStartedIndexRoute
-  '/theme/design-tokens/radii': typeof ThemeDesignTokensRadiiIndexRoute
-  '/theme/design-tokens/refrence-colors': typeof ThemeDesignTokensRefrenceColorsIndexRoute
-  '/theme/semantic-tokens/colors': typeof ThemeSemanticTokensColorsIndexRoute
-  '/theme/semantic-tokens/typography': typeof ThemeSemanticTokensTypographyIndexRoute
+  '/theme/semantic-tokens': typeof ThemeSemanticTokensIndexRoute
+  '/theme/reference-tokens/colors': typeof ThemeReferenceTokensColorsIndexRoute
+  '/theme/reference-tokens/radii': typeof ThemeReferenceTokensRadiiIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -105,11 +159,17 @@ export interface FileRoutesById {
   '/components/': typeof ComponentsIndexRoute
   '/docs/': typeof DocsIndexRoute
   '/theme/': typeof ThemeIndexRoute
+  '/theme/semantic-tokens/borders': typeof ThemeSemanticTokensBordersRoute
+  '/theme/semantic-tokens/colors': typeof ThemeSemanticTokensColorsRoute
+  '/theme/semantic-tokens/radii': typeof ThemeSemanticTokensRadiiRoute
+  '/theme/semantic-tokens/shadows': typeof ThemeSemanticTokensShadowsRoute
+  '/theme/semantic-tokens/spacing': typeof ThemeSemanticTokensSpacingRoute
+  '/theme/semantic-tokens/typography': typeof ThemeSemanticTokensTypographyRoute
+  '/theme/semantic-tokens/z-index': typeof ThemeSemanticTokensZIndexRoute
   '/docs/getting-started/': typeof DocsGettingStartedIndexRoute
-  '/theme/design-tokens/radii/': typeof ThemeDesignTokensRadiiIndexRoute
-  '/theme/design-tokens/refrence-colors/': typeof ThemeDesignTokensRefrenceColorsIndexRoute
-  '/theme/semantic-tokens/colors/': typeof ThemeSemanticTokensColorsIndexRoute
-  '/theme/semantic-tokens/typography/': typeof ThemeSemanticTokensTypographyIndexRoute
+  '/theme/semantic-tokens/': typeof ThemeSemanticTokensIndexRoute
+  '/theme/reference-tokens/colors/': typeof ThemeReferenceTokensColorsIndexRoute
+  '/theme/reference-tokens/radii/': typeof ThemeReferenceTokensRadiiIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -119,22 +179,34 @@ export interface FileRouteTypes {
     | '/components'
     | '/docs'
     | '/theme/'
-    | '/docs/getting-started'
-    | '/theme/design-tokens/radii'
-    | '/theme/design-tokens/refrence-colors'
+    | '/theme/semantic-tokens/borders'
     | '/theme/semantic-tokens/colors'
+    | '/theme/semantic-tokens/radii'
+    | '/theme/semantic-tokens/shadows'
+    | '/theme/semantic-tokens/spacing'
     | '/theme/semantic-tokens/typography'
+    | '/theme/semantic-tokens/z-index'
+    | '/docs/getting-started'
+    | '/theme/semantic-tokens'
+    | '/theme/reference-tokens/colors'
+    | '/theme/reference-tokens/radii'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/components'
     | '/docs'
     | '/theme'
-    | '/docs/getting-started'
-    | '/theme/design-tokens/radii'
-    | '/theme/design-tokens/refrence-colors'
+    | '/theme/semantic-tokens/borders'
     | '/theme/semantic-tokens/colors'
+    | '/theme/semantic-tokens/radii'
+    | '/theme/semantic-tokens/shadows'
+    | '/theme/semantic-tokens/spacing'
     | '/theme/semantic-tokens/typography'
+    | '/theme/semantic-tokens/z-index'
+    | '/docs/getting-started'
+    | '/theme/semantic-tokens'
+    | '/theme/reference-tokens/colors'
+    | '/theme/reference-tokens/radii'
   id:
     | '__root__'
     | '/'
@@ -142,11 +214,17 @@ export interface FileRouteTypes {
     | '/components/'
     | '/docs/'
     | '/theme/'
+    | '/theme/semantic-tokens/borders'
+    | '/theme/semantic-tokens/colors'
+    | '/theme/semantic-tokens/radii'
+    | '/theme/semantic-tokens/shadows'
+    | '/theme/semantic-tokens/spacing'
+    | '/theme/semantic-tokens/typography'
+    | '/theme/semantic-tokens/z-index'
     | '/docs/getting-started/'
-    | '/theme/design-tokens/radii/'
-    | '/theme/design-tokens/refrence-colors/'
-    | '/theme/semantic-tokens/colors/'
-    | '/theme/semantic-tokens/typography/'
+    | '/theme/semantic-tokens/'
+    | '/theme/reference-tokens/colors/'
+    | '/theme/reference-tokens/radii/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -194,6 +272,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/theme/semantic-tokens/z-index': {
+      id: '/theme/semantic-tokens/z-index'
+      path: '/semantic-tokens/z-index'
+      fullPath: '/theme/semantic-tokens/z-index'
+      preLoaderRoute: typeof ThemeSemanticTokensZIndexRouteImport
+      parentRoute: typeof ThemeRouteRoute
+    }
+    '/theme/semantic-tokens/': {
+      id: '/theme/semantic-tokens/'
+      path: '/semantic-tokens'
+      fullPath: '/theme/semantic-tokens'
+      preLoaderRoute: typeof ThemeSemanticTokensIndexRouteImport
+      parentRoute: typeof ThemeRouteRoute
+    }
     '/docs/getting-started/': {
       id: '/docs/getting-started/'
       path: '/docs/getting-started'
@@ -201,32 +293,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsGettingStartedIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/theme/semantic-tokens/typography/': {
-      id: '/theme/semantic-tokens/typography/'
+    '/theme/semantic-tokens/typography': {
+      id: '/theme/semantic-tokens/typography'
       path: '/semantic-tokens/typography'
       fullPath: '/theme/semantic-tokens/typography'
-      preLoaderRoute: typeof ThemeSemanticTokensTypographyIndexRouteImport
+      preLoaderRoute: typeof ThemeSemanticTokensTypographyRouteImport
       parentRoute: typeof ThemeRouteRoute
     }
-    '/theme/semantic-tokens/colors/': {
-      id: '/theme/semantic-tokens/colors/'
+    '/theme/semantic-tokens/spacing': {
+      id: '/theme/semantic-tokens/spacing'
+      path: '/semantic-tokens/spacing'
+      fullPath: '/theme/semantic-tokens/spacing'
+      preLoaderRoute: typeof ThemeSemanticTokensSpacingRouteImport
+      parentRoute: typeof ThemeRouteRoute
+    }
+    '/theme/semantic-tokens/shadows': {
+      id: '/theme/semantic-tokens/shadows'
+      path: '/semantic-tokens/shadows'
+      fullPath: '/theme/semantic-tokens/shadows'
+      preLoaderRoute: typeof ThemeSemanticTokensShadowsRouteImport
+      parentRoute: typeof ThemeRouteRoute
+    }
+    '/theme/semantic-tokens/radii': {
+      id: '/theme/semantic-tokens/radii'
+      path: '/semantic-tokens/radii'
+      fullPath: '/theme/semantic-tokens/radii'
+      preLoaderRoute: typeof ThemeSemanticTokensRadiiRouteImport
+      parentRoute: typeof ThemeRouteRoute
+    }
+    '/theme/semantic-tokens/colors': {
+      id: '/theme/semantic-tokens/colors'
       path: '/semantic-tokens/colors'
       fullPath: '/theme/semantic-tokens/colors'
-      preLoaderRoute: typeof ThemeSemanticTokensColorsIndexRouteImport
+      preLoaderRoute: typeof ThemeSemanticTokensColorsRouteImport
       parentRoute: typeof ThemeRouteRoute
     }
-    '/theme/design-tokens/refrence-colors/': {
-      id: '/theme/design-tokens/refrence-colors/'
-      path: '/design-tokens/refrence-colors'
-      fullPath: '/theme/design-tokens/refrence-colors'
-      preLoaderRoute: typeof ThemeDesignTokensRefrenceColorsIndexRouteImport
+    '/theme/semantic-tokens/borders': {
+      id: '/theme/semantic-tokens/borders'
+      path: '/semantic-tokens/borders'
+      fullPath: '/theme/semantic-tokens/borders'
+      preLoaderRoute: typeof ThemeSemanticTokensBordersRouteImport
       parentRoute: typeof ThemeRouteRoute
     }
-    '/theme/design-tokens/radii/': {
-      id: '/theme/design-tokens/radii/'
-      path: '/design-tokens/radii'
-      fullPath: '/theme/design-tokens/radii'
-      preLoaderRoute: typeof ThemeDesignTokensRadiiIndexRouteImport
+    '/theme/reference-tokens/radii/': {
+      id: '/theme/reference-tokens/radii/'
+      path: '/reference-tokens/radii'
+      fullPath: '/theme/reference-tokens/radii'
+      preLoaderRoute: typeof ThemeReferenceTokensRadiiIndexRouteImport
+      parentRoute: typeof ThemeRouteRoute
+    }
+    '/theme/reference-tokens/colors/': {
+      id: '/theme/reference-tokens/colors/'
+      path: '/reference-tokens/colors'
+      fullPath: '/theme/reference-tokens/colors'
+      preLoaderRoute: typeof ThemeReferenceTokensColorsIndexRouteImport
       parentRoute: typeof ThemeRouteRoute
     }
   }
@@ -234,20 +354,30 @@ declare module '@tanstack/react-router' {
 
 interface ThemeRouteRouteChildren {
   ThemeIndexRoute: typeof ThemeIndexRoute
-  ThemeDesignTokensRadiiIndexRoute: typeof ThemeDesignTokensRadiiIndexRoute
-  ThemeDesignTokensRefrenceColorsIndexRoute: typeof ThemeDesignTokensRefrenceColorsIndexRoute
-  ThemeSemanticTokensColorsIndexRoute: typeof ThemeSemanticTokensColorsIndexRoute
-  ThemeSemanticTokensTypographyIndexRoute: typeof ThemeSemanticTokensTypographyIndexRoute
+  ThemeSemanticTokensBordersRoute: typeof ThemeSemanticTokensBordersRoute
+  ThemeSemanticTokensColorsRoute: typeof ThemeSemanticTokensColorsRoute
+  ThemeSemanticTokensRadiiRoute: typeof ThemeSemanticTokensRadiiRoute
+  ThemeSemanticTokensShadowsRoute: typeof ThemeSemanticTokensShadowsRoute
+  ThemeSemanticTokensSpacingRoute: typeof ThemeSemanticTokensSpacingRoute
+  ThemeSemanticTokensTypographyRoute: typeof ThemeSemanticTokensTypographyRoute
+  ThemeSemanticTokensZIndexRoute: typeof ThemeSemanticTokensZIndexRoute
+  ThemeSemanticTokensIndexRoute: typeof ThemeSemanticTokensIndexRoute
+  ThemeReferenceTokensColorsIndexRoute: typeof ThemeReferenceTokensColorsIndexRoute
+  ThemeReferenceTokensRadiiIndexRoute: typeof ThemeReferenceTokensRadiiIndexRoute
 }
 
 const ThemeRouteRouteChildren: ThemeRouteRouteChildren = {
   ThemeIndexRoute: ThemeIndexRoute,
-  ThemeDesignTokensRadiiIndexRoute: ThemeDesignTokensRadiiIndexRoute,
-  ThemeDesignTokensRefrenceColorsIndexRoute:
-    ThemeDesignTokensRefrenceColorsIndexRoute,
-  ThemeSemanticTokensColorsIndexRoute: ThemeSemanticTokensColorsIndexRoute,
-  ThemeSemanticTokensTypographyIndexRoute:
-    ThemeSemanticTokensTypographyIndexRoute,
+  ThemeSemanticTokensBordersRoute: ThemeSemanticTokensBordersRoute,
+  ThemeSemanticTokensColorsRoute: ThemeSemanticTokensColorsRoute,
+  ThemeSemanticTokensRadiiRoute: ThemeSemanticTokensRadiiRoute,
+  ThemeSemanticTokensShadowsRoute: ThemeSemanticTokensShadowsRoute,
+  ThemeSemanticTokensSpacingRoute: ThemeSemanticTokensSpacingRoute,
+  ThemeSemanticTokensTypographyRoute: ThemeSemanticTokensTypographyRoute,
+  ThemeSemanticTokensZIndexRoute: ThemeSemanticTokensZIndexRoute,
+  ThemeSemanticTokensIndexRoute: ThemeSemanticTokensIndexRoute,
+  ThemeReferenceTokensColorsIndexRoute: ThemeReferenceTokensColorsIndexRoute,
+  ThemeReferenceTokensRadiiIndexRoute: ThemeReferenceTokensRadiiIndexRoute,
 }
 
 const ThemeRouteRouteWithChildren = ThemeRouteRoute._addFileChildren(
