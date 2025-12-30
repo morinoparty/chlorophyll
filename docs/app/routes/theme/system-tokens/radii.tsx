@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { css, sva } from "styled-system/css";
 import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
-import tokensSpec from "styled-system/specs/tokens.json";
 
 const radiiPageStyles = sva({
     slots: [
@@ -26,11 +25,11 @@ const radiiPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         description: {
             fontSize: "md",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
         },
         section: {
             display: "flex",
@@ -40,7 +39,7 @@ const radiiPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         grid: {
             display: "grid",
@@ -56,7 +55,9 @@ const radiiPageStyles = sva({
         preview: {
             width: "20",
             height: "20",
-            backgroundColor: "mori.solid",
+            backgroundColor: "colorPalette.solid",
+            border: "sm",
+            borderColor: "border",
         },
         info: {
             display: "flex",
@@ -67,11 +68,11 @@ const radiiPageStyles = sva({
         name: {
             fontSize: "sm",
             fontWeight: "medium",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         value: {
             fontSize: "xs",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
             fontFamily: "mono",
         },
     },
@@ -81,17 +82,6 @@ interface RadiusToken {
     name: string;
     value: string;
     cssVar: string;
-}
-
-function parseRadiiTokens(): RadiusToken[] {
-    const radiiData = tokensSpec.data.find((d) => d.type === "radii");
-    if (!radiiData) return [];
-
-    return radiiData.values.map((token) => ({
-        name: token.name,
-        value: token.value,
-        cssVar: token.cssVar,
-    }));
 }
 
 function parseSemanticRadiiTokens(): RadiusToken[] {
@@ -108,33 +98,33 @@ function parseSemanticRadiiTokens(): RadiusToken[] {
     });
 }
 
-export const Route = createFileRoute("/theme/reference-tokens/radii/")({
+const semanticRadiiTokens = parseSemanticRadiiTokens();
+
+export const Route = createFileRoute("/theme/system-tokens/radii")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
     const styles = radiiPageStyles();
-    const radiiTokens = parseRadiiTokens();
-    const semanticRadiiTokens = parseSemanticRadiiTokens();
 
     return (
         <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Border Radius</h1>
-            <p className={styles.description}>Border radius tokens for consistent corner rounding.</p>
+            <h1 className={styles.pageTitle}>Radii</h1>
+            <p className={styles.description}>
+                階層的なボーダー半径トークン。Park UIのレイヤーシステムに基づき、
+                ネストされたコンポーネント間で一貫した角丸を維持します。
+            </p>
 
             <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Radii Scale</h2>
+                <h2 className={styles.sectionTitle}>Semantic Radius</h2>
+                <p className={css({ fontSize: "sm", color: "colorPalette.fg.muted", marginBottom: "4" })}>
+                    The <code>default</code> semantic token maps to a reference radius token based on the theme
+                    configuration.
+                </p>
                 <div className={styles.grid}>
-                    {radiiTokens.map((token) => (
+                    {semanticRadiiTokens.map((token) => (
                         <div key={token.name} className={styles.card}>
-                            <div
-                                className={css({
-                                    width: "20",
-                                    height: "20",
-                                    backgroundColor: "mori.solid",
-                                })}
-                                style={{ borderRadius: token.cssVar }}
-                            />
+                            <div className={styles.preview} style={{ borderRadius: token.cssVar }} />
                             <div className={styles.info}>
                                 <span className={styles.name}>{token.name}</span>
                                 <span className={styles.value}>{token.value}</span>

@@ -25,11 +25,6 @@
         "description": "Type: Documentation changes"
     },
     {
-        "name": "chore",
-        "color": "#E2601E",
-        "description": "Type: Tools or library changes"
-    },
-    {
         "name": "refactor",
         "color": "#AFD38D",
         "description": "Type: Refactoring"
@@ -50,8 +45,18 @@
         "description": "Type: Security update"
     },
     {
-        "name": "not-reviewed",
+        "name": "component",
+        "color": "#7057FF",
+        "description": "Scope: UI Components"
+    },
+    {
+        "name": "token",
         "color": "#F9C1CF",
-        "description": "Type: Not reviewed"
+        "description": "Scope: Design Tokens"
+    },
+    {
+        "name": "a11y",
+        "color": "#0052CC",
+        "description": "Scope: Accessibility"
     }
 ]

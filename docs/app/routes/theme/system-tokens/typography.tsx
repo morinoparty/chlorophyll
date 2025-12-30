@@ -14,11 +14,11 @@ const typographyPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         description: {
             fontSize: "md",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
         },
         section: {
             display: "flex",
@@ -28,7 +28,7 @@ const typographyPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         table: {
             width: "full",
@@ -39,20 +39,20 @@ const typographyPageStyles = sva({
             padding: "3",
             fontSize: "sm",
             fontWeight: "semibold",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
             borderBottom: "1px solid",
-            borderColor: "mori.bg.emphasized",
+            borderColor: "border.muted",
         },
         td: {
             padding: "3",
             fontSize: "sm",
-            color: "mori.fg",
+            color: "colorPalette.fg",
             borderBottom: "1px solid",
-            borderColor: "mori.bg.muted",
+            borderColor: "border.subtle",
             verticalAlign: "middle",
         },
         sample: {
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
     },
 });
@@ -108,7 +108,7 @@ function parseTextStyleTokens(fontSizeTokens: FontSizeToken[]): TextStyleToken[]
         }));
 }
 
-export const Route = createFileRoute("/theme/semantic-tokens/typography")({
+export const Route = createFileRoute("/theme/system-tokens/typography")({
     component: RouteComponent,
 });
 
@@ -146,7 +146,7 @@ function RouteComponent() {
                                         style={{
                                             fontSize: `var(--ma-font-sizes-${token.name})`,
                                             lineHeight: token.lineHeight,
-                                            color: "var(--ma-colors-mori-fg)",
+                                            color: "var(--ma-colors-color-palette-fg)",
                                         }}
                                     >
                                         Aa
@@ -179,7 +179,7 @@ function RouteComponent() {
                                     <span
                                         style={{
                                             fontSize: token.cssVar,
-                                            color: "var(--ma-colors-mori-fg)",
+                                            color: "var(--ma-colors-color-palette-fg)",
                                         }}
                                     >
                                         あそべる「Third Place」

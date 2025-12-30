@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
+import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
 
 const bordersPageStyles = sva({
     slots: [
@@ -23,11 +24,11 @@ const bordersPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         description: {
             fontSize: "md",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
         },
         section: {
             display: "flex",
@@ -37,7 +38,7 @@ const bordersPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         table: {
             width: "full",
@@ -48,16 +49,16 @@ const bordersPageStyles = sva({
             padding: "3",
             fontSize: "sm",
             fontWeight: "semibold",
-            color: "mori.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "mori.bg.emphasized",
+            color: "colorPalette.fg.muted",
+            borderBottom: "{borders.sm}",
+            borderColor: "colorPalette.bg.emphasized",
         },
         td: {
             padding: "3",
             fontSize: "sm",
-            color: "mori.fg",
-            borderBottom: "1px solid",
-            borderColor: "mori.bg.muted",
+            color: "colorPalette.fg",
+            borderBottom: "border.sm",
+            borderColor: "border",
             verticalAlign: "middle",
         },
         preview: {
@@ -73,47 +74,93 @@ const bordersPageStyles = sva({
     },
 });
 
-// Border Width Tokens (semantic-token/borders.ts)
-const borderWidthTokens = [
-    { name: "xs", value: "0.5px solid", description: "最も細いボーダー" },
-    { name: "sm", value: "1px solid", description: "標準的なボーダー" },
-    { name: "md", value: "2px solid", description: "中程度のボーダー" },
-    { name: "lg", value: "4px solid", description: "太いボーダー" },
-    { name: "xl", value: "8px solid", description: "最も太いボーダー" },
-];
+// Description mappings for border tokens
+const borderWidthDescriptions: Record<string, string> = {
+    xs: "最も細いボーダー",
+    sm: "標準的なボーダー",
+    md: "中程度のボーダー",
+    lg: "太いボーダー",
+    xl: "最も太いボーダー",
+};
 
-// Border Color Tokens (colors/border.ts)
-const borderColorTokens = [
-    {
-        name: "border",
-        reference: "{colors.gray.6}",
-        step: 6,
-        description: "非インタラクティブコンポーネント（カード、セパレータ等）",
-    },
-    { name: "border.muted", reference: "{colors.gray.5}", step: 5, description: "より微妙なボーダー" },
-    { name: "border.subtle", reference: "{colors.gray.4}", step: 4, description: "最も微妙なボーダー" },
-    {
-        name: "border.interactive",
-        reference: "{colors.gray.7}",
-        step: 7,
-        description: "インタラクティブコンポーネント向け",
-    },
-    { name: "border.emphasized", reference: "{colors.gray.8}", step: 8, description: "フォーカスリング、強調ボーダー" },
-];
+const borderColorDescriptions: Record<string, string> = {
+    border: "非インタラクティブコンポーネント（カード、セパレータ等）",
+    "border.muted": "より微妙なボーダー",
+    "border.subtle": "最も微妙なボーダー",
+    "border.interactive": "インタラクティブコンポーネント向け",
+    "border.emphasized": "フォーカスリング、強調ボーダー",
+    "border.error": "エラー状態",
+    "border.warning": "警告状態",
+    "border.success": "成功状態",
+    "border.info": "情報状態",
+};
 
-const borderStatusTokens = [
-    { name: "border.error", reference: "{colors.red.7}", description: "エラー状態" },
-    { name: "border.warning", reference: "{colors.yellow.7}", description: "警告状態" },
-    { name: "border.success", reference: "{colors.mori.7}", description: "成功状態" },
-    { name: "border.info", reference: "{colors.blue.7}", description: "情報状態" },
-];
+interface BorderWidthToken {
+    name: string;
+    value: string;
+    description: string;
+    cssVar: string;
+}
 
-export const Route = createFileRoute("/theme/semantic-tokens/")({
+interface BorderColorToken {
+    name: string;
+    reference: string;
+    description: string;
+    cssVar: string;
+}
+
+function parseBorderWidthTokens(): BorderWidthToken[] {
+    const bordersData = semanticTokensSpec.data.find((d) => d.type === "borders");
+    if (!bordersData) return [];
+
+    return bordersData.values.map((token) => {
+        const value = token.values.find((v) => v.condition === "base")?.value || "";
+        return {
+            name: token.name,
+            value,
+            description: borderWidthDescriptions[token.name] || "",
+            cssVar: token.cssVar,
+        };
+    });
+}
+
+function parseBorderColorTokens(): { scale: BorderColorToken[]; status: BorderColorToken[] } {
+    const colorsData = semanticTokensSpec.data.find((d) => d.type === "colors");
+    if (!colorsData) return { scale: [], status: [] };
+
+    const scaleNames = ["border", "border.muted", "border.subtle", "border.interactive", "border.emphasized"];
+    const statusNames = ["border.error", "border.warning", "border.success", "border.info"];
+
+    const parseTokens = (names: string[]): BorderColorToken[] => {
+        return names
+            .map((name) => {
+                const token = colorsData.values.find((t) => t.name === name);
+                if (!token) return null;
+                const reference = token.values.find((v) => v.condition === "base")?.value || "";
+                return {
+                    name: token.name,
+                    reference,
+                    description: borderColorDescriptions[name] || "",
+                    cssVar: token.cssVar,
+                };
+            })
+            .filter((t): t is BorderColorToken => t !== null);
+    };
+
+    return {
+        scale: parseTokens(scaleNames),
+        status: parseTokens(statusNames),
+    };
+}
+
+export const Route = createFileRoute("/theme/system-tokens/borders")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
     const styles = bordersPageStyles();
+    const borderWidthTokens = parseBorderWidthTokens();
+    const { scale: borderColorScale, status: borderStatusTokens } = parseBorderColorTokens();
 
     return (
         <div className={styles.root}>
@@ -122,7 +169,6 @@ function RouteComponent() {
                 ボーダートークンは、太さ（width）と色（color）の2種類があります。 Radix
                 UIのスケールに基づき、用途に応じた適切なボーダーを提供します。
             </p>
-
             <section className={styles.section}>
                 <h2 className={styles.sectionTitle}>Border Width</h2>
                 <table className={styles.table}>
@@ -146,7 +192,7 @@ function RouteComponent() {
                                     <div
                                         className={styles.previewBox}
                                         style={{
-                                            border: `var(--ma-borders-${token.name}) var(--ma-colors-border)`,
+                                            border: `${token.cssVar} var(--ma-colors-border)`,
                                         }}
                                     />
                                 </td>
@@ -155,7 +201,6 @@ function RouteComponent() {
                     </tbody>
                 </table>
             </section>
-
             <section className={styles.section}>
                 <h2 className={styles.sectionTitle}>Border Color (Radix Scale)</h2>
                 <p className={styles.description}>
@@ -170,7 +215,7 @@ function RouteComponent() {
                         </tr>
                     </thead>
                     <tbody>
-                        {borderColorTokens.map((token) => (
+                        {borderColorScale.map((token) => (
                             <tr key={token.name}>
                                 <td className={styles.td}>
                                     <code>{token.name}</code>
@@ -180,7 +225,7 @@ function RouteComponent() {
                                     <div
                                         className={styles.previewBox}
                                         style={{
-                                            border: `2px solid var(--ma-colors-${token.name.replace(".", "-")})`,
+                                            border: `2px solid ${token.cssVar}`,
                                         }}
                                     />
                                 </td>
@@ -189,7 +234,6 @@ function RouteComponent() {
                     </tbody>
                 </table>
             </section>
-
             <section className={styles.section}>
                 <h2 className={styles.sectionTitle}>Border Color (Status)</h2>
                 <table className={styles.table}>
@@ -211,7 +255,7 @@ function RouteComponent() {
                                     <div
                                         className={styles.previewBox}
                                         style={{
-                                            border: `2px solid var(--ma-colors-${token.name.replace(".", "-")})`,
+                                            border: `2px solid ${token.cssVar}`,
                                         }}
                                     />
                                 </td>

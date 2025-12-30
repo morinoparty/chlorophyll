@@ -146,5 +146,37 @@ export const blue = defineSemanticTokens.colors({
                 _dark: "{colors.blue.dark.a12}",
             },
         },
+        // Background semantic tokens
+        bg: {
+            DEFAULT: {
+                value: "{colors.blue.2}",
+            },
+            subtle: {
+                value: "{colors.blue.3}",
+            },
+            muted: {
+                value: "{colors.blue.4}",
+            },
+            emphasized: {
+                value: "{colors.blue.5}",
+            },
+        },
+        // Foreground semantic tokens
+        fg: {
+            DEFAULT: {
+                value: "{colors.blue.11}",
+            },
+            muted: {
+                value: "{colors.blue.10}",
+            },
+        },
+        // Solid background
+        solid: {
+            value: "{colors.blue.9}",
+        },
+        // Text on solid background
+        contrast: {
+            value: "{colors.white}",
+        },
     },
 });

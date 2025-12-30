@@ -15,3 +15,19 @@ export const fontSizes = defineSemanticTokens.fontSizes({
         xs: { value: "{fontSizes.xs}" },
     },
 });
+
+export const fontWeights = defineSemanticTokens.fontWeights({
+    heading: { value: "{fontWeights.bold}" },
+    body: { value: "{fontWeights.normal}" },
+    label: { value: "{fontWeights.medium}" },
+});
+
+export const lineHeights = defineSemanticTokens.lineHeights({
+    heading: { value: "{lineHeights.tight}" },
+    body: { value: "{lineHeights.normal}" },
+});
+
+export const letterSpacings = defineSemanticTokens.letterSpacings({
+    heading: { value: "{letterSpacings.tight}" },
+    body: { value: "{letterSpacings.normal}" },
+});

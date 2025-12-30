@@ -24,11 +24,11 @@ const spacingPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         description: {
             fontSize: "md",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
         },
         section: {
             display: "flex",
@@ -38,7 +38,7 @@ const spacingPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         table: {
             width: "full",
@@ -49,16 +49,16 @@ const spacingPageStyles = sva({
             padding: "3",
             fontSize: "sm",
             fontWeight: "semibold",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
             borderBottom: "1px solid",
-            borderColor: "mori.bg.emphasized",
+            borderColor: "border.muted",
         },
         td: {
             padding: "3",
             fontSize: "sm",
-            color: "mori.fg",
+            color: "colorPalette.fg",
             borderBottom: "1px solid",
-            borderColor: "mori.bg.muted",
+            borderColor: "border.subtle",
             verticalAlign: "middle",
         },
         preview: {
@@ -68,7 +68,7 @@ const spacingPageStyles = sva({
         },
         previewBar: {
             height: "4",
-            backgroundColor: "mori.8",
+            backgroundColor: "colorPalette.8",
             borderRadius: "sm",
         },
     },
@@ -137,7 +137,7 @@ function parseSpacingTokens(): {
     return { padding, gap, layout };
 }
 
-export const Route = createFileRoute("/theme/semantic-tokens/spacing")({
+export const Route = createFileRoute("/theme/system-tokens/spacing")({
     component: RouteComponent,
 });
 

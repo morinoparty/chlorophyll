@@ -1,22 +1,22 @@
 import type { SemanticTokens } from "@pandacss/dev";
 import type { ColorPalette } from "../../create-preset";
 
-// accentカラー（主にmori）のセマンティックトークンを定義
+// accentカラー（mori）のセマンティックトークンを定義
 const semanticTokens: SemanticTokens["colors"] = {
     palette: {
-        default: { value: "{colors.darkslategray.700}" },
-        emphasized: { value: "{colors.darkslategray.700/80}" },
+        default: { value: "{colors.mori.9}" },
+        emphasized: { value: "{colors.mori.10}" },
         fg: { value: "{colors.white}" },
-        text: { value: "{colors.darkslategray.700}" },
-        error: { value: "{colors.red.7}" },
-        warning: { value: "{colors.yellow.6}" },
+        text: { value: "{colors.mori.11}" },
+        error: { value: "{colors.red.9}" },
+        warning: { value: "{colors.yellow.9}" },
     },
     fg: {
-        default: { value: "{colors.gray.10}" },
-        muted: { value: "{colors.gray.7}" },
-        subtle: { value: "{colors.gray.5}" },
+        default: { value: "{colors.mori.fg.DEFAULT}" },
+        muted: { value: "{colors.mori.fg.muted}" },
+        subtle: { value: "{colors.mori.fg.subtle}" },
         disabled: { value: "{colors.gray.5}" },
-        error: { value: "{colors.red.6}" },
+        error: { value: "{colors.red.fg.DEFAULT}" },
     },
 };
 

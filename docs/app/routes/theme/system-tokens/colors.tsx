@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
 import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
-import { SemanticColorDisplay } from "../-components/semantic-color-display";
+import { SemanticColorDisplay } from "../-components/system-color-display";
 
 const semanticColorsPageStyles = sva({
     slots: ["root", "pageTitle", "description", "section", "sectionTitle", "grid"],
@@ -112,7 +112,7 @@ function parseColorTokens(): { bg: ColorToken[]; fg: ColorToken[] } {
     };
 }
 
-export const Route = createFileRoute("/theme/semantic-tokens/colors")({
+export const Route = createFileRoute("/theme/system-tokens/colors")({
     component: RouteComponent,
 });
 

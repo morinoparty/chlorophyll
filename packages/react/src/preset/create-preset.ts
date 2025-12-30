@@ -11,12 +11,12 @@ export interface ColorPalette {
 
 export interface PresetOptions {
     brandColor: "mori" | "umi";
-    baseColor: ColorPalette;
+    grayColor: ColorPalette;
     radius: "xs" | "sm" | "md" | "lg" | "xl" | "full";
 }
 
 export const createPreset = (option: PresetOptions) => {
-    const { brandColor, baseColor, radius } = option;
+    const { brandColor, grayColor, radius } = option;
 
     // // セマンティックトークンを定義
     const semanticTokens: SemanticTokens = {

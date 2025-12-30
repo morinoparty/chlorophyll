@@ -146,5 +146,37 @@ export const yellow = defineSemanticTokens.colors({
                 _dark: "{colors.yellow.dark.a12}",
             },
         },
+        // Background semantic tokens
+        bg: {
+            DEFAULT: {
+                value: "{colors.yellow.2}",
+            },
+            subtle: {
+                value: "{colors.yellow.3}",
+            },
+            muted: {
+                value: "{colors.yellow.4}",
+            },
+            emphasized: {
+                value: "{colors.yellow.5}",
+            },
+        },
+        // Foreground semantic tokens
+        fg: {
+            DEFAULT: {
+                value: "{colors.yellow.11}",
+            },
+            muted: {
+                value: "{colors.yellow.10}",
+            },
+        },
+        // Solid background
+        solid: {
+            value: "{colors.yellow.9}",
+        },
+        // Text on solid background (yellow needs dark text for contrast)
+        contrast: {
+            value: "{colors.yellow.12}",
+        },
     },
 });

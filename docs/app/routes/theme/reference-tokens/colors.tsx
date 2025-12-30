@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
 import type { ColorToken } from "styled-system/tokens/tokens";
-import { ColorList } from "../../-components/color-list";
+import { ColorList } from "../-components/color-list";
 
 const refrenceColorsPageStyles = sva({
     slots: ["root", "pageTitle", "section", "sectionTitle"],
@@ -14,7 +14,7 @@ const refrenceColorsPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "fg.default",
+            color: "colorPalette.fg",
         },
         section: {
             display: "flex",
@@ -24,12 +24,12 @@ const refrenceColorsPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "fg.default",
+            color: "colorPalette.fg",
         },
     },
 });
 
-export const Route = createFileRoute("/theme/reference-tokens/colors/")({
+export const Route = createFileRoute("/theme/reference-tokens/colors")({
     component: RouteComponent,
 });
 

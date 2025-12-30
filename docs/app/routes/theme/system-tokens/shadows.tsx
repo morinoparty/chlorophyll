@@ -25,11 +25,11 @@ const shadowsPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         description: {
             fontSize: "md",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
         },
         section: {
             display: "flex",
@@ -39,7 +39,7 @@ const shadowsPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         grid: {
             display: "grid",
@@ -67,11 +67,11 @@ const shadowsPageStyles = sva({
         cardName: {
             fontSize: "sm",
             fontWeight: "medium",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         cardValue: {
             fontSize: "xs",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
             fontFamily: "mono",
         },
     },
@@ -102,7 +102,7 @@ function parseShadowTokens(): ShadowToken[] {
     });
 }
 
-export const Route = createFileRoute("/theme/semantic-tokens/shadows")({
+export const Route = createFileRoute("/theme/system-tokens/shadows")({
     component: RouteComponent,
 });
 

@@ -1,21 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { css, sva } from "styled-system/css";
-import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
+import tokensSpec from "styled-system/specs/tokens.json";
 
 const radiiPageStyles = sva({
-    slots: [
-        "root",
-        "pageTitle",
-        "description",
-        "section",
-        "sectionTitle",
-        "grid",
-        "card",
-        "preview",
-        "info",
-        "name",
-        "value",
-    ],
+    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "grid", "card", "preview", "info", "name", "value"],
     base: {
         root: {
             display: "flex",
@@ -25,11 +13,11 @@ const radiiPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         description: {
             fontSize: "md",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
         },
         section: {
             display: "flex",
@@ -39,23 +27,20 @@ const radiiPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         grid: {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
             gap: "6",
         },
-        card: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "3",
-            alignItems: "center",
-        },
+        card: { display: "flex", flexDirection: "column", gap: "3", alignItems: "center" },
         preview: {
             width: "20",
             height: "20",
-            backgroundColor: "mori.solid",
+            backgroundColor: "colorPalette.solid",
+            border: "1px solid",
+            borderColor: "border.muted",
         },
         info: {
             display: "flex",
@@ -66,11 +51,11 @@ const radiiPageStyles = sva({
         name: {
             fontSize: "sm",
             fontWeight: "medium",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         value: {
             fontSize: "xs",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
             fontFamily: "mono",
         },
     },
@@ -82,47 +67,45 @@ interface RadiusToken {
     cssVar: string;
 }
 
-function parseSemanticRadiiTokens(): RadiusToken[] {
-    const radiiData = semanticTokensSpec.data.find((d) => d.type === "radii");
+function parseRadiiTokens(): RadiusToken[] {
+    const radiiData = tokensSpec.data.find((d) => d.type === "radii");
     if (!radiiData) return [];
 
-    return radiiData.values.map((token) => {
-        const baseValue = token.values.find((v) => v.condition === "base")?.value ?? "";
-        return {
-            name: token.name,
-            value: baseValue,
-            cssVar: token.cssVar,
-        };
-    });
+    return radiiData.values.map((token) => ({
+        name: token.name,
+        value: token.value,
+        cssVar: token.cssVar,
+    }));
 }
 
-const semanticRadiiTokens = parseSemanticRadiiTokens();
-
-export const Route = createFileRoute("/theme/semantic-tokens/radii")({
+export const Route = createFileRoute("/theme/reference-tokens/radii")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
     const styles = radiiPageStyles();
+    const radiiTokens = parseRadiiTokens();
 
     return (
         <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Radii</h1>
-            <p className={styles.description}>
-                階層的なボーダー半径トークン。Park UIのレイヤーシステムに基づき、
-                ネストされたコンポーネント間で一貫した角丸を維持します。
-            </p>
+            <h1 className={styles.pageTitle}>Border Radius</h1>
+            <p className={styles.description}>Border radius tokens for consistent corner rounding.</p>
 
             <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Semantic Radius</h2>
-                <p className={css({ fontSize: "sm", color: "mori.fg.muted", marginBottom: "4" })}>
-                    The <code>default</code> semantic token maps to a reference radius token based on the theme
-                    configuration.
-                </p>
+                <h2 className={styles.sectionTitle}>Radii Scale</h2>
                 <div className={styles.grid}>
-                    {semanticRadiiTokens.map((token) => (
+                    {radiiTokens.map((token) => (
                         <div key={token.name} className={styles.card}>
-                            <div className={styles.preview} style={{ borderRadius: token.cssVar }} />
+                            <div
+                                className={css({
+                                    width: "20",
+                                    height: "20",
+                                    backgroundColor: "colorPalette.solid",
+                                    border: "sm",
+                                    borderColor: "border",
+                                })}
+                                style={{ borderRadius: token.cssVar }}
+                            />
                             <div className={styles.info}>
                                 <span className={styles.name}>{token.name}</span>
                                 <span className={styles.value}>{token.value}</span>

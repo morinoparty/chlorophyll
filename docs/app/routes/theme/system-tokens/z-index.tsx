@@ -23,11 +23,11 @@ const zIndexPageStyles = sva({
         pageTitle: {
             fontSize: "2xl",
             fontWeight: "bold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         description: {
             fontSize: "md",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
         },
         section: {
             display: "flex",
@@ -37,7 +37,7 @@ const zIndexPageStyles = sva({
         sectionTitle: {
             fontSize: "xl",
             fontWeight: "semibold",
-            color: "mori.fg",
+            color: "colorPalette.fg",
         },
         table: {
             width: "full",
@@ -48,24 +48,26 @@ const zIndexPageStyles = sva({
             padding: "3",
             fontSize: "sm",
             fontWeight: "semibold",
-            color: "mori.fg.muted",
+            color: "colorPalette.fg.muted",
             borderBottom: "1px solid",
-            borderColor: "mori.bg.emphasized",
+            borderColor: "border.muted",
         },
         td: {
             padding: "3",
             fontSize: "sm",
-            color: "mori.fg",
+            color: "colorPalette.fg",
             borderBottom: "1px solid",
-            borderColor: "mori.bg.muted",
+            borderColor: "border.subtle",
             verticalAlign: "middle",
         },
         preview: {
             position: "relative",
             height: "32",
-            backgroundColor: "mori.bg.muted",
+            backgroundColor: "colorPalette.bg.muted",
             borderRadius: "md",
             overflow: "hidden",
+            border: "sm",
+            borderColor: "border",
         },
         previewLayer: {
             position: "absolute",
@@ -96,7 +98,7 @@ const zIndexTokens = [
     { name: "max", value: 2147483647, description: "最大値" },
 ];
 
-export const Route = createFileRoute("/theme/semantic-tokens/z-index")({
+export const Route = createFileRoute("/theme/system-tokens/z-index")({
     component: RouteComponent,
 });
 
