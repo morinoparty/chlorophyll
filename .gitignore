@@ -47,3 +47,5 @@ generated
 **/chrome/*
 
 vrt/*
+
+**/.playwright-mcp/**
