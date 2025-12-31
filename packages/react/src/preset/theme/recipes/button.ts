@@ -34,7 +34,7 @@ export const button = defineRecipe({
             primary: {
                 bg: "colorPalette.solid",
                 color: "white",
-                _hover: { bg: "colorPalette.bg.emphasized" },
+                _hover: { bg: "colorPalette.emphasized" },
             },
             secondary: {
                 bg: "bg.subtle",

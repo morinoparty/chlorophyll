@@ -152,27 +152,44 @@ export const yellow = defineSemanticTokens.colors({
                 value: "{colors.yellow.2}",
             },
             subtle: {
+                value: "{colors.yellow.1}",
+            },
+        },
+        // Surface semantic tokens (component backgrounds)
+        surface: {
+            DEFAULT: {
                 value: "{colors.yellow.3}",
             },
-            muted: {
+            hover: {
                 value: "{colors.yellow.4}",
             },
-            emphasized: {
+            active: {
                 value: "{colors.yellow.5}",
             },
         },
         // Foreground semantic tokens
         fg: {
             DEFAULT: {
-                value: "{colors.yellow.11}",
+                value: {
+                    _light: "{colors.yellow.12}",
+                    _dark: "{colors.white}",
+                },
             },
             muted: {
-                value: "{colors.yellow.10}",
+                value: "{colors.gray.11}",
+            },
+            subtle: {
+                value: "{colors.yellow.11}",
             },
         },
         // Solid background
         solid: {
-            value: "{colors.yellow.9}",
+            DEFAULT: {
+                value: "{colors.yellow.9}",
+            },
+            emphasized: {
+                value: "{colors.yellow.10}",
+            },
         },
         // Text on solid background (yellow needs dark text for contrast)
         contrast: {

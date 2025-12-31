@@ -146,5 +146,54 @@ export const gray = defineSemanticTokens.colors({
                 _dark: "{colors.gray.dark.a12}",
             },
         },
+        // Background semantic tokens
+        bg: {
+            DEFAULT: {
+                value: "{colors.gray.2}",
+            },
+            subtle: {
+                value: "{colors.gray.1}",
+            },
+        },
+        // Surface semantic tokens (component backgrounds)
+        surface: {
+            DEFAULT: {
+                value: "{colors.gray.3}",
+            },
+            hover: {
+                value: "{colors.gray.4}",
+            },
+            active: {
+                value: "{colors.gray.5}",
+            },
+        },
+        // Foreground semantic tokens
+        fg: {
+            DEFAULT: {
+                value: {
+                    _light: "{colors.gray.12}",
+                    _dark: "{colors.white}",
+                },
+            },
+            muted: {
+                value: "{colors.gray.11}",
+            },
+            subtle: {
+                value: "{colors.gray.11}",
+            },
+        },
+        // Solid background
+        solid: {
+            DEFAULT: {
+                value: "{colors.gray.9}",
+            },
+            emphasized: {
+                value: "{colors.gray.10}",
+            },
+        },
+        // Text on solid background
+        contrast: {
+            value: "{colors.white}",
+        },
     },
 });

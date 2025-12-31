@@ -3,7 +3,7 @@
 - panda-cssのレシピを使用して、スタイルを記述してください。
 - figma mcpからデザインを取得して、記述を求められた場合は、コード内にコメントを記述する量は最小限にしてください。
 - また、figmaの方で色が指定してある場合であっても、theme/semantic-tokens/colors.tsにあるtokenをできるだけ使用してください。 
-  - ex) var(--mc-colors-bg-subtle)
+  - ex) var(--mpc-colors-bg-subtle)
 
 # スタイリングの方法
 - docs/ においては、panda-cssのsvaを使用してスタイルを記述してください。

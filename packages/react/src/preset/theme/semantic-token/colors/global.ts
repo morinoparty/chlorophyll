@@ -3,42 +3,34 @@ import { defineSemanticTokens } from "@pandacss/dev";
 /**
  * グローバルセマンティックカラートークン
  * Brand colorに依存しない、アプリケーション全体で使用する共通トークン
+ * grayベースで中立的な背景を提供
  */
 export const global = defineSemanticTokens.colors({
     // Background tokens
     bg: {
         DEFAULT: {
-            value: "{colors.mori.bg.DEFAULT}",
+            value: "{colors.gray.1}",
         },
         subtle: {
-            value: "{colors.mori.bg.subtle}",
+            value: "{colors.gray.2}",
         },
         muted: {
-            value: "{colors.mori.bg.muted}",
+            value: "{colors.gray.3}",
         },
         emphasized: {
-            value: "{colors.mori.bg.emphasized}",
+            value: "{colors.gray.4}",
         },
         inverted: {
-            value: "{colors.mori.bg.inverted}",
+            value: {
+                _light: "{colors.gray.dark.1}",
+                _dark: "{colors.gray.light.1}",
+            },
         },
         panel: {
-            value: "{colors.mori.bg.panel}",
-        },
-    },
-    // Foreground/text tokens
-    fg: {
-        DEFAULT: {
-            value: "{colors.mori.fg.DEFAULT}",
-        },
-        muted: {
-            value: "{colors.mori.fg.muted}",
-        },
-        subtle: {
-            value: "{colors.mori.fg.subtle}",
-        },
-        inverted: {
-            value: "{colors.mori.fg.inverted}",
+            value: {
+                _light: "{colors.white}",
+                _dark: "{colors.gray.2}",
+            },
         },
     },
 });

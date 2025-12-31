@@ -192,7 +192,7 @@ function RouteComponent() {
                                     <div
                                         className={styles.previewBox}
                                         style={{
-                                            border: `${token.cssVar} var(--ma-colors-border)`,
+                                            border: `${token.cssVar} var(--mpc-colors-border)`,
                                         }}
                                     />
                                 </td>

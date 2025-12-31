@@ -146,7 +146,7 @@ function RouteComponent() {
                                     <div
                                         className={styles.previewBox}
                                         style={{
-                                            border: `var(--ma-borders-${token.name}) var(--ma-colors-border)`,
+                                            border: `var(--mpc-borders-${token.name}) var(--mpc-colors-border)`,
                                         }}
                                     />
                                 </td>
@@ -180,7 +180,7 @@ function RouteComponent() {
                                     <div
                                         className={styles.previewBox}
                                         style={{
-                                            border: `2px solid var(--ma-colors-${token.name.replace(".", "-")})`,
+                                            border: `2px solid var(--mpc-colors-${token.name.replace(".", "-")})`,
                                         }}
                                     />
                                 </td>
@@ -211,7 +211,7 @@ function RouteComponent() {
                                     <div
                                         className={styles.previewBox}
                                         style={{
-                                            border: `2px solid var(--ma-colors-${token.name.replace(".", "-")})`,
+                                            border: `2px solid var(--mpc-colors-${token.name.replace(".", "-")})`,
                                         }}
                                     />
                                 </td>

@@ -148,38 +148,28 @@ export const mori = defineSemanticTokens.colors({
         },
         bg: {
             DEFAULT: {
-                value: "{colors.mori.1}",
-            },
-            subtle: {
                 value: "{colors.mori.2}",
             },
-            muted: {
-                value: "{colors.gray.2}",
+            subtle: {
+                value: "{colors.mori.1}",
             },
-            emphasized: {
-                value: {
-                    _light: "{colors.gray.3}",
-                    _dark: "{colors.gray.3}",
-                },
+        },
+        surface: {
+            DEFAULT: {
+                value: "{colors.mori.3}",
             },
-            inverted: {
-                value: {
-                    _light: "{colors.mori.dark.1}",
-                    _dark: "{colors.mori.light.1}",
-                },
+            hover: {
+                value: "{colors.mori.4}",
             },
-            panel: {
-                value: {
-                    _light: "{colors.white}",
-                    _dark: "{colors.gray.1}",
-                },
+            active: {
+                value: "{colors.mori.5}",
             },
         },
         fg: {
             DEFAULT: {
                 value: {
                     _light: "{colors.mori.12}",
-                    _dark: "white",
+                    _dark: "{colors.white}",
                 },
             },
             muted: {
@@ -188,15 +178,17 @@ export const mori = defineSemanticTokens.colors({
             subtle: {
                 value: "{colors.mori.11}",
             },
-            inverted: {
-                value: {
-                    _light: "{colors.mori.dark.12}",
-                    _dark: "{colors.mori.light.12}",
-                },
-            },
         },
         solid: {
-            value: "{colors.mori.10}",
+            DEFAULT: {
+                value: "{colors.mori.9}",
+            },
+            emphasized: {
+                value: "{colors.mori.10}",
+            },
+        },
+        contrast: {
+            value: "{colors.white}",
         },
     },
 });

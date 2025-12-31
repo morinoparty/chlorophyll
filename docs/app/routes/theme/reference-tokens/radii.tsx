@@ -3,7 +3,19 @@ import { css, sva } from "styled-system/css";
 import tokensSpec from "styled-system/specs/tokens.json";
 
 const radiiPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "grid", "card", "preview", "info", "name", "value"],
+    slots: [
+        "root",
+        "pageTitle",
+        "description",
+        "section",
+        "sectionTitle",
+        "grid",
+        "card",
+        "preview",
+        "info",
+        "name",
+        "value",
+    ],
     base: {
         root: {
             display: "flex",

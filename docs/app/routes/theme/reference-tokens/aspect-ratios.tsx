@@ -53,9 +53,7 @@ function RouteComponent() {
     return (
         <div className={styles.root}>
             <h1 className={styles.pageTitle}>Aspect Ratios</h1>
-            <p className={styles.description}>
-                アスペクト比トークン。画像やビデオ、コンテナの縦横比を定義します。
-            </p>
+            <p className={styles.description}>アスペクト比トークン。画像やビデオ、コンテナの縦横比を定義します。</p>
 
             <section className={styles.section}>
                 <div className={styles.grid}>

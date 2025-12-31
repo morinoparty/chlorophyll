@@ -5,12 +5,7 @@ import { colors } from "./colors";
 import { radii } from "./radii";
 import { shadows } from "./shadow";
 import { spacing } from "./spacing";
-import {
-    fontSizes,
-    fontWeights,
-    letterSpacings,
-    lineHeights,
-} from "./typography";
+import { fontSizes, fontWeights, letterSpacings, lineHeights } from "./typography";
 
 export const semanticTokens = defineSemanticTokens({
     colors,

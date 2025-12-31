@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { css, sva } from "styled-system/css";
+import { sva } from "styled-system/css";
 import textStylesSpec from "styled-system/specs/text-styles.json";
 import tokensSpec from "styled-system/specs/tokens.json";
 
@@ -144,9 +144,9 @@ function RouteComponent() {
                                 <td className={styles.td}>
                                     <span
                                         style={{
-                                            fontSize: `var(--ma-font-sizes-${token.name})`,
+                                            fontSize: `var(--mpc-font-sizes-${token.name})`,
                                             lineHeight: token.lineHeight,
-                                            color: "var(--ma-colors-color-palette-fg)",
+                                            color: "var(--mpc-colors-color-palette-fg)",
                                         }}
                                     >
                                         Aa
@@ -179,7 +179,7 @@ function RouteComponent() {
                                     <span
                                         style={{
                                             fontSize: token.cssVar,
-                                            color: "var(--ma-colors-color-palette-fg)",
+                                            color: "var(--mpc-colors-color-palette-fg)",
                                         }}
                                     >
                                         あそべる「Third Place」

@@ -53,9 +53,7 @@ function RouteComponent() {
     return (
         <div className={styles.root}>
             <h1 className={styles.pageTitle}>Easings</h1>
-            <p className={styles.description}>
-                イージング関数トークン。アニメーションの加速・減速カーブを定義します。
-            </p>
+            <p className={styles.description}>イージング関数トークン。アニメーションの加速・減速カーブを定義します。</p>
 
             <section className={styles.section}>
                 <table className={styles.table}>

@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
-import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
-import { SemanticColorDisplay } from "../-components/system-color-display";
+import { css, sva } from "styled-system/css";
 
 const semanticColorsPageStyles = sva({
     slots: ["root", "pageTitle", "description", "section", "sectionTitle", "grid"],
@@ -38,79 +36,80 @@ const semanticColorsPageStyles = sva({
     },
 });
 
-// Description mappings for mori color tokens
-const colorDescriptions: Record<string, string> = {
-    "mori.bg": "デフォルト背景",
-    "mori.bg.subtle": "微妙な背景",
-    "mori.bg.muted": "控えめな背景",
-    "mori.bg.emphasized": "強調背景",
-    "mori.bg.inverted": "反転背景",
-    "mori.bg.panel": "パネル背景",
-    "mori.fg": "デフォルトテキスト",
-    "mori.fg.muted": "控えめなテキスト",
-    "mori.fg.subtle": "微妙なテキスト",
-    "mori.fg.inverted": "反転テキスト",
-};
-
-interface ColorToken {
-    name: string;
-    reference: string;
-    description: string;
-    cssVar: string;
-}
-
-function parseColorTokens(): { bg: ColorToken[]; fg: ColorToken[] } {
-    const colorsData = semanticTokensSpec.data.find((d) => d.type === "colors");
-    if (!colorsData) return { bg: [], fg: [] };
-
-    const bgNames = [
-        "mori.bg",
-        "mori.bg.subtle",
-        "mori.bg.muted",
-        "mori.bg.emphasized",
-        "mori.bg.inverted",
-        "mori.bg.panel",
-    ];
-    const fgNames = ["mori.fg", "mori.fg.muted", "mori.fg.subtle", "mori.fg.inverted"];
-
-    const parseTokens = (names: string[]): ColorToken[] => {
-        return names
-            .map((name) => {
-                const token = colorsData.values.find((t) => t.name === name);
-                if (!token) return null;
-
-                const lightValue = token.values.find((v) => v.condition === "light")?.value;
-                const darkValue = token.values.find((v) => v.condition === "dark")?.value;
-                const baseValue = token.values.find((v) => v.condition === "base")?.value;
-
-                let reference: string;
-                if (baseValue) {
-                    reference = baseValue;
-                } else if (lightValue && darkValue) {
-                    if (lightValue === darkValue) {
-                        reference = lightValue;
-                    } else {
-                        reference = `${lightValue} / ${darkValue}`;
-                    }
-                } else {
-                    reference = lightValue || darkValue || "";
-                }
-
-                return {
-                    name: token.name,
-                    reference,
-                    description: colorDescriptions[name] || "",
-                    cssVar: token.cssVar,
-                };
-            })
-            .filter((t): t is ColorToken => t !== null);
-    };
-
-    return {
-        bg: parseTokens(bgNames),
-        fg: parseTokens(fgNames),
-    };
-}
+// colorPaletteトークンの定義
+const colorPaletteTokens = [
+    // Background tokens (Step 1-2)
+    {
+        name: "colorPalette.bg",
+        cssVar: "--mpc-colors-color-palette-bg",
+        reference: "colorPalette.2",
+        description: "デフォルト背景",
+    },
+    {
+        name: "colorPalette.bg.subtle",
+        cssVar: "--mpc-colors-color-palette-bg-subtle",
+        reference: "colorPalette.1",
+        description: "微妙な背景",
+    },
+    // Surface tokens (Step 3-5) - コンポーネント背景
+    {
+        name: "colorPalette.surface",
+        cssVar: "--mpc-colors-color-palette-surface",
+        reference: "colorPalette.3",
+        description: "コンポーネント背景（通常状態）",
+    },
+    {
+        name: "colorPalette.surface.hover",
+        cssVar: "--mpc-colors-color-palette-surface-hover",
+        reference: "colorPalette.4",
+        description: "コンポーネント背景（ホバー状態）",
+    },
+    {
+        name: "colorPalette.surface.active",
+        cssVar: "--mpc-colors-color-palette-surface-active",
+        reference: "colorPalette.5",
+        description: "コンポーネント背景（アクティブ/選択状態）",
+    },
+    // Solid tokens (Step 9-10)
+    {
+        name: "colorPalette.solid",
+        cssVar: "--mpc-colors-color-palette-solid",
+        reference: "colorPalette.9",
+        description: "ボタンなどのソリッド背景",
+    },
+    {
+        name: "colorPalette.solid.emphasized",
+        cssVar: "--mpc-colors-color-palette-solid-emphasized",
+        reference: "colorPalette.10",
+        description: "ソリッド背景のホバー状態",
+    },
+    // Foreground tokens (Step 11-12)
+    {
+        name: "colorPalette.fg",
+        cssVar: "--mpc-colors-color-palette-fg",
+        reference: "colorPalette.12",
+        description: "デフォルトテキスト",
+    },
+    {
+        name: "colorPalette.fg.muted",
+        cssVar: "--mpc-colors-color-palette-fg-muted",
+        reference: "gray.11",
+        description: "控えめなテキスト（全色共通でgray.11）",
+    },
+    {
+        name: "colorPalette.fg.subtle",
+        cssVar: "--mpc-colors-color-palette-fg-subtle",
+        reference: "colorPalette.11",
+        description: "微妙なテキスト",
+    },
+    // Contrast token
+    {
+        name: "colorPalette.contrast",
+        cssVar: "--mpc-colors-color-palette-contrast",
+        reference: "white",
+        description: "ソリッド背景上のテキスト",
+    },
+];
 
 export const Route = createFileRoute("/theme/system-tokens/colors")({
     component: RouteComponent,
@@ -118,40 +117,46 @@ export const Route = createFileRoute("/theme/system-tokens/colors")({
 
 function RouteComponent() {
     const styles = semanticColorsPageStyles();
-    const { bg: moriBgTokens, fg: moriFgTokens } = parseColorTokens();
 
     return (
         <div className={styles.root}>
             <h1 className={styles.pageTitle}>Semantic Color Tokens</h1>
             <p className={styles.description}>
                 セマンティックカラートークンは、用途に基づいた色の定義です。
-                ライト/ダークモードに応じて自動的に適切な色に切り替わります。
+                colorPaletteを通じて、選択されたテーマカラーに応じて動的に変化します。
             </p>
 
             <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>mori.bg (Background)</h2>
+                <h2 className={styles.sectionTitle}>colorPalette</h2>
+                <p className={styles.description}>
+                    各色（mori, umi, blue, red, yellow, gray）は同じ構造を持ちます。
+                    colorPaletteを設定すると、対応する色のトークンが適用されます。
+                </p>
                 <div className={styles.grid}>
-                    {moriBgTokens.map((token) => (
-                        <SemanticColorDisplay
+                    {colorPaletteTokens.map((token) => (
+                        <div
                             key={token.name}
-                            tokenKey={token.name}
-                            reference={token.reference}
-                            description={token.description}
-                        />
-                    ))}
-                </div>
-            </section>
-
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>mori.fg (Foreground)</h2>
-                <div className={styles.grid}>
-                    {moriFgTokens.map((token) => (
-                        <SemanticColorDisplay
-                            key={token.name}
-                            tokenKey={token.name}
-                            reference={token.reference}
-                            description={token.description}
-                        />
+                            className={css({
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2",
+                            })}
+                        >
+                            <div
+                                className={css({
+                                    width: "100%",
+                                    height: "24",
+                                    borderRadius: "md",
+                                    border: "sm",
+                                    borderColor: "border",
+                                })}
+                                style={{ backgroundColor: `var(${token.cssVar})` }}
+                            />
+                            <div className={css({ fontSize: "sm", fontWeight: "semibold" })}>{token.name}</div>
+                            <div className={css({ fontSize: "xs", color: "colorPalette.fg.muted" })}>
+                                {token.description}
+                            </div>
+                        </div>
                     ))}
                 </div>
             </section>

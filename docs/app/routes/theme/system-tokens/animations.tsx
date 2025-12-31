@@ -63,7 +63,7 @@ const durationDescriptions: Record<string, string> = {
 };
 
 const easingDescriptions: Record<string, string> = {
-    "transition": "デフォルトイージング",
+    transition: "デフォルトイージング",
     "transition.enter": "要素の入場アニメーション",
     "transition.exit": "要素の退場アニメーション",
     "transition.emphasized": "強調されたモーション",

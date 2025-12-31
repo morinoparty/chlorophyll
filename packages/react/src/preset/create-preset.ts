@@ -16,7 +16,7 @@ export interface PresetOptions {
 }
 
 export const createPreset = (option: PresetOptions) => {
-    const { brandColor, grayColor, radius } = option;
+    const { radius } = option;
 
     // // セマンティックトークンを定義
     const semanticTokens: SemanticTokens = {
@@ -34,8 +34,13 @@ export const createPreset = (option: PresetOptions) => {
         presets: ["@pandacss/preset-base"],
         globalFontface: globalFontFace,
         globalCss: {
-            ":root": {
-                colorPalette: brandColor,
+            // デフォルト + moriテーマ
+            ":root, [data-color-theme='mori']": {
+                colorPalette: "mori",
+            },
+            // umiテーマ
+            "[data-color-theme='umi']": {
+                colorPalette: "umi",
             },
         },
         conditions: {

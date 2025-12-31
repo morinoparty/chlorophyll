@@ -5,12 +5,8 @@ export const textStyles = defineTextStyles({
         description: "The body text style - used in paragraphs",
         value: {
             fontFamily:
-                "'Satoshi-Variable', 'GenJyuuGothicLP', BlinkMacSystemFont, 'Noto Sans JP', -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
-            fontVariationSettings: "'wght' 500",
-            color: "var(--chakra-colors-color-palette-fg)",
-            textDecoration: {
-                color: "var(--chakra-colors-text)",
-            },
+                "'Satoshi', 'GenJyuuGothicLP', BlinkMacSystemFont, 'Noto Sans JP', -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+            color: "colorPalette.fg",
             lineHeight: "1.8",
             fontWeight: "500",
         },

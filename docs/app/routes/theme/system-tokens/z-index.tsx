@@ -147,7 +147,7 @@ function RouteComponent() {
                             top: "8px",
                             width: "80px",
                             height: "80px",
-                            backgroundColor: "var(--ma-colors-gray-8)",
+                            backgroundColor: "var(--mpc-colors-gray-8)",
                             zIndex: 0,
                         }}
                     >
@@ -160,7 +160,7 @@ function RouteComponent() {
                             top: "24px",
                             width: "80px",
                             height: "60px",
-                            backgroundColor: "var(--ma-colors-blue-8)",
+                            backgroundColor: "var(--mpc-colors-blue-8)",
                             zIndex: 1000,
                         }}
                     >
@@ -173,7 +173,7 @@ function RouteComponent() {
                             top: "40px",
                             width: "80px",
                             height: "60px",
-                            backgroundColor: "var(--ma-colors-mori-8)",
+                            backgroundColor: "var(--mpc-colors-mori-8)",
                             zIndex: 1400,
                         }}
                     >
@@ -186,7 +186,7 @@ function RouteComponent() {
                             top: "56px",
                             width: "70px",
                             height: "40px",
-                            backgroundColor: "var(--ma-colors-yellow-8)",
+                            backgroundColor: "var(--mpc-colors-yellow-8)",
                             zIndex: 1800,
                         }}
                     >

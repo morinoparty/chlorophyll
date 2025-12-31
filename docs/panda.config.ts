@@ -3,7 +3,7 @@ import { defineConfig } from "@pandacss/dev";
 
 export default defineConfig({
     preflight: true,
-    prefix: "ma",
+    prefix: "mpc",
     presets: ["@pandacss/preset-base", createPreset({ brandColor: "mori", grayColor: stone, radius: "md" })],
     include: ["./app/**/*.{ts,tsx,js,jsx}"],
     exclude: [],

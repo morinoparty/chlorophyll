@@ -53,7 +53,7 @@ interface SemanticColorDisplayProps {
 
 function tokenToCssVar(tokenKey: string): string {
     const cssVarName = tokenKey.replace(/\./g, "-");
-    return `var(--ma-colors-${cssVarName})`;
+    return `var(--mpc-colors-${cssVarName})`;
 }
 
 export function SemanticColorDisplay({ tokenKey, reference, description }: SemanticColorDisplayProps) {

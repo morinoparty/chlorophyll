@@ -28,7 +28,7 @@ const pageStyles = sva({
             borderColor: "border.subtle",
             verticalAlign: "middle",
         },
-        preview: { fontFamily: "body" },
+        // preview: { fontFamily: "GenJyuuGothicLP" },
     },
 });
 

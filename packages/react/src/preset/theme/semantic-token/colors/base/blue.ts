@@ -152,27 +152,44 @@ export const blue = defineSemanticTokens.colors({
                 value: "{colors.blue.2}",
             },
             subtle: {
+                value: "{colors.blue.1}",
+            },
+        },
+        // Surface semantic tokens (component backgrounds)
+        surface: {
+            DEFAULT: {
                 value: "{colors.blue.3}",
             },
-            muted: {
+            hover: {
                 value: "{colors.blue.4}",
             },
-            emphasized: {
+            active: {
                 value: "{colors.blue.5}",
             },
         },
         // Foreground semantic tokens
         fg: {
             DEFAULT: {
-                value: "{colors.blue.11}",
+                value: {
+                    _light: "{colors.blue.12}",
+                    _dark: "{colors.white}",
+                },
             },
             muted: {
-                value: "{colors.blue.10}",
+                value: "{colors.gray.11}",
+            },
+            subtle: {
+                value: "{colors.blue.11}",
             },
         },
         // Solid background
         solid: {
-            value: "{colors.blue.9}",
+            DEFAULT: {
+                value: "{colors.blue.9}",
+            },
+            emphasized: {
+                value: "{colors.blue.10}",
+            },
         },
         // Text on solid background
         contrast: {

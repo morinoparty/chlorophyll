@@ -146,5 +146,54 @@ export const umi = defineSemanticTokens.colors({
                 _dark: "{colors.umi.dark.a12}",
             },
         },
+        // Background semantic tokens
+        bg: {
+            DEFAULT: {
+                value: "{colors.umi.2}",
+            },
+            subtle: {
+                value: "{colors.umi.1}",
+            },
+        },
+        // Surface semantic tokens (component backgrounds)
+        surface: {
+            DEFAULT: {
+                value: "{colors.umi.3}",
+            },
+            hover: {
+                value: "{colors.umi.4}",
+            },
+            active: {
+                value: "{colors.umi.5}",
+            },
+        },
+        // Foreground semantic tokens
+        fg: {
+            DEFAULT: {
+                value: {
+                    _light: "{colors.umi.12}",
+                    _dark: "{colors.white}",
+                },
+            },
+            muted: {
+                value: "{colors.gray.11}",
+            },
+            subtle: {
+                value: "{colors.umi.11}",
+            },
+        },
+        // Solid background
+        solid: {
+            DEFAULT: {
+                value: "{colors.umi.9}",
+            },
+            emphasized: {
+                value: "{colors.umi.10}",
+            },
+        },
+        // Text on solid background
+        contrast: {
+            value: "{colors.white}",
+        },
     },
 });

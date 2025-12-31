@@ -76,7 +76,8 @@ function RouteComponent() {
                                 </td>
                                 <td className={styles.td}>
                                     <span className={styles.preview} style={{ lineHeight: token.value }}>
-                                        Line 1<br />Line 2
+                                        Line 1<br />
+                                        Line 2
                                     </span>
                                 </td>
                             </tr>
