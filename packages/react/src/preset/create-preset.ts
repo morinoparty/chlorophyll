@@ -44,7 +44,8 @@ export const createPreset = (option: PresetOptions) => {
             },
         },
         conditions: {
-            light: "[data-mode=light] &",
+            // data-mode属性がない場合はライトモードをデフォルトとして適用
+            light: ":not([data-mode=dark]) &",
             dark: "[data-mode=dark] &",
         },
         theme: {
