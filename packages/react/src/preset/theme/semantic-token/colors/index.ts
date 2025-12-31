@@ -1,18 +1,16 @@
 import { defineSemanticTokens } from "@pandacss/dev";
-import { blue } from "./blue";
+import { base } from "./base";
 import { border } from "./border";
-import { gray } from "./gray";
-import { mori } from "./mori";
-import { red } from "./red";
-import { umi } from "./umi";
-import { yellow } from "./yellow";
+import { focus } from "./focus";
+import { global } from "./global";
+import { overlay } from "./overlay";
 
 export const colors = defineSemanticTokens.colors({
-    ...gray,
-    ...mori,
-    ...umi,
-    ...red,
-    ...yellow,
-    ...blue,
+    // Base colors (gray, mori, umi, red, yellow, blue)
+    ...base,
+    // Semantic tokens
     ...border,
+    ...global,
+    ...overlay,
+    ...focus,
 });

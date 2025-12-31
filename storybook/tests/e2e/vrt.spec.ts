@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { getStoryInfos } from "../vrt";
 
 const storyInfos = getStoryInfos();
-storyInfos.map(({ url, title, name }) => {
+for (const { url, title, name } of storyInfos) {
     test(`snapshot test ${title}: ${name} `, async ({ page }, testInfo) => {
         await page.goto(url, {
             waitUntil: "networkidle",
@@ -20,4 +20,4 @@ storyInfos.map(({ url, title, name }) => {
             contentType: "image/png",
         });
     });
-});
+}

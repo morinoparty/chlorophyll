@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { css } from "styled-system/css";
 
 export function ModeToggle() {
+    // hydration errorを防ぐため、マウント後にのみ状態を確定させる
+    const [mounted, setMounted] = useState(false);
     const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         setIsDark(document.documentElement.classList.contains("dark"));
     }, []);
 
@@ -19,6 +22,7 @@ export function ModeToggle() {
 
     return (
         <button
+            type="button"
             onClick={toggleMode}
             className={css({
                 width: "6",
@@ -35,7 +39,8 @@ export function ModeToggle() {
             })}
             aria-label="Toggle mode"
         >
-            {isDark ? <Sun size={24} /> : <Moon size={24} />}
+            {/* SSR時は常にMoonを表示し、hydration後に正しいアイコンに切り替える */}
+            {mounted ? isDark ? <Sun size={24} /> : <Moon size={24} /> : <Moon size={24} />}
         </button>
     );
 }

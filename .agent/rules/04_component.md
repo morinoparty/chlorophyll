@@ -10,8 +10,8 @@
   - 参考: [Compound Component パターン](https://www.patterns.dev/react/compound-pattern/)
 - Chakra UIのbase tokenおよびsemantic tokenを活用して設計してください。
   - 参考: theme/**
-    - ex ) `var(--ma-colors-color-palette-500)`
-    - ex ) `var(--ma-colors-color-palette-bg-subtle)`
+    - ex ) `var(--mpc-colors-color-palette-500)`
+    - ex ) `var(--mpc-colors-color-palette-bg-subtle)`
 - Storybookを活用して、コンポーネントの動作確認およびドキュメント化を行ってください。
   - 参考: [Storybook公式ドキュメント](https://storybook.js.org/docs/react/get-started/introduction)
 

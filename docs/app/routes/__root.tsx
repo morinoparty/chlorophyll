@@ -14,6 +14,17 @@ export const Route = createRootRoute({
         links: [
             { rel: "icon", type: "image/svg+xml", href: "/chlorophyll.svg" },
             { rel: "stylesheet", href: appCss },
+            { rel: "stylesheet", href: "https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" },
+            {
+                rel: "stylesheet",
+                type: "text/css",
+                href: "https://shogo82148.github.io/genjyuugothic-subsets/GenJyuuGothicL-P-Medium/GenJyuuGothicL-P-Medium.css",
+            },
+            {
+                rel: "stylesheet",
+                type: "text/css",
+                href: "https://shogo82148.github.io/genjyuugothic-subsets/GenJyuuGothicL-P-Bold/GenJyuuGothicL-P-Bold.css",
+            },
         ],
     }),
     component: RootComponent,
@@ -56,7 +67,7 @@ function RootComponent() {
 function ThemeScript() {
     return (
         <script
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: SSR theme initialization script
             dangerouslySetInnerHTML={{
                 __html: `
           (function() {

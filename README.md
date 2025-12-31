@@ -74,16 +74,12 @@ tsconfig.json
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@ss/*": ["./styled-system/*"]
+      "@styled-system/*": ["./styled-system/*"]
     }
   }
 }
 ```
 
-5. Add your first component
-```bash
-pnpm dlx @moripa/chlorophyll-cli add button
-```
 
 ## 📖 Usage
 ```tsx

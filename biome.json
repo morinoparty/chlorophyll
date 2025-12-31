@@ -36,7 +36,8 @@
             "!**/styled-system",
             "!**/src/components/ui",
             "!**/env.d.ts",
-            "!**/storybook-static"
+            "!**/storybook-static",
+            "!**/routeTree.gen.ts"
         ],
         "rules": {
             "recommended": true,

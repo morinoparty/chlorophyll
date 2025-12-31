@@ -34,12 +34,12 @@ export const button = defineRecipe({
             primary: {
                 bg: "colorPalette.solid",
                 color: "white",
-                _hover: { bg: "colorPalette.bg.emphasized" },
+                _hover: { bg: "colorPalette.solid.emphasized" },
             },
             secondary: {
                 bg: "bg.subtle",
                 color: "gray.800",
-                _hover: { bg: "colorPalette.emphasized" },
+                _hover: { bg: "colorPalette.solid.emphasized" },
             },
             danger: {
                 bg: "palette.error",

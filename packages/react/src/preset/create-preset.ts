@@ -11,12 +11,12 @@ export interface ColorPalette {
 
 export interface PresetOptions {
     brandColor: "mori" | "umi";
-    baseColor: ColorPalette;
+    grayColor: ColorPalette;
     radius: "xs" | "sm" | "md" | "lg" | "xl" | "full";
 }
 
 export const createPreset = (option: PresetOptions) => {
-    const { brandColor, baseColor, radius } = option;
+    const { radius } = option;
 
     // // セマンティックトークンを定義
     const semanticTokens: SemanticTokens = {
@@ -34,12 +34,18 @@ export const createPreset = (option: PresetOptions) => {
         presets: ["@pandacss/preset-base"],
         globalFontface: globalFontFace,
         globalCss: {
-            ":root": {
-                colorPalette: brandColor,
+            // デフォルト + moriテーマ
+            ":root, [data-color-theme='mori']": {
+                colorPalette: "mori",
+            },
+            // umiテーマ
+            "[data-color-theme='umi']": {
+                colorPalette: "umi",
             },
         },
         conditions: {
-            light: "[data-mode=light] &",
+            // data-mode属性がない場合はライトモードをデフォルトとして適用
+            light: ":not([data-mode=dark]) &",
             dark: "[data-mode=dark] &",
         },
         theme: {
