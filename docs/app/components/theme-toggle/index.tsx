@@ -1,33 +1,33 @@
-import { TreePine, Waves } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { css } from "styled-system/css";
-
-type Theme = "mori" | "umi";
 
 export function ThemeToggle() {
     // hydration errorを防ぐため、マウント後にのみ状態を確定させる
     const [mounted, setMounted] = useState(false);
-    const [theme, setTheme] = useState<Theme>("mori");
+    const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        const savedTheme = localStorage.getItem("color-theme") as Theme | null;
-        if (savedTheme === "mori" || savedTheme === "umi") {
-            setTheme(savedTheme);
-        }
+        const newIsDark = document.documentElement.classList.contains("dark");
+        setIsDark(newIsDark);
+        document.documentElement.classList.toggle("dark", newIsDark);
+        document.documentElement.setAttribute("data-theme", newIsDark ? "dark" : "light");
+        localStorage.setItem("theme", newIsDark ? "dark" : "light");
     }, []);
 
-    const toggleTheme = () => {
-        const newTheme: Theme = theme === "mori" ? "umi" : "mori";
-        setTheme(newTheme);
-        document.documentElement.setAttribute("data-color-theme", newTheme);
-        localStorage.setItem("color-theme", newTheme);
+    const toggleMode = () => {
+        const newIsDark = !isDark;
+        setIsDark(newIsDark);
+        document.documentElement.classList.toggle("dark", newIsDark);
+        document.documentElement.setAttribute("data-theme", newIsDark ? "dark" : "light");
+        localStorage.setItem("theme", newIsDark ? "dark" : "light");
     };
 
     return (
         <button
             type="button"
-            onClick={toggleTheme}
+            onClick={toggleMode}
             className={css({
                 width: "6",
                 height: "6",
@@ -41,10 +41,10 @@ export function ThemeToggle() {
                 transition: "colors",
                 _hover: { color: "fg.muted" },
             })}
-            aria-label="Toggle theme"
+            aria-label="Toggle mode"
         >
-            {/* SSR時は常にTreePineを表示し、hydration後に正しいアイコンに切り替える */}
-            {mounted ? theme === "mori" ? <TreePine size={24} /> : <Waves size={24} /> : <TreePine size={24} />}
+            {/* SSR時は常にMoonを表示し、hydration後に正しいアイコンに切り替える */}
+            {mounted ? isDark ? <Moon size={24} /> : <Sun size={24} /> : <Moon size={24} />}
         </button>
     );
 }

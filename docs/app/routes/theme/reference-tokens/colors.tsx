@@ -3,7 +3,7 @@ import { sva } from "styled-system/css";
 import type { ColorToken } from "styled-system/tokens/tokens";
 import { ColorList } from "../-components/color-list";
 
-const refrenceColorsPageStyles = sva({
+const referenceColorsPageStyles = sva({
     slots: ["root", "pageTitle", "section", "sectionTitle"],
     base: {
         root: {
@@ -40,7 +40,7 @@ const getColorTokens = (color: (typeof brandColors)[number]): ColorToken[] =>
     colorScales.map((scale) => `${color}.${scale}` as ColorToken);
 
 function RouteComponent() {
-    const styles = refrenceColorsPageStyles();
+    const styles = referenceColorsPageStyles();
 
     return (
         <div className={styles.root}>

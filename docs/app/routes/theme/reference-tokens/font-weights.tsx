@@ -1,56 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
-import tokensSpec from "styled-system/specs/tokens.json";
-
-const pageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "preview"],
-    base: {
-        root: { display: "flex", flexDirection: "column", gap: "8" },
-        pageTitle: { fontSize: "2xl", fontWeight: "bold", color: "colorPalette.fg" },
-        description: { fontSize: "md", color: "colorPalette.fg.muted" },
-        section: { display: "flex", flexDirection: "column", gap: "6" },
-        sectionTitle: { fontSize: "xl", fontWeight: "semibold", color: "colorPalette.fg" },
-        table: { width: "full", borderCollapse: "collapse" },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "colorPalette.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "border.muted",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "colorPalette.fg",
-            borderBottom: "1px solid",
-            borderColor: "border.subtle",
-            verticalAlign: "middle",
-        },
-        // preview: { fontFamily: "GenJyuuGothicLP" },
-    },
-});
-
-interface Token {
-    name: string;
-    value: string;
-    cssVar: string;
-}
-
-function parseTokens(): Token[] {
-    const data = tokensSpec.data.find((d) => d.type === "fontWeights");
-    if (!data) return [];
-    return data.values.map((t) => ({ name: t.name, value: t.value, cssVar: t.cssVar }));
-}
+import { parseTokensByType } from "./-libs/token-parser";
+import { tablePageStyles } from "./-style/page-styles";
 
 export const Route = createFileRoute("/theme/reference-tokens/font-weights")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
-    const styles = pageStyles();
-    const tokens = parseTokens();
+    const styles = tablePageStyles();
+    const tokens = parseTokensByType("fontWeights");
 
     return (
         <div className={styles.root}>
@@ -76,9 +34,7 @@ function RouteComponent() {
                                     <code>{token.value}</code>
                                 </td>
                                 <td className={styles.td}>
-                                    <span className={styles.preview} style={{ fontWeight: token.value }}>
-                                        The quick brown fox
-                                    </span>
+                                    <span style={{ fontWeight: token.value }}>The quick brown fox</span>
                                 </td>
                             </tr>
                         ))}

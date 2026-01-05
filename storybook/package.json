@@ -15,6 +15,7 @@
     "dependencies": {
         "@chlorophyll/react": "workspace:*",
         "lucide-react": "^0.562.0",
+        "next-themes": "^0.4.6",
         "react": "^19.2.3",
         "react-dom": "^19.2.3"
     },
@@ -33,6 +34,8 @@
         "@vitejs/plugin-react": "^5.1.2",
         "@vitest/browser": "^4.0.16",
         "@vitest/coverage-v8": "^4.0.16",
+        "apca-w3": "^0.1.9",
+        "axe-core": "^4.11.0",
         "axe-playwright": "^2.2.2",
         "globals": "^16.5.0",
         "http-server": "^14.1.1",

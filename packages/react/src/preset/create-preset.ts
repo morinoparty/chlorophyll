@@ -1,8 +1,9 @@
 import { definePreset, type SemanticTokens } from "@pandacss/dev";
-import { recipes } from "./theme/recipes";
-import { globalFontFace, textStyles, tokens } from "./theme/reference-tokens";
-import { semanticTokens as defaultSemanticToken } from "./theme/semantic-token";
-import { radii } from "./theme/semantic-token/radii";
+import { breakpoints } from "./breakpoints";
+import { recipes } from "./token/recipes";
+import { globalFontFace, textStyles, tokens } from "./token/reference-tokens";
+import { semanticTokens as defaultSemanticToken } from "./token/semantic-token";
+import { radii } from "./token/semantic-token/radii";
 
 export interface ColorPalette {
     name: string;
@@ -35,23 +36,22 @@ export const createPreset = (option: PresetOptions) => {
         globalFontface: globalFontFace,
         globalCss: {
             // デフォルト + moriテーマ
-            ":root, [data-color-theme='mori']": {
+            ":root, [data-color-palette='mori']": {
                 colorPalette: "mori",
             },
             // umiテーマ
-            "[data-color-theme='umi']": {
+            "[data-color-palette='umi']": {
                 colorPalette: "umi",
             },
         },
         conditions: {
-            // data-mode属性がない場合はライトモードをデフォルトとして適用
-            light: ":not([data-mode=dark]) &",
-            dark: "[data-mode=dark] &",
+            light: ":root &, .light &",
         },
         theme: {
             extend: {
                 tokens,
                 semanticTokens,
+                breakpoints,
                 textStyles,
                 recipes: {
                     ...recipes,

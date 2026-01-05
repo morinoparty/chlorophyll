@@ -1,55 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
-import tokensSpec from "styled-system/specs/tokens.json";
-
-const pageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "table", "th", "td", "preview"],
-    base: {
-        root: { display: "flex", flexDirection: "column", gap: "8" },
-        pageTitle: { fontSize: "2xl", fontWeight: "bold", color: "colorPalette.fg" },
-        description: { fontSize: "md", color: "colorPalette.fg.muted" },
-        section: { display: "flex", flexDirection: "column", gap: "6" },
-        table: { width: "full", borderCollapse: "collapse" },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "colorPalette.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "border.muted",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "colorPalette.fg",
-            borderBottom: "1px solid",
-            borderColor: "border.subtle",
-            verticalAlign: "middle",
-        },
-        preview: { fontSize: "lg" },
-    },
-});
-
-interface Token {
-    name: string;
-    value: string;
-    cssVar: string;
-}
-
-function parseTokens(): Token[] {
-    const data = tokensSpec.data.find((d) => d.type === "letterSpacings");
-    if (!data) return [];
-    return data.values.map((t) => ({ name: t.name, value: t.value, cssVar: t.cssVar }));
-}
+import { css } from "styled-system/css";
+import { parseTokensByType } from "./-libs/token-parser";
+import { tablePageStyles } from "./-style/page-styles";
 
 export const Route = createFileRoute("/theme/reference-tokens/letter-spacings")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
-    const styles = pageStyles();
-    const tokens = parseTokens();
+    const styles = tablePageStyles();
+    const tokens = parseTokensByType("letterSpacings");
 
     return (
         <div className={styles.root}>
@@ -75,7 +35,7 @@ function RouteComponent() {
                                     <code>{token.value}</code>
                                 </td>
                                 <td className={styles.td}>
-                                    <span className={styles.preview} style={{ letterSpacing: token.value }}>
+                                    <span className={css({ fontSize: "lg" })} style={{ letterSpacing: token.value }}>
                                         LETTER SPACING
                                     </span>
                                 </td>

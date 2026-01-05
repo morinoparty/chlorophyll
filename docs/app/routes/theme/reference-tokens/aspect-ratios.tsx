@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { sva } from "styled-system/css";
-import tokensSpec from "styled-system/specs/tokens.json";
+import { parseTokensByType } from "./-libs/token-parser";
 
 const pageStyles = sva({
     slots: ["root", "pageTitle", "description", "section", "grid", "card", "preview", "info", "name", "value"],
@@ -30,25 +30,13 @@ const pageStyles = sva({
     },
 });
 
-interface Token {
-    name: string;
-    value: string;
-    cssVar: string;
-}
-
-function parseTokens(): Token[] {
-    const data = tokensSpec.data.find((d) => d.type === "aspectRatios");
-    if (!data) return [];
-    return data.values.map((t) => ({ name: t.name, value: t.value, cssVar: t.cssVar }));
-}
-
 export const Route = createFileRoute("/theme/reference-tokens/aspect-ratios")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
     const styles = pageStyles();
-    const tokens = parseTokens();
+    const tokens = parseTokensByType("aspectRatios");
 
     return (
         <div className={styles.root}>

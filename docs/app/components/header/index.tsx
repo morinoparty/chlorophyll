@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Github } from "lucide-react";
 import { sva } from "styled-system/css";
-import { ModeToggle } from "../mode-toggle";
+import { ColorPaletteToggle } from "../color-palette-toggle";
+import { MobileNav } from "../mobile-nav";
 import { ThemeToggle } from "../theme-toggle";
 
 const headerStyles = sva({
@@ -41,10 +42,10 @@ const headerStyles = sva({
         rightSection: {
             display: "flex",
             alignItems: "center",
-            gap: "64px",
+            gap: { base: "16px", md: "64px" },
         },
         nav: {
-            display: "flex",
+            display: { base: "none", md: "flex" },
             alignItems: "center",
             gap: "32px",
         },
@@ -57,7 +58,7 @@ const headerStyles = sva({
             _hover: { color: "fg.muted" },
         },
         icons: {
-            display: "flex",
+            display: { base: "none", md: "flex" },
             alignItems: "center",
             gap: "16px",
         },
@@ -88,7 +89,7 @@ export function Header() {
 
                 {/* Right Section */}
                 <div className={styles.rightSection}>
-                    {/* Navigation */}
+                    {/* Navigation - hidden on mobile */}
                     <nav className={styles.nav}>
                         <Link to="/docs" className={styles.navLink}>
                             Docs
@@ -101,9 +102,8 @@ export function Header() {
                         </Link>
                     </nav>
 
-                    {/* Icons */}
+                    {/* Icons - hidden on mobile */}
                     <div className={styles.icons}>
-                        {/* GitHub */}
                         <a
                             href="https://github.com/morinoparty/chlorophyll"
                             target="_blank"
@@ -113,13 +113,12 @@ export function Header() {
                         >
                             <Github size={24} />
                         </a>
-
-                        {/* Mode Toggle (light/dark) */}
-                        <ModeToggle />
-
-                        {/* Theme Toggle (mori/umi) */}
                         <ThemeToggle />
+                        <ColorPaletteToggle />
                     </div>
+
+                    {/* Mobile Navigation - visible only on mobile */}
+                    <MobileNav />
                 </div>
             </div>
         </header>

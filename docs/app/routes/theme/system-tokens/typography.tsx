@@ -18,7 +18,7 @@ const typographyPageStyles = sva({
         },
         description: {
             fontSize: "md",
-            color: "colorPalette.fg.muted",
+            color: "colorPalette.fg.subtle",
         },
         section: {
             display: "flex",

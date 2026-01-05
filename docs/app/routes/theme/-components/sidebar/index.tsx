@@ -41,6 +41,7 @@ const themeSidebarStyles = sva({
             fontSize: "md",
             textDecoration: "none",
             transition: "colors",
+            color: "colorPalette.fg.subtle",
         },
     },
     variants: {
