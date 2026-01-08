@@ -1,82 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { css, sva } from "styled-system/css";
+import { css } from "styled-system/css";
 import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
-
-const radiiPageStyles = sva({
-    slots: [
-        "root",
-        "pageTitle",
-        "description",
-        "section",
-        "sectionTitle",
-        "grid",
-        "card",
-        "preview",
-        "info",
-        "name",
-        "value",
-    ],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        description: {
-            fontSize: "md",
-            color: "colorPalette.fg.muted",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-        grid: {
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
-            gap: "6",
-        },
-        card: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "3",
-            alignItems: "center",
-        },
-        preview: {
-            width: "20",
-            height: "20",
-            backgroundColor: "colorPalette.solid",
-            border: "sm",
-            borderColor: "border",
-        },
-        info: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "1",
-            alignItems: "center",
-        },
-        name: {
-            fontSize: "sm",
-            fontWeight: "medium",
-            color: "colorPalette.fg",
-        },
-        value: {
-            fontSize: "xs",
-            color: "colorPalette.fg.muted",
-            fontFamily: "mono",
-        },
-    },
-});
+import { basePageStyles, gridStyles } from "../-styles/page-styles";
 
 interface RadiusToken {
     name: string;
@@ -105,29 +30,34 @@ export const Route = createFileRoute("/theme/system-tokens/radii")({
 });
 
 function RouteComponent() {
-    const styles = radiiPageStyles();
+    const pageStyles = basePageStyles();
+    const cardStyles = gridStyles();
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Radii</h1>
-            <p className={styles.description}>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Radii</h1>
+            <p className={pageStyles.description}>
                 階層的なボーダー半径トークン。Park UIのレイヤーシステムに基づき、
                 ネストされたコンポーネント間で一貫した角丸を維持します。
             </p>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Semantic Radius</h2>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Semantic Radius</h2>
                 <p className={css({ fontSize: "sm", color: "colorPalette.fg.muted", marginBottom: "4" })}>
                     The <code>default</code> semantic token maps to a reference radius token based on the theme
                     configuration.
                 </p>
-                <div className={styles.grid}>
+                <div
+                    className={css(gridStyles.raw().grid, {
+                        gridTemplateColumns: { base: "repeat(3, 1fr)", lg: "repeat(4, 1fr)" },
+                    })}
+                >
                     {semanticRadiiTokens.map((token) => (
-                        <div key={token.name} className={styles.card}>
-                            <div className={styles.preview} style={{ borderRadius: token.cssVar }} />
-                            <div className={styles.info}>
-                                <span className={styles.name}>{token.name}</span>
-                                <span className={styles.value}>{token.value}</span>
+                        <div key={token.name} className={cardStyles.card}>
+                            <div className={css(gridStyles.raw().cardPreview)} style={{ borderRadius: token.cssVar }} />
+                            <div className={cardStyles.cardInfo}>
+                                <span className={cardStyles.cardName}>{token.name}</span>
+                                <span className={cardStyles.cardValue}>{token.value}</span>
                             </div>
                         </div>
                     ))}

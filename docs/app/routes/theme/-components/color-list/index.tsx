@@ -18,7 +18,11 @@ const colorListStyles = sva({
         },
         grid: {
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))",
+            gridTemplateColumns: {
+                base: "repeat(3, 1fr)",
+                md: "repeat(4, 1fr)",
+                lg: "repeat(6, 1fr)",
+            },
             gap: "4",
             width: "full",
         },

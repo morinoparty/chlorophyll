@@ -1,61 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
 import textStylesSpec from "styled-system/specs/text-styles.json";
 import tokensSpec from "styled-system/specs/tokens.json";
-
-const typographyPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "sample"],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        description: {
-            fontSize: "md",
-            color: "colorPalette.fg.subtle",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-        table: {
-            width: "full",
-            borderCollapse: "collapse",
-        },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "colorPalette.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "border.muted",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "colorPalette.fg",
-            borderBottom: "1px solid",
-            borderColor: "border.subtle",
-            verticalAlign: "middle",
-        },
-        sample: {
-            color: "colorPalette.fg",
-        },
-    },
-});
+import { basePageStyles, tableStyles } from "../-styles/page-styles";
 
 interface TextStyleToken {
     name: string;
@@ -113,82 +59,87 @@ export const Route = createFileRoute("/theme/system-tokens/typography")({
 });
 
 function RouteComponent() {
-    const styles = typographyPageStyles();
+    const pageStyles = basePageStyles();
+    const tblStyles = tableStyles();
     const fontSizeTokens = parseFontSizeTokens();
     const textStyleTokens = parseTextStyleTokens(fontSizeTokens);
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Typography</h1>
-            <p className={styles.description}>Text styles and font size tokens for consistent typography.</p>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Typography</h1>
+            <p className={pageStyles.description}>Text styles and font size tokens for consistent typography.</p>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Text Styles</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Name</th>
-                            <th className={styles.th}>Font Size</th>
-                            <th className={styles.th}>Line Height</th>
-                            <th className={styles.th}>Sample</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {textStyleTokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>{token.name}</code>
-                                </td>
-                                <td className={styles.td}>{token.fontSize}</td>
-                                <td className={styles.td}>{token.lineHeight}</td>
-                                <td className={styles.td}>
-                                    <span
-                                        style={{
-                                            fontSize: `var(--mpc-font-sizes-${token.name})`,
-                                            lineHeight: token.lineHeight,
-                                            color: "var(--mpc-colors-color-palette-fg)",
-                                        }}
-                                    >
-                                        Aa
-                                    </span>
-                                </td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Text Styles</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Name</th>
+                                <th className={tblStyles.th}>Font Size</th>
+                                <th className={tblStyles.th}>Line Height</th>
+                                <th className={tblStyles.th}>Sample</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {textStyleTokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>{token.fontSize}</td>
+                                    <td className={tblStyles.td}>{token.lineHeight}</td>
+                                    <td className={tblStyles.td}>
+                                        <span
+                                            style={{
+                                                fontSize: `var(--mpc-font-sizes-${token.name})`,
+                                                lineHeight: token.lineHeight,
+                                                color: "var(--mpc-colors-color-palette-fg)",
+                                            }}
+                                        >
+                                            Aa
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Font Sizes</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Value</th>
-                            <th className={styles.th}>Sample</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {fontSizeTokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>fontSizes.{token.name}</code>
-                                </td>
-                                <td className={styles.td}>{token.value}</td>
-                                <td className={styles.td}>
-                                    <span
-                                        style={{
-                                            fontSize: token.cssVar,
-                                            color: "var(--mpc-colors-color-palette-fg)",
-                                        }}
-                                    >
-                                        あそべる「Third Place」
-                                    </span>
-                                </td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Font Sizes</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Value</th>
+                                <th className={tblStyles.th}>Sample</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {fontSizeTokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>fontSizes.{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>{token.value}</td>
+                                    <td className={tblStyles.td}>
+                                        <span
+                                            style={{
+                                                fontSize: token.cssVar,
+                                                color: "var(--mpc-colors-color-palette-fg)",
+                                            }}
+                                        >
+                                            あそべる「Third Place」
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     );

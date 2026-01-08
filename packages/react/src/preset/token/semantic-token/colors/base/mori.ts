@@ -172,11 +172,11 @@ export const mori = defineSemanticTokens.colors({
                     _dark: "{colors.white}",
                 },
             },
-            muted: {
-                value: "{colors.gray.11}",
-            },
             subtle: {
                 value: "{colors.mori.11}",
+            },
+            muted: {
+                value: "{colors.gray.11}",
             },
         },
         solid: {

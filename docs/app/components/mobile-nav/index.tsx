@@ -6,8 +6,6 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { sva } from "styled-system/css";
-import { ColorPaletteToggle } from "../color-palette-toggle";
-import { ThemeToggle } from "../theme-toggle";
 
 const navigation = [
     { title: "Docs", href: "/docs" },
@@ -173,10 +171,6 @@ export function MobileNav({ currentPath = "" }: MobileNavProps) {
                                 </Link>
                             ))}
                         </nav>
-                        <div className={styles.footer}>
-                            <ThemeToggle />
-                            <ColorPaletteToggle />
-                        </div>
                     </Dialog.Content>
                 </Dialog.Positioner>
             </Portal>

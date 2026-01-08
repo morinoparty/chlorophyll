@@ -1,48 +1,54 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { css } from "styled-system/css";
+import { basePageStyles, tableStyles } from "../-styles/page-styles";
 import { parseTokensByType } from "./-libs/token-parser";
-import { tablePageStyles } from "./-style/page-styles";
 
 export const Route = createFileRoute("/theme/reference-tokens/letter-spacings")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
-    const styles = tablePageStyles();
+    const pageStyles = basePageStyles();
+    const tblStyles = tableStyles();
     const tokens = parseTokensByType("letterSpacings");
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Letter Spacings</h1>
-            <p className={styles.description}>文字間隔のトークン。テキストのトラッキングを調整します。</p>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Letter Spacings</h1>
+            <p className={pageStyles.description}>文字間隔のトークン。テキストのトラッキングを調整します。</p>
 
-            <section className={styles.section}>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Value</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>letterSpacings.{token.name}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <code>{token.value}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <span className={css({ fontSize: "lg" })} style={{ letterSpacing: token.value }}>
-                                        LETTER SPACING
-                                    </span>
-                                </td>
+            <section className={pageStyles.section}>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Value</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {tokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>letterSpacings.{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.value}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <span
+                                            className={css({ fontSize: "lg" })}
+                                            style={{ letterSpacing: token.value }}
+                                        >
+                                            LETTER SPACING
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     );

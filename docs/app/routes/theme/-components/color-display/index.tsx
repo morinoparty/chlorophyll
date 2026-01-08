@@ -37,12 +37,13 @@ const colorDisplayStyles = sva({
             width: "full",
         },
         name: {
-            fontSize: "sm",
+            fontSize: { base: "xs", md: "sm" },
             color: "fg.default",
             width: "full",
             textAlign: "center",
         },
         value: {
+            display: { base: "none", md: "block" },
             fontSize: "xs",
             color: "fg.muted",
             width: "full",

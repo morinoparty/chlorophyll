@@ -7,13 +7,18 @@ const themeLayoutStyles = sva({
     base: {
         root: {
             display: "flex",
+            flexDirection: { base: "column", lg: "row" },
             alignItems: "start",
             width: "full",
-            maxWidth: "7xl",
+            maxWidth: { base: "full", lg: "7xl" },
             marginX: "auto",
         },
         content: {
             flex: 1,
+            minWidth: 0,
+            width: "full",
+            maxWidth: "full",
+            overflowX: "hidden",
             paddingY: "6",
             paddingX: "4",
             minHeight: "calc(100vh - 4rem)",

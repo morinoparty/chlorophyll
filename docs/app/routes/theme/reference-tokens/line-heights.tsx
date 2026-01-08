@@ -1,52 +1,56 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { css } from "styled-system/css";
+import { basePageStyles, tableStyles } from "../-styles/page-styles";
 import { parseTokensByType } from "./-libs/token-parser";
-import { tablePageStyles } from "./-style/page-styles";
 
 export const Route = createFileRoute("/theme/reference-tokens/line-heights")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
-    const styles = tablePageStyles();
+    const pageStyles = basePageStyles();
+    const tblStyles = tableStyles();
     const tokens = parseTokensByType("lineHeights");
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Line Heights</h1>
-            <p className={styles.description}>行間のトークン。テキストの読みやすさを調整します。</p>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Line Heights</h1>
+            <p className={pageStyles.description}>行間のトークン。テキストの読みやすさを調整します。</p>
 
-            <section className={styles.section}>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Value</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>lineHeights.{token.name}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <code>{token.value}</code>
-                                </td>
-                                <td className={styles.td} style={{ width: "60%" }}>
-                                    <span
-                                        className={css({ fontSize: "xl", width: "30px" })}
-                                        style={{ lineHeight: token.cssVar }}
-                                    >
-                                        もりのパーティは、Minecraftを中心としたコミュニティです。
-                                        のんびり、ゆったり、気ままに、あそべる「サードプレイス」
-                                    </span>
-                                </td>
+            <section className={pageStyles.section}>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Value</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {tokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>lineHeights.{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.value}</code>
+                                    </td>
+                                    <td className={tblStyles.td} style={{ width: "60%" }}>
+                                        <span
+                                            className={css({ fontSize: "xl", width: "30px" })}
+                                            style={{ lineHeight: token.cssVar }}
+                                        >
+                                            もりのパーティは、Minecraftを中心としたコミュニティです。
+                                            <br />
+                                            のんびり、ゆったり、気ままに、あそべる「サードプレイス」
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     );

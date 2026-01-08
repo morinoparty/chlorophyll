@@ -13,7 +13,7 @@ export interface ColorPalette {
 export interface PresetOptions {
     brandColor: "mori" | "umi";
     grayColor: ColorPalette;
-    radius: "xs" | "sm" | "md" | "lg" | "xl" | "full";
+    radius: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 }
 
 export const createPreset = (option: PresetOptions) => {
@@ -24,9 +24,7 @@ export const createPreset = (option: PresetOptions) => {
         ...defaultSemanticToken,
         radii: {
             ...radii,
-            default: {
-                value: `{radii.${radius}}`,
-            },
+            ...radii(radius),
         },
     };
 
@@ -34,16 +32,7 @@ export const createPreset = (option: PresetOptions) => {
         name: "@moripa/panda-preset",
         presets: ["@pandacss/preset-base"],
         globalFontface: globalFontFace,
-        globalCss: {
-            // デフォルト + moriテーマ
-            ":root, [data-color-palette='mori']": {
-                colorPalette: "mori",
-            },
-            // umiテーマ
-            "[data-color-palette='umi']": {
-                colorPalette: "umi",
-            },
-        },
+
         conditions: {
             light: ":root &, .light &",
         },

@@ -1,40 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { css, sva } from "styled-system/css";
-
-const semanticColorsPageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "grid"],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        description: {
-            fontSize: "md",
-            color: "colorPalette.fg.muted",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-        grid: {
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-            gap: "6",
-        },
-    },
-});
+import { css } from "styled-system/css";
+import { basePageStyles, gridStyles } from "../-styles/page-styles";
 
 // colorPaletteトークンの定義
 const colorPaletteTokens = [
@@ -116,45 +82,41 @@ export const Route = createFileRoute("/theme/system-tokens/colors")({
 });
 
 function RouteComponent() {
-    const styles = semanticColorsPageStyles();
+    const pageStyles = basePageStyles();
+    const cardStyles = gridStyles();
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Semantic Color Tokens</h1>
-            <p className={styles.description}>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Semantic Color Tokens</h1>
+            <p className={pageStyles.description}>
                 セマンティックカラートークンは、用途に基づいた色の定義です。
                 colorPaletteを通じて、選択されたテーマカラーに応じて動的に変化します。
             </p>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>colorPalette</h2>
-                <p className={styles.description}>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>colorPalette</h2>
+                <p className={pageStyles.description}>
                     各色（mori, umi, blue, red, yellow, gray）は同じ構造を持ちます。
                     colorPaletteを設定すると、対応する色のトークンが適用されます。
                 </p>
-                <div className={styles.grid}>
+                <div
+                    className={css(gridStyles.raw().grid, {
+                        gridTemplateColumns: { base: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" },
+                    })}
+                >
                     {colorPaletteTokens.map((token) => (
-                        <div
-                            key={token.name}
-                            className={css({
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "2",
-                            })}
-                        >
+                        <div key={token.name} className={cardStyles.card}>
                             <div
-                                className={css({
+                                className={css(gridStyles.raw().cardPreview, {
                                     width: "100%",
                                     height: "24",
                                     borderRadius: "md",
-                                    border: "sm",
-                                    borderColor: "border",
                                 })}
                                 style={{ backgroundColor: `var(${token.cssVar})` }}
                             />
-                            <div className={css({ fontSize: "sm", fontWeight: "semibold" })}>{token.name}</div>
-                            <div className={css({ fontSize: "xs", color: "colorPalette.fg.muted" })}>
-                                {token.description}
+                            <div className={cardStyles.cardInfo}>
+                                <span className={cardStyles.cardName}>{token.name}</span>
+                                <span className={cardStyles.cardValue}>{token.description}</span>
                             </div>
                         </div>
                     ))}

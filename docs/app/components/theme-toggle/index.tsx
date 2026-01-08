@@ -1,8 +1,12 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { css } from "styled-system/css";
+import { css, cx } from "styled-system/css";
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+    className?: string;
+}
+
+export function ThemeToggle({ className }: ThemeToggleProps) {
     // hydration errorを防ぐため、マウント後にのみ状態を確定させる
     const [mounted, setMounted] = useState(false);
     const [isDark, setIsDark] = useState(false);
@@ -28,23 +32,24 @@ export function ThemeToggle() {
         <button
             type="button"
             onClick={toggleMode}
-            className={css({
-                width: "6",
-                height: "6",
-                bg: "transparent",
-                border: "none",
-                cursor: "pointer",
-                color: "fg.default",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "colors",
-                _hover: { color: "fg.muted" },
-            })}
+            className={cx(
+                css({
+                    bg: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "fg.default",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "colors",
+                    _hover: { color: "fg.muted" },
+                }),
+                className,
+            )}
             aria-label="Toggle mode"
         >
             {/* SSR時は常にMoonを表示し、hydration後に正しいアイコンに切り替える */}
-            {mounted ? isDark ? <Moon size={24} /> : <Sun size={24} /> : <Moon size={24} />}
+            {mounted ? isDark ? <Moon /> : <Sun /> : <Moon />}
         </button>
     );
 }

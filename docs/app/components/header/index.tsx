@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Github } from "lucide-react";
-import { sva } from "styled-system/css";
+import { css, sva } from "styled-system/css";
 import { ColorPaletteToggle } from "../color-palette-toggle";
 import { MobileNav } from "../mobile-nav";
 import { ThemeToggle } from "../theme-toggle";
@@ -58,7 +58,7 @@ const headerStyles = sva({
             _hover: { color: "fg.muted" },
         },
         icons: {
-            display: { base: "none", md: "flex" },
+            display: "flex",
             alignItems: "center",
             gap: "16px",
         },
@@ -66,11 +66,15 @@ const headerStyles = sva({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "6",
-            height: "6",
+            width: { base: "5", lg: "6" },
+            height: { base: "5", lg: "6" },
             color: "fg.default",
             transition: "colors",
             _hover: { color: "fg.muted" },
+            "& svg": {
+                width: { base: "5", lg: "6" },
+                height: { base: "5", lg: "6" },
+            },
         },
     },
 });
@@ -111,10 +115,17 @@ export function Header() {
                             className={styles.iconLink}
                             aria-label="GitHub"
                         >
-                            <Github size={24} />
+                            <Github
+                                className={css({
+                                    display: {
+                                        base: "none",
+                                        lg: "block",
+                                    },
+                                })}
+                            />
                         </a>
-                        <ThemeToggle />
-                        <ColorPaletteToggle />
+                        <ThemeToggle className={styles.iconLink} />
+                        <ColorPaletteToggle className={styles.iconLink} />
                     </div>
 
                     {/* Mobile Navigation - visible only on mobile */}

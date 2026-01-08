@@ -1,86 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
-
-const zIndexPageStyles = sva({
-    slots: [
-        "root",
-        "pageTitle",
-        "description",
-        "section",
-        "sectionTitle",
-        "table",
-        "th",
-        "td",
-        "preview",
-        "previewLayer",
-    ],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        description: {
-            fontSize: "md",
-            color: "colorPalette.fg.muted",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-        table: {
-            width: "full",
-            borderCollapse: "collapse",
-        },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "colorPalette.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "border.muted",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "colorPalette.fg",
-            borderBottom: "1px solid",
-            borderColor: "border.subtle",
-            verticalAlign: "middle",
-        },
-        preview: {
-            position: "relative",
-            height: "32",
-            backgroundColor: "colorPalette.bg.muted",
-            borderRadius: "md",
-            overflow: "hidden",
-            border: "sm",
-            borderColor: "border",
-        },
-        previewLayer: {
-            position: "absolute",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "xs",
-            fontWeight: "medium",
-            color: "white",
-            borderRadius: "sm",
-        },
-    },
-});
+import { css } from "styled-system/css";
+import { basePageStyles, tableStyles } from "../-styles/page-styles";
 
 const zIndexTokens = [
     { name: "hide", value: -1, description: "非表示要素" },
@@ -102,46 +22,71 @@ export const Route = createFileRoute("/theme/system-tokens/z-index")({
     component: RouteComponent,
 });
 
+// Styles for z-index preview
+const previewContainerStyle = css({
+    position: "relative",
+    height: "32",
+    backgroundColor: "colorPalette.bg.muted",
+    borderRadius: "md",
+    overflow: "hidden",
+    border: "sm",
+    borderColor: "border",
+});
+
+const previewLayerStyle = css({
+    position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "xs",
+    fontWeight: "medium",
+    color: "white",
+    borderRadius: "sm",
+});
+
 function RouteComponent() {
-    const styles = zIndexPageStyles();
+    const pageStyles = basePageStyles();
+    const tblStyles = tableStyles();
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Z-Index</h1>
-            <p className={styles.description}>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Z-Index</h1>
+            <p className={pageStyles.description}>
                 UIコンポーネントの重なり順を管理するためのz-indexトークン。
                 各層には明確な意図があり、コンポーネント間の適切な重なり順を保証します。
             </p>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Tokens</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Value</th>
-                            <th className={styles.th}>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {zIndexTokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>zIndex.{token.name}</code>
-                                </td>
-                                <td className={styles.td}>{token.value}</td>
-                                <td className={styles.td}>{token.description}</td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Tokens</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Value</th>
+                                <th className={tblStyles.th}>Description</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {zIndexTokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>zIndex.{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>{token.value}</td>
+                                    <td className={tblStyles.td}>{token.description}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Layer Hierarchy</h2>
-                <div className={styles.preview}>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Layer Hierarchy</h2>
+                <div className={previewContainerStyle}>
                     <div
-                        className={styles.previewLayer}
+                        className={previewLayerStyle}
                         style={{
                             left: "8px",
                             top: "8px",
@@ -154,7 +99,7 @@ function RouteComponent() {
                         base
                     </div>
                     <div
-                        className={styles.previewLayer}
+                        className={previewLayerStyle}
                         style={{
                             left: "40px",
                             top: "24px",
@@ -167,7 +112,7 @@ function RouteComponent() {
                         dropdown
                     </div>
                     <div
-                        className={styles.previewLayer}
+                        className={previewLayerStyle}
                         style={{
                             left: "72px",
                             top: "40px",
@@ -180,7 +125,7 @@ function RouteComponent() {
                         modal
                     </div>
                     <div
-                        className={styles.previewLayer}
+                        className={previewLayerStyle}
                         style={{
                             left: "104px",
                             top: "56px",

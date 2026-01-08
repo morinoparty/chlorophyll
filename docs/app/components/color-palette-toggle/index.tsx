@@ -1,10 +1,14 @@
 import { TreePine, Waves } from "lucide-react";
 import { useEffect, useState } from "react";
-import { css } from "styled-system/css";
+import { css, cx } from "styled-system/css";
 
 type Theme = "mori" | "umi";
 
-export function ColorPaletteToggle() {
+interface ColorPaletteToggleProps {
+    className?: string;
+}
+
+export function ColorPaletteToggle({ className }: ColorPaletteToggleProps) {
     // hydration errorを防ぐため、マウント後にのみ状態を確定させる
     const [mounted, setMounted] = useState(false);
     const [theme, setTheme] = useState<Theme>("mori");
@@ -28,23 +32,24 @@ export function ColorPaletteToggle() {
         <button
             type="button"
             onClick={toggleTheme}
-            className={css({
-                width: "6",
-                height: "6",
-                bg: "transparent",
-                border: "none",
-                cursor: "pointer",
-                color: "fg.default",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "colors",
-                _hover: { color: "fg.muted" },
-            })}
+            className={cx(
+                css({
+                    bg: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    color: "fg.default",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "colors",
+                    _hover: { color: "fg.muted" },
+                }),
+                className,
+            )}
             aria-label="Toggle theme"
         >
             {/* SSR時は常にTreePineを表示し、hydration後に正しいアイコンに切り替える */}
-            {mounted ? theme === "mori" ? <TreePine size={24} /> : <Waves size={24} /> : <TreePine size={24} />}
+            {mounted ? theme === "mori" ? <TreePine /> : <Waves /> : <TreePine />}
         </button>
     );
 }
