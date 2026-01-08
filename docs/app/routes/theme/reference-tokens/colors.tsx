@@ -1,33 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
 import type { ColorToken } from "styled-system/tokens/tokens";
 import { ColorList } from "../-components/color-list";
-
-const refrenceColorsPageStyles = sva({
-    slots: ["root", "pageTitle", "section", "sectionTitle"],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-    },
-});
+import { basePageStyles } from "../-styles/page-styles";
 
 export const Route = createFileRoute("/theme/reference-tokens/colors")({
     component: RouteComponent,
@@ -40,14 +14,14 @@ const getColorTokens = (color: (typeof brandColors)[number]): ColorToken[] =>
     colorScales.map((scale) => `${color}.${scale}` as ColorToken);
 
 function RouteComponent() {
-    const styles = refrenceColorsPageStyles();
+    const pageStyles = basePageStyles();
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Reference Color Token</h1>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Reference Color Token</h1>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Brand Color</h2>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Brand Color</h2>
                 {brandColors.map((color) => (
                     <ColorList key={color} title={color} tokenKeys={getColorTokens(color)} />
                 ))}

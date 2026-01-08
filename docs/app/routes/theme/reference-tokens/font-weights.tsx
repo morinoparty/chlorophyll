@@ -1,89 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
-import tokensSpec from "styled-system/specs/tokens.json";
-
-const pageStyles = sva({
-    slots: ["root", "pageTitle", "description", "section", "sectionTitle", "table", "th", "td", "preview"],
-    base: {
-        root: { display: "flex", flexDirection: "column", gap: "8" },
-        pageTitle: { fontSize: "2xl", fontWeight: "bold", color: "colorPalette.fg" },
-        description: { fontSize: "md", color: "colorPalette.fg.muted" },
-        section: { display: "flex", flexDirection: "column", gap: "6" },
-        sectionTitle: { fontSize: "xl", fontWeight: "semibold", color: "colorPalette.fg" },
-        table: { width: "full", borderCollapse: "collapse" },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "colorPalette.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "border.muted",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "colorPalette.fg",
-            borderBottom: "1px solid",
-            borderColor: "border.subtle",
-            verticalAlign: "middle",
-        },
-        // preview: { fontFamily: "GenJyuuGothicLP" },
-    },
-});
-
-interface Token {
-    name: string;
-    value: string;
-    cssVar: string;
-}
-
-function parseTokens(): Token[] {
-    const data = tokensSpec.data.find((d) => d.type === "fontWeights");
-    if (!data) return [];
-    return data.values.map((t) => ({ name: t.name, value: t.value, cssVar: t.cssVar }));
-}
+import { basePageStyles, tableStyles } from "../-styles/page-styles";
+import { parseTokensByType } from "./-libs/token-parser";
 
 export const Route = createFileRoute("/theme/reference-tokens/font-weights")({
     component: RouteComponent,
 });
 
 function RouteComponent() {
-    const styles = pageStyles();
-    const tokens = parseTokens();
+    const pageStyles = basePageStyles();
+    const tblStyles = tableStyles();
+    const tokens = parseTokensByType("fontWeights");
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Font Weights</h1>
-            <p className={styles.description}>フォントウェイトのトークン。テキストの太さを定義します。</p>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Font Weights</h1>
+            <p className={pageStyles.description}>フォントウェイトのトークン。テキストの太さを定義します。</p>
 
-            <section className={styles.section}>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Value</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>fontWeights.{token.name}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <code>{token.value}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <span className={styles.preview} style={{ fontWeight: token.value }}>
-                                        The quick brown fox
-                                    </span>
-                                </td>
+            <section className={pageStyles.section}>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Value</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {tokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>fontWeights.{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.value}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <span style={{ fontWeight: token.value }}>The quick brown fox</span>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     );

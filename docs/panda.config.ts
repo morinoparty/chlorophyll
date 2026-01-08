@@ -4,6 +4,16 @@ import { defineConfig } from "@pandacss/dev";
 export default defineConfig({
     preflight: true,
     prefix: "mpc",
+    globalCss: {
+        // デフォルト + moriテーマ
+        ":root, [data-color-palette='mori']": {
+            colorPalette: "mori",
+        },
+        // umiテーマ
+        "[data-color-palette='umi']": {
+            colorPalette: "umi",
+        },
+    },
     presets: ["@pandacss/preset-base", createPreset({ brandColor: "mori", grayColor: stone, radius: "md" })],
     include: ["./app/**/*.{ts,tsx,js,jsx}"],
     exclude: [],

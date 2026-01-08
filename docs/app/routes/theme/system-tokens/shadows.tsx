@@ -1,81 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
+import { css } from "styled-system/css";
 import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
-
-const shadowsPageStyles = sva({
-    slots: [
-        "root",
-        "pageTitle",
-        "description",
-        "section",
-        "sectionTitle",
-        "grid",
-        "card",
-        "cardPreview",
-        "cardInfo",
-        "cardName",
-        "cardValue",
-    ],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        description: {
-            fontSize: "md",
-            color: "colorPalette.fg.muted",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-        grid: {
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-            gap: "6",
-        },
-        card: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "3",
-        },
-        cardPreview: {
-            height: "24",
-            backgroundColor: "colorPalette.bg",
-            borderRadius: "lg",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        },
-        cardInfo: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "1",
-        },
-        cardName: {
-            fontSize: "sm",
-            fontWeight: "medium",
-            color: "colorPalette.fg",
-        },
-        cardValue: {
-            fontSize: "xs",
-            color: "colorPalette.fg.muted",
-            fontFamily: "mono",
-        },
-    },
-});
+import { basePageStyles, gridStyles } from "../-styles/page-styles";
 
 interface ShadowToken {
     name: string;
@@ -107,31 +33,39 @@ export const Route = createFileRoute("/theme/system-tokens/shadows")({
 });
 
 function RouteComponent() {
-    const styles = shadowsPageStyles();
+    const pageStyles = basePageStyles();
+    const cardStyles = gridStyles();
     const shadowTokens = parseShadowTokens();
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Shadows</h1>
-            <p className={styles.description}>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Shadows</h1>
+            <p className={pageStyles.description}>
                 要素に奥行きと立体感を与えるためのシャドウトークン。
                 ライトモードとダークモードで適切な影の強さを自動的に切り替えます。
             </p>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Shadow Scale</h2>
-                <div className={styles.grid}>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Shadow Scale</h2>
+                <div
+                    className={css(gridStyles.raw().grid, {
+                        gridTemplateColumns: { base: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" },
+                    })}
+                >
                     {shadowTokens.map((token) => (
-                        <div key={token.name} className={styles.card}>
+                        <div key={token.name} className={cardStyles.card}>
                             <div
-                                className={styles.cardPreview}
-                                style={{
-                                    boxShadow: token.cssVar,
-                                }}
+                                className={css(gridStyles.raw().cardPreview, {
+                                    width: "full",
+                                    height: "32",
+                                    backgroundColor: "colorPalette.bg",
+                                    borderRadius: "lg",
+                                })}
+                                style={{ boxShadow: token.cssVar }}
                             />
-                            <div className={styles.cardInfo}>
-                                <span className={styles.cardName}>shadows.{token.name}</span>
-                                <span className={styles.cardValue}>{token.light}</span>
+                            <div className={cardStyles.cardInfo}>
+                                <span className={cardStyles.cardName}>shadows.{token.name}</span>
+                                <span className={cardStyles.cardValue}>{token.light}</span>
                             </div>
                         </div>
                     ))}

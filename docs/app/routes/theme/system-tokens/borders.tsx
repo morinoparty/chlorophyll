@@ -1,78 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
+import { css } from "styled-system/css";
 import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
-
-const bordersPageStyles = sva({
-    slots: [
-        "root",
-        "pageTitle",
-        "description",
-        "section",
-        "sectionTitle",
-        "table",
-        "th",
-        "td",
-        "preview",
-        "previewBox",
-    ],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        description: {
-            fontSize: "md",
-            color: "colorPalette.fg.muted",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-        table: {
-            width: "full",
-            borderCollapse: "collapse",
-        },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "colorPalette.fg.muted",
-            borderBottom: "{borders.sm}",
-            borderColor: "colorPalette.bg.emphasized",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "colorPalette.fg",
-            borderBottom: "border.sm",
-            borderColor: "border",
-            verticalAlign: "middle",
-        },
-        preview: {
-            display: "flex",
-            alignItems: "center",
-            gap: "2",
-        },
-        previewBox: {
-            width: "16",
-            height: "10",
-            borderRadius: "sm",
-        },
-    },
-});
+import { basePageStyles, tableStyles } from "../-styles/page-styles";
 
 // Description mappings for border tokens
 const borderWidthDescriptions: Record<string, string> = {
@@ -157,112 +86,126 @@ export const Route = createFileRoute("/theme/system-tokens/borders")({
     component: RouteComponent,
 });
 
+// Preview box style for border demonstrations
+const previewBoxStyle = css({
+    width: "16",
+    height: "10",
+    borderRadius: "sm",
+});
+
 function RouteComponent() {
-    const styles = bordersPageStyles();
+    const pageStyles = basePageStyles();
+    const tblStyles = tableStyles();
     const borderWidthTokens = parseBorderWidthTokens();
     const { scale: borderColorScale, status: borderStatusTokens } = parseBorderColorTokens();
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Borders</h1>
-            <p className={styles.description}>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Borders</h1>
+            <p className={pageStyles.description}>
                 ボーダートークンは、太さ（width）と色（color）の2種類があります。 Radix
                 UIのスケールに基づき、用途に応じた適切なボーダーを提供します。
             </p>
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Border Width</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Value</th>
-                            <th className={styles.th}>Description</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {borderWidthTokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>borders.{token.name}</code>
-                                </td>
-                                <td className={styles.td}>{token.value}</td>
-                                <td className={styles.td}>{token.description}</td>
-                                <td className={styles.td}>
-                                    <div
-                                        className={styles.previewBox}
-                                        style={{
-                                            border: `${token.cssVar} var(--mpc-colors-border)`,
-                                        }}
-                                    />
-                                </td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Border Width</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Value</th>
+                                <th className={tblStyles.th}>Description</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {borderWidthTokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>borders.{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>{token.value}</td>
+                                    <td className={tblStyles.td}>{token.description}</td>
+                                    <td className={tblStyles.td}>
+                                        <div
+                                            className={previewBoxStyle}
+                                            style={{
+                                                border: `${token.cssVar} var(--mpc-colors-border)`,
+                                            }}
+                                        />
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Border Color (Radix Scale)</h2>
-                <p className={styles.description}>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Border Color (Radix Scale)</h2>
+                <p className={pageStyles.description}>
                     Steps 4-8: ボーダーカラーは、インタラクティブ性に応じて段階的に選択します。
                 </p>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Description</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {borderColorScale.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>{token.name}</code>
-                                </td>
-                                <td className={styles.td}>{token.description}</td>
-                                <td className={styles.td}>
-                                    <div
-                                        className={styles.previewBox}
-                                        style={{
-                                            border: `2px solid ${token.cssVar}`,
-                                        }}
-                                    />
-                                </td>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Description</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {borderColorScale.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>{token.description}</td>
+                                    <td className={tblStyles.td}>
+                                        <div
+                                            className={previewBoxStyle}
+                                            style={{
+                                                border: `2px solid ${token.cssVar}`,
+                                            }}
+                                        />
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Border Color (Status)</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Description</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {borderStatusTokens.map((token) => (
-                            <tr key={token.name}>
-                                <td className={styles.td}>
-                                    <code>{token.name}</code>
-                                </td>
-                                <td className={styles.td}>{token.description}</td>
-                                <td className={styles.td}>
-                                    <div
-                                        className={styles.previewBox}
-                                        style={{
-                                            border: `2px solid ${token.cssVar}`,
-                                        }}
-                                    />
-                                </td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Border Color (Status)</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Description</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {borderStatusTokens.map((token) => (
+                                <tr key={token.name}>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.name}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>{token.description}</td>
+                                    <td className={tblStyles.td}>
+                                        <div
+                                            className={previewBoxStyle}
+                                            style={{
+                                                border: `2px solid ${token.cssVar}`,
+                                            }}
+                                        />
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     );

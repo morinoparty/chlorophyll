@@ -1,78 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sva } from "styled-system/css";
+import { css } from "styled-system/css";
 import semanticTokensSpec from "styled-system/specs/semantic-tokens.json";
-
-const spacingPageStyles = sva({
-    slots: [
-        "root",
-        "pageTitle",
-        "description",
-        "section",
-        "sectionTitle",
-        "table",
-        "th",
-        "td",
-        "preview",
-        "previewBar",
-    ],
-    base: {
-        root: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "8",
-        },
-        pageTitle: {
-            fontSize: "2xl",
-            fontWeight: "bold",
-            color: "colorPalette.fg",
-        },
-        description: {
-            fontSize: "md",
-            color: "colorPalette.fg.muted",
-        },
-        section: {
-            display: "flex",
-            flexDirection: "column",
-            gap: "6",
-        },
-        sectionTitle: {
-            fontSize: "xl",
-            fontWeight: "semibold",
-            color: "colorPalette.fg",
-        },
-        table: {
-            width: "full",
-            borderCollapse: "collapse",
-        },
-        th: {
-            textAlign: "left",
-            padding: "3",
-            fontSize: "sm",
-            fontWeight: "semibold",
-            color: "colorPalette.fg.muted",
-            borderBottom: "1px solid",
-            borderColor: "border.muted",
-        },
-        td: {
-            padding: "3",
-            fontSize: "sm",
-            color: "colorPalette.fg",
-            borderBottom: "1px solid",
-            borderColor: "border.subtle",
-            verticalAlign: "middle",
-        },
-        preview: {
-            display: "flex",
-            alignItems: "center",
-            gap: "2",
-        },
-        previewBar: {
-            height: "4",
-            backgroundColor: "colorPalette.8",
-            borderRadius: "sm",
-        },
-    },
-});
+import { basePageStyles, tableStyles } from "../-styles/page-styles";
 
 // Description mappings for layout tokens
 const layoutDescriptions: Record<string, string> = {
@@ -141,112 +70,116 @@ export const Route = createFileRoute("/theme/system-tokens/spacing")({
     component: RouteComponent,
 });
 
+// Preview bar style for spacing demonstrations
+const previewBarStyle = css({
+    height: "4",
+    backgroundColor: "colorPalette.8",
+    borderRadius: "sm",
+});
+
 function RouteComponent() {
-    const styles = spacingPageStyles();
+    const pageStyles = basePageStyles();
+    const tblStyles = tableStyles();
     const { padding: paddingTokens, gap: gapTokens, layout: layoutTokens } = parseSpacingTokens();
 
     return (
-        <div className={styles.root}>
-            <h1 className={styles.pageTitle}>Spacing</h1>
-            <p className={styles.description}>
+        <div className={pageStyles.root}>
+            <h1 className={pageStyles.pageTitle}>Spacing</h1>
+            <p className={pageStyles.description}>
                 コンポーネントとレイアウトのためのセマンティックなスペーシングトークン。
                 一貫した間隔を維持しながら、用途に応じた適切なスペースを提供します。
             </p>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Component Padding</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Reference</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {paddingTokens.map((token) => (
-                            <tr key={token.fullName}>
-                                <td className={styles.td}>
-                                    <code>spacing.{token.fullName}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <code>{token.reference}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <div className={styles.preview}>
-                                        <div
-                                            className={styles.previewBar}
-                                            style={{
-                                                width: token.cssVar,
-                                            }}
-                                        />
-                                    </div>
-                                </td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Component Padding</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Reference</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {paddingTokens.map((token) => (
+                                <tr key={token.fullName}>
+                                    <td className={tblStyles.td}>
+                                        <code>spacing.{token.fullName}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.reference}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <div className={css({ display: "flex", alignItems: "center", gap: "2" })}>
+                                            <div className={previewBarStyle} style={{ width: token.cssVar }} />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Component Gap</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Reference</th>
-                            <th className={styles.th}>Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {gapTokens.map((token) => (
-                            <tr key={token.fullName}>
-                                <td className={styles.td}>
-                                    <code>spacing.{token.fullName}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <code>{token.reference}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <div className={styles.preview}>
-                                        <div
-                                            className={styles.previewBar}
-                                            style={{
-                                                width: token.cssVar,
-                                            }}
-                                        />
-                                    </div>
-                                </td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Component Gap</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Reference</th>
+                                <th className={tblStyles.th}>Preview</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {gapTokens.map((token) => (
+                                <tr key={token.fullName}>
+                                    <td className={tblStyles.td}>
+                                        <code>spacing.{token.fullName}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.reference}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <div className={css({ display: "flex", alignItems: "center", gap: "2" })}>
+                                            <div className={previewBarStyle} style={{ width: token.cssVar }} />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Layout</h2>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th className={styles.th}>Token</th>
-                            <th className={styles.th}>Reference</th>
-                            <th className={styles.th}>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {layoutTokens.map((token) => (
-                            <tr key={token.fullName}>
-                                <td className={styles.td}>
-                                    <code>spacing.{token.fullName}</code>
-                                </td>
-                                <td className={styles.td}>
-                                    <code>{token.reference}</code>
-                                </td>
-                                <td className={styles.td}>{token.description}</td>
+            <section className={pageStyles.section}>
+                <h2 className={pageStyles.sectionTitle}>Layout</h2>
+                <div className={tblStyles.tableWrapper}>
+                    <table className={tblStyles.table}>
+                        <thead>
+                            <tr>
+                                <th className={tblStyles.th}>Token</th>
+                                <th className={tblStyles.th}>Reference</th>
+                                <th className={tblStyles.th}>Description</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {layoutTokens.map((token) => (
+                                <tr key={token.fullName}>
+                                    <td className={tblStyles.td}>
+                                        <code>spacing.{token.fullName}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>
+                                        <code>{token.reference}</code>
+                                    </td>
+                                    <td className={tblStyles.td}>{token.description}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </div>
     );

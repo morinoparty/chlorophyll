@@ -1,8 +1,9 @@
 import { definePreset, type SemanticTokens } from "@pandacss/dev";
-import { recipes } from "./theme/recipes";
-import { globalFontFace, textStyles, tokens } from "./theme/reference-tokens";
-import { semanticTokens as defaultSemanticToken } from "./theme/semantic-token";
-import { radii } from "./theme/semantic-token/radii";
+import { breakpoints } from "./breakpoints";
+import { recipes } from "./token/recipes";
+import { globalFontFace, textStyles, tokens } from "./token/reference-tokens";
+import { semanticTokens as defaultSemanticToken } from "./token/semantic-token";
+import { radii } from "./token/semantic-token/radii";
 
 export interface ColorPalette {
     name: string;
@@ -12,7 +13,7 @@ export interface ColorPalette {
 export interface PresetOptions {
     brandColor: "mori" | "umi";
     grayColor: ColorPalette;
-    radius: "xs" | "sm" | "md" | "lg" | "xl" | "full";
+    radius: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 }
 
 export const createPreset = (option: PresetOptions) => {
@@ -23,9 +24,7 @@ export const createPreset = (option: PresetOptions) => {
         ...defaultSemanticToken,
         radii: {
             ...radii,
-            default: {
-                value: `{radii.${radius}}`,
-            },
+            ...radii(radius),
         },
     };
 
@@ -33,25 +32,15 @@ export const createPreset = (option: PresetOptions) => {
         name: "@moripa/panda-preset",
         presets: ["@pandacss/preset-base"],
         globalFontface: globalFontFace,
-        globalCss: {
-            // デフォルト + moriテーマ
-            ":root, [data-color-theme='mori']": {
-                colorPalette: "mori",
-            },
-            // umiテーマ
-            "[data-color-theme='umi']": {
-                colorPalette: "umi",
-            },
-        },
+
         conditions: {
-            // data-mode属性がない場合はライトモードをデフォルトとして適用
-            light: ":not([data-mode=dark]) &",
-            dark: "[data-mode=dark] &",
+            light: ":root &, .light &",
         },
         theme: {
             extend: {
                 tokens,
                 semanticTokens,
+                breakpoints,
                 textStyles,
                 recipes: {
                     ...recipes,

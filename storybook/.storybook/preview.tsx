@@ -1,26 +1,80 @@
 import "../src/index.css";
-import type { Preview } from "@storybook/react";
+import type { Decorator, Preview } from "@storybook/react-vite";
+import { ThemeProvider } from "next-themes";
+import { useEffect } from "react";
+import { themes } from "storybook/theming";
 import { css } from "styled-system/css";
+import { registerAPCACheck } from "./a11y";
+
+const apca = registerAPCACheck("silver");
+
+const withTheme: Decorator = (Story, context) => {
+    const colorMode = context.globals.colorMode || "light";
+    const palette = context.globals.palette || "mori";
+    useEffect(() => {
+        const root = document.documentElement;
+
+        // Set color mode
+        if (colorMode === "dark") {
+            root.classList.add("dark");
+            root.setAttribute("data-theme", "dark");
+        } else {
+            root.classList.remove("dark");
+            root.setAttribute("data-theme", "light");
+        }
+
+        // Set palette
+        root.setAttribute("data-color-palette", palette);
+    }, [colorMode, palette]);
+
+    return <Story />;
+};
+
+export const parameters = {
+    screenshot: {
+        provider: {
+            name: "storycap",
+        },
+    },
+};
 
 const preview: Preview = {
-    decorators: [
-        (Story) => (
-            <div className={css({ textStyle: "body", colorPalette: "mori" })}>
-                <Story />
-            </div>
-        ),
-    ],
-
+    globalTypes: {
+        colorMode: {
+            description: "Color mode",
+            defaultValue: "light",
+            toolbar: {
+                title: "Color Mode",
+                icon: "circlehollow",
+                items: [
+                    { value: "light", icon: "sun", title: "Light" },
+                    { value: "dark", icon: "moon", title: "Dark" },
+                ],
+            },
+        },
+        palette: {
+            description: "Color palette",
+            defaultValue: "mori",
+            toolbar: {
+                title: "Palette",
+                icon: "paintbrush",
+                items: [
+                    { value: "mori", title: "Mori" },
+                    { value: "umi", title: "Umi" },
+                ],
+            },
+        },
+    },
     parameters: {
-        actions: { argTypesRegex: "^on[A-Z].*" },
-
+        docs: {
+            theme: themes.dark,
+        },
         controls: {
             matchers: {
                 color: /(background|color)$/i,
                 date: /Date$/,
             },
         },
-
         screenshot: {
             fullPage: true,
             delay: 0,
@@ -41,8 +95,9 @@ const preview: Preview = {
         a11y: {
             // Optional selector to inspect
             test: "todo",
-            element: "body",
+            context: "body",
             config: {
+                checks: [...apca.checks],
                 rules: [
                     {
                         // The autocomplete rule will not run based on the CSS selector provided
@@ -54,11 +109,40 @@ const preview: Preview = {
                         id: "image-alt",
                         enabled: false,
                     },
+                    {
+                        id: "color-contrast",
+                        enabled: false,
+                    },
+                    {
+                        id: "color-contrast-enhanced",
+                        enabled: false,
+                    },
+                    ...apca.rules,
                 ],
             },
             options: {},
         },
     },
+    decorators: [
+        withTheme,
+        (Story, context) => {
+            const colorMode = context.globals.colorMode || "light";
+            const palette = context.globals.palette || "mori";
+            return (
+                <ThemeProvider forcedTheme={colorMode} enableSystem={false}>
+                    <div
+                        className={css({
+                            colorPalette: palette,
+                            bg: "colorPalette.bg",
+                            textStyle: "body",
+                        })}
+                    >
+                        <Story />
+                    </div>
+                </ThemeProvider>
+            );
+        },
+    ],
 };
 
 export default preview;
