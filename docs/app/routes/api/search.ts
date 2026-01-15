@@ -1,4 +1,4 @@
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createFileRoute } from "@tanstack/react-router";
 import { createSearchAPI } from "fumadocs-core/server";
 import { source } from "../../lib/source";
 
@@ -12,17 +12,21 @@ const search = createSearchAPI("simple", {
     })),
 });
 
-export const APIRoute = createAPIFileRoute("/api/search")({
-    GET: async ({ request }) => {
-        const url = new URL(request.url);
-        const query = url.searchParams.get("query") ?? "";
+export const Route = createFileRoute("/api/search")({
+    server: {
+        handlers: {
+            GET: async ({ request }) => {
+                const url = new URL(request.url);
+                const query = url.searchParams.get("query") ?? "";
 
-        const results = search(query);
+                const results = search(query);
 
-        return new Response(JSON.stringify(results), {
-            headers: {
-                "Content-Type": "application/json",
+                return new Response(JSON.stringify(results), {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
             },
-        });
+        },
     },
 });
