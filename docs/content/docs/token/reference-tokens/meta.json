@@ -1,0 +1,15 @@
+{
+    "title": "Reference Tokens",
+    "pages": [
+        "colors",
+        "radii",
+        "font-weights",
+        "line-heights",
+        "letter-spacings",
+        "opacity",
+        "durations",
+        "easings",
+        "aspect-ratios",
+        "border-widths"
+    ]
+}

@@ -1,4 +1,5 @@
-import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Outlet, Scripts, useLocation } from "@tanstack/react-router";
+import { RootProvider } from "fumadocs-ui/provider/tanstack";
 import { css } from "styled-system/css";
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
@@ -31,6 +32,9 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+    const location = useLocation();
+    const isDocsPage = location.pathname.startsWith("/docs");
+
     return (
         <html lang="en">
             <head>
@@ -47,18 +51,20 @@ function RootComponent() {
                     color: "colorPalette.fg",
                 })}
             >
-                <ThemeScript />
-                <Header />
-                <main
-                    className={css({
-                        flex: 1,
-                        width: "100%",
-                    })}
-                >
-                    <Outlet />
-                </main>
-                <Footer />
-                <Scripts />
+                <RootProvider>
+                    <ThemeScript />
+                    {!isDocsPage && <Header />}
+                    <main
+                        className={css({
+                            flex: 1,
+                            width: "100%",
+                        })}
+                    >
+                        <Outlet />
+                    </main>
+                    {!isDocsPage && <Footer />}
+                    <Scripts />
+                </RootProvider>
             </body>
         </html>
     );

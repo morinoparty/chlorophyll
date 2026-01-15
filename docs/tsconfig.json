@@ -10,8 +10,21 @@
         "lib": ["DOM", "DOM.Iterable", "ES2022"],
         "baseUrl": ".",
         "paths": {
-            "styled-system/*": ["./styled-system/*"]
+            "styled-system/*": ["./styled-system/*"],
+            "@/*": ["./app/*"],
+            "@components/*": ["./components/*"],
+            "fumadocs-mdx:collections/*": ["./.source/*"]
         }
     },
-    "include": ["app/**/*.ts", "app/**/*.tsx", "styled-system/**/*.ts"]
+    "include": [
+        "app/**/*.ts",
+        "app/**/*.tsx",
+        "components/**/*.ts",
+        "components/**/*.tsx",
+        "lib/**/*.ts",
+        "styled-system/**/*.ts",
+        ".source/**/*.ts",
+        "source.config.ts",
+        "content/**/*.mdx"
+    ]
 }

@@ -9,6 +9,9 @@ dist/
 # Panda CSS
 styled-system/
 
+# Fumadocs
+.source/
+
 # Cloudflare
 .wrangler/
 .dev.vars
