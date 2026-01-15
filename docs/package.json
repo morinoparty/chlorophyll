@@ -5,8 +5,9 @@
     "version": "0.0.1",
     "scripts": {
         "prepare": "panda codegen",
-        "dev": "panda spec && vite dev --host",
-        "build": "panda spec && vite build",
+        "dev": "panda cssgen && panda spec && vite dev --host",
+        "build": "panda cssgen && panda spec && vite build",
+        "start": "vite preview",
         "deploy": "pnpm build && wrangler deploy",
         "cf-typegen": "wrangler types"
     },

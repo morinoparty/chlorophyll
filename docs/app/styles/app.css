@@ -1,5 +1,8 @@
 @layer reset, base, tokens, recipes, utilities;
 
+/* Panda CSS generated styles */
+@import "../../styled-system/styles.css";
+
 /* Tailwind CSS for Fumadocs */
 @import "tailwindcss";
 @import "fumadocs-ui/css/neutral.css";
