@@ -21,7 +21,7 @@ const colorListStyles = sva({
             gridTemplateColumns: {
                 base: "repeat(3, 1fr)",
                 md: "repeat(4, 1fr)",
-                lg: "repeat(5, 1fr)",
+                lg: "repeat(6, 1fr)",
             },
             gap: "4",
             width: "full",
