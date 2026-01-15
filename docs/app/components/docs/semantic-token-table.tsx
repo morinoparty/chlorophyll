@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { sva } from "styled-system/css";
-import { parseTokensByType, type TokenType } from "./token-parser";
+import { css, sva } from "styled-system/css";
+import { parseSemanticTokensByType, type SemanticTokenType } from "./semantic-token-parser";
 
 const tableStyles = sva({
     slots: ["tableWrapper", "table", "th", "td"],
@@ -33,64 +33,70 @@ const tableStyles = sva({
     },
 });
 
-type PreviewType = "fontWeight" | "duration" | "easing" | "letterSpacing" | "lineHeight" | "opacity" | "borderWidth";
+// Preview bar style for spacing demonstrations
+const previewBarStyle = css({
+    height: "4",
+    backgroundColor: "colorPalette.8",
+    borderRadius: "sm",
+});
 
-interface TokenTableProps {
-    type: TokenType;
+type PreviewType = "spacing" | "radii" | "shadow" | "none";
+
+interface SemanticTokenTableProps {
+    type: SemanticTokenType;
+    filterPrefix?: string;
     previewType?: PreviewType;
     showDescription?: boolean;
     descriptions?: Record<string, string>;
 }
 
-export function TokenTable({ type, previewType, showDescription = false, descriptions = {} }: TokenTableProps) {
+export function SemanticTokenTable({
+    type,
+    filterPrefix,
+    previewType = "none",
+    showDescription = false,
+    descriptions = {},
+}: SemanticTokenTableProps) {
     const styles = tableStyles();
-    const tokens = parseTokensByType(type);
+    const tokens = parseSemanticTokensByType(type, filterPrefix);
 
-    const renderPreview = (value: string | number): ReactNode => {
-        const stringValue = String(value);
+    const renderPreview = (cssVar: string): ReactNode => {
         switch (previewType) {
-            case "fontWeight":
-                return <span style={{ fontWeight: stringValue }}>The quick brown fox</span>;
-            case "duration":
-                return <span>{stringValue}</span>;
-            case "easing":
-                return <span>{stringValue}</span>;
-            case "letterSpacing":
-                return <span style={{ letterSpacing: stringValue }}>The quick brown fox</span>;
-            case "lineHeight":
+            case "spacing":
                 return (
-                    <span style={{ lineHeight: stringValue, display: "block" }}>
-                        Line 1<br />
-                        Line 2
-                    </span>
+                    <div className={css({ display: "flex", alignItems: "center", gap: "2" })}>
+                        <div className={previewBarStyle} style={{ width: cssVar }} />
+                    </div>
                 );
-            case "opacity":
-                return (
-                    <div
-                        style={{
-                            width: "2rem",
-                            height: "2rem",
-                            backgroundColor: "var(--mpc-colors-color-palette-solid)",
-                            opacity: stringValue,
-                            borderRadius: "0.25rem",
-                        }}
-                    />
-                );
-            case "borderWidth":
+            case "radii":
                 return (
                     <div
                         style={{
                             width: "3rem",
-                            height: "1.5rem",
-                            border: `${stringValue} solid var(--mpc-colors-border-default)`,
+                            height: "3rem",
+                            backgroundColor: "var(--mpc-colors-color-palette-solid)",
+                            borderRadius: cssVar,
+                        }}
+                    />
+                );
+            case "shadow":
+                return (
+                    <div
+                        style={{
+                            width: "3rem",
+                            height: "3rem",
+                            backgroundColor: "var(--mpc-colors-color-palette-bg)",
+                            boxShadow: cssVar,
                             borderRadius: "0.25rem",
                         }}
                     />
                 );
             default:
-                return <span>{stringValue}</span>;
+                return null;
         }
     };
+
+    const hasPreview = previewType !== "none";
 
     return (
         <div className={styles.tableWrapper}>
@@ -98,8 +104,8 @@ export function TokenTable({ type, previewType, showDescription = false, descrip
                 <thead>
                     <tr>
                         <th className={styles.th}>Token</th>
-                        <th className={styles.th}>Value</th>
-                        {previewType && <th className={styles.th}>Preview</th>}
+                        <th className={styles.th}>Reference</th>
+                        {hasPreview && <th className={styles.th}>Preview</th>}
                         {showDescription && <th className={styles.th}>Description</th>}
                     </tr>
                 </thead>
@@ -112,9 +118,9 @@ export function TokenTable({ type, previewType, showDescription = false, descrip
                                 </code>
                             </td>
                             <td className={styles.td}>
-                                <code>{String(token.value)}</code>
+                                <code>{token.reference}</code>
                             </td>
-                            {previewType && <td className={styles.td}>{renderPreview(token.value)}</td>}
+                            {hasPreview && <td className={styles.td}>{renderPreview(token.cssVar)}</td>}
                             {showDescription && <td className={styles.td}>{descriptions[token.name] || ""}</td>}
                         </tr>
                     ))}

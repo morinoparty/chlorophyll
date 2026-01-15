@@ -3,8 +3,18 @@ title: Easings
 description: Easing tokens for animation curves.
 ---
 
-# Easings
+アニメーションのイージング関数を定義するトークン。
 
-Easing tokens for animation curves.
+## Scale
 
-<TokenTable type="easings" previewType="easing" />
+<TokenTable
+    type="easings"
+    showDescription={true}
+    descriptions={{
+        linear: "一定速度のアニメーション",
+        default: "標準的なイージング",
+        in: "加速するアニメーション",
+        out: "減速するアニメーション",
+        "in-out": "加速して減速するアニメーション"
+    }}
+/>

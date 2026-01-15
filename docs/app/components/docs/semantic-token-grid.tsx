@@ -1,6 +1,5 @@
-import type React from "react";
 import { css, sva } from "styled-system/css";
-import { parseTokensByType, type Token, type TokenType } from "./token-parser";
+import { parseSemanticTokensByType, type SemanticToken, type SemanticTokenType } from "./semantic-token-parser";
 
 const gridStyles = sva({
     slots: ["grid", "card", "cardPreview", "cardInfo", "cardName", "cardValue"],
@@ -42,37 +41,22 @@ const gridStyles = sva({
     },
 });
 
-type PreviewStyle = "radii" | "opacity" | "aspectRatio" | "borderWidth" | "default";
+type PreviewStyle = "radii" | "default";
 
-interface TokenGridProps {
-    type: TokenType;
+interface SemanticTokenGridProps {
+    type: SemanticTokenType;
     previewStyle?: PreviewStyle;
 }
 
-export function TokenGrid({ type, previewStyle = "default" }: TokenGridProps) {
+export function SemanticTokenGrid({ type, previewStyle = "default" }: SemanticTokenGridProps) {
     const styles = gridStyles();
-    const tokens = parseTokensByType(type);
+    const tokens = parseSemanticTokensByType(type);
 
-    const getPreviewStyle = (token: Token): React.CSSProperties => {
-        switch (previewStyle) {
-            case "radii":
-                return { borderRadius: token.cssVar };
-            case "opacity":
-                return { opacity: String(token.value) };
-            case "aspectRatio":
-                return {
-                    aspectRatio: String(token.value),
-                    height: "auto",
-                    width: "100%",
-                    maxWidth: "160px",
-                };
-            case "borderWidth":
-                return {
-                    border: `${token.cssVar} solid var(--mpc-colors-border-default)`,
-                };
-            default:
-                return {};
+    const getPreviewStyle = (token: SemanticToken) => {
+        if (previewStyle === "radii") {
+            return { borderRadius: token.cssVar };
         }
+        return {};
     };
 
     return (
@@ -82,7 +66,7 @@ export function TokenGrid({ type, previewStyle = "default" }: TokenGridProps) {
                     <div className={css(gridStyles.raw().cardPreview)} style={getPreviewStyle(token)} />
                     <div className={styles.cardInfo}>
                         <span className={styles.cardName}>{token.name}</span>
-                        <span className={styles.cardValue}>{String(token.value)}</span>
+                        <span className={styles.cardValue}>{token.reference}</span>
                     </div>
                 </div>
             ))}

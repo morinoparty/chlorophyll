@@ -15,7 +15,8 @@ export type TokenType =
     | "letterSpacings"
     | "lineHeights"
     | "opacity"
-    | "radii";
+    | "radii"
+    | "zIndex";
 
 export function parseTokensByType(type: TokenType): Token[] {
     const data = tokensSpec.data.find((d) => d.type === type);

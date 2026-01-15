@@ -1,16 +1,35 @@
-
-
-import { ColorDisplay, ColorList, FontSizesTable, SemanticColorDisplay, SemanticColorGrid, TextStylesTable, TokenGrid, TokenTable } from "./app/components/docs";
+import {
+    AnimationTokenTable,
+    BorderTokenTable,
+    ColorDisplay,
+    ColorList,
+    FontSizesTable,
+    SemanticColorDisplay,
+    SemanticColorGrid,
+    SemanticTokenGrid,
+    SemanticTokenTable,
+    ShadowTokenGrid,
+    TextStylesTable,
+    TokenGrid,
+    TokenTable,
+    ZIndexTokenTable,
+} from "./app/components/docs";
 
 export function getMDXComponents() {
     return {
+        AnimationTokenTable,
+        BorderTokenTable,
         ColorDisplay,
         ColorList,
         FontSizesTable,
         SemanticColorDisplay,
         SemanticColorGrid,
+        SemanticTokenGrid,
+        SemanticTokenTable,
+        ShadowTokenGrid,
         TextStylesTable,
         TokenGrid,
         TokenTable,
+        ZIndexTokenTable,
     };
 }
