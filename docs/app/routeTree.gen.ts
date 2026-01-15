@@ -9,354 +9,48 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ThemeRouteRouteImport } from './routes/theme/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ThemeIndexRouteImport } from './routes/theme/index'
-import { Route as DocsIndexRouteImport } from './routes/docs/index'
-import { Route as ComponentsIndexRouteImport } from './routes/components/index'
-import { Route as ThemeSystemTokensZIndexRouteImport } from './routes/theme/system-tokens/z-index'
-import { Route as ThemeSystemTokensIndexRouteImport } from './routes/theme/system-tokens/index'
-import { Route as DocsGettingStartedIndexRouteImport } from './routes/docs/getting-started/index'
-import { Route as ThemeSystemTokensTypographyRouteImport } from './routes/theme/system-tokens/typography'
-import { Route as ThemeSystemTokensSpacingRouteImport } from './routes/theme/system-tokens/spacing'
-import { Route as ThemeSystemTokensShadowsRouteImport } from './routes/theme/system-tokens/shadows'
-import { Route as ThemeSystemTokensRadiiRouteImport } from './routes/theme/system-tokens/radii'
-import { Route as ThemeSystemTokensColorsRouteImport } from './routes/theme/system-tokens/colors'
-import { Route as ThemeSystemTokensBordersRouteImport } from './routes/theme/system-tokens/borders'
-import { Route as ThemeSystemTokensAnimationsRouteImport } from './routes/theme/system-tokens/animations'
-import { Route as ThemeReferenceTokensRadiiRouteImport } from './routes/theme/reference-tokens/radii'
-import { Route as ThemeReferenceTokensOpacityRouteImport } from './routes/theme/reference-tokens/opacity'
-import { Route as ThemeReferenceTokensLineHeightsRouteImport } from './routes/theme/reference-tokens/line-heights'
-import { Route as ThemeReferenceTokensLetterSpacingsRouteImport } from './routes/theme/reference-tokens/letter-spacings'
-import { Route as ThemeReferenceTokensFontWeightsRouteImport } from './routes/theme/reference-tokens/font-weights'
-import { Route as ThemeReferenceTokensEasingsRouteImport } from './routes/theme/reference-tokens/easings'
-import { Route as ThemeReferenceTokensDurationsRouteImport } from './routes/theme/reference-tokens/durations'
-import { Route as ThemeReferenceTokensColorsRouteImport } from './routes/theme/reference-tokens/colors'
-import { Route as ThemeReferenceTokensBorderWidthsRouteImport } from './routes/theme/reference-tokens/border-widths'
-import { Route as ThemeReferenceTokensAspectRatiosRouteImport } from './routes/theme/reference-tokens/aspect-ratios'
+import { Route as DocsSplatRouteImport } from './routes/docs/$'
 
-const ThemeRouteRoute = ThemeRouteRouteImport.update({
-  id: '/theme',
-  path: '/theme',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ThemeIndexRoute = ThemeIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ThemeRouteRoute,
-} as any)
-const DocsIndexRoute = DocsIndexRouteImport.update({
-  id: '/docs/',
-  path: '/docs/',
+const DocsSplatRoute = DocsSplatRouteImport.update({
+  id: '/docs/$',
+  path: '/docs/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ComponentsIndexRoute = ComponentsIndexRouteImport.update({
-  id: '/components/',
-  path: '/components/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ThemeSystemTokensZIndexRoute = ThemeSystemTokensZIndexRouteImport.update({
-  id: '/system-tokens/z-index',
-  path: '/system-tokens/z-index',
-  getParentRoute: () => ThemeRouteRoute,
-} as any)
-const ThemeSystemTokensIndexRoute = ThemeSystemTokensIndexRouteImport.update({
-  id: '/system-tokens/',
-  path: '/system-tokens/',
-  getParentRoute: () => ThemeRouteRoute,
-} as any)
-const DocsGettingStartedIndexRoute = DocsGettingStartedIndexRouteImport.update({
-  id: '/docs/getting-started/',
-  path: '/docs/getting-started/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ThemeSystemTokensTypographyRoute =
-  ThemeSystemTokensTypographyRouteImport.update({
-    id: '/system-tokens/typography',
-    path: '/system-tokens/typography',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeSystemTokensSpacingRoute =
-  ThemeSystemTokensSpacingRouteImport.update({
-    id: '/system-tokens/spacing',
-    path: '/system-tokens/spacing',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeSystemTokensShadowsRoute =
-  ThemeSystemTokensShadowsRouteImport.update({
-    id: '/system-tokens/shadows',
-    path: '/system-tokens/shadows',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeSystemTokensRadiiRoute = ThemeSystemTokensRadiiRouteImport.update({
-  id: '/system-tokens/radii',
-  path: '/system-tokens/radii',
-  getParentRoute: () => ThemeRouteRoute,
-} as any)
-const ThemeSystemTokensColorsRoute = ThemeSystemTokensColorsRouteImport.update({
-  id: '/system-tokens/colors',
-  path: '/system-tokens/colors',
-  getParentRoute: () => ThemeRouteRoute,
-} as any)
-const ThemeSystemTokensBordersRoute =
-  ThemeSystemTokensBordersRouteImport.update({
-    id: '/system-tokens/borders',
-    path: '/system-tokens/borders',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeSystemTokensAnimationsRoute =
-  ThemeSystemTokensAnimationsRouteImport.update({
-    id: '/system-tokens/animations',
-    path: '/system-tokens/animations',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensRadiiRoute =
-  ThemeReferenceTokensRadiiRouteImport.update({
-    id: '/reference-tokens/radii',
-    path: '/reference-tokens/radii',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensOpacityRoute =
-  ThemeReferenceTokensOpacityRouteImport.update({
-    id: '/reference-tokens/opacity',
-    path: '/reference-tokens/opacity',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensLineHeightsRoute =
-  ThemeReferenceTokensLineHeightsRouteImport.update({
-    id: '/reference-tokens/line-heights',
-    path: '/reference-tokens/line-heights',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensLetterSpacingsRoute =
-  ThemeReferenceTokensLetterSpacingsRouteImport.update({
-    id: '/reference-tokens/letter-spacings',
-    path: '/reference-tokens/letter-spacings',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensFontWeightsRoute =
-  ThemeReferenceTokensFontWeightsRouteImport.update({
-    id: '/reference-tokens/font-weights',
-    path: '/reference-tokens/font-weights',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensEasingsRoute =
-  ThemeReferenceTokensEasingsRouteImport.update({
-    id: '/reference-tokens/easings',
-    path: '/reference-tokens/easings',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensDurationsRoute =
-  ThemeReferenceTokensDurationsRouteImport.update({
-    id: '/reference-tokens/durations',
-    path: '/reference-tokens/durations',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensColorsRoute =
-  ThemeReferenceTokensColorsRouteImport.update({
-    id: '/reference-tokens/colors',
-    path: '/reference-tokens/colors',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensBorderWidthsRoute =
-  ThemeReferenceTokensBorderWidthsRouteImport.update({
-    id: '/reference-tokens/border-widths',
-    path: '/reference-tokens/border-widths',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
-const ThemeReferenceTokensAspectRatiosRoute =
-  ThemeReferenceTokensAspectRatiosRouteImport.update({
-    id: '/reference-tokens/aspect-ratios',
-    path: '/reference-tokens/aspect-ratios',
-    getParentRoute: () => ThemeRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/theme': typeof ThemeRouteRouteWithChildren
-  '/components': typeof ComponentsIndexRoute
-  '/docs': typeof DocsIndexRoute
-  '/theme/': typeof ThemeIndexRoute
-  '/theme/reference-tokens/aspect-ratios': typeof ThemeReferenceTokensAspectRatiosRoute
-  '/theme/reference-tokens/border-widths': typeof ThemeReferenceTokensBorderWidthsRoute
-  '/theme/reference-tokens/colors': typeof ThemeReferenceTokensColorsRoute
-  '/theme/reference-tokens/durations': typeof ThemeReferenceTokensDurationsRoute
-  '/theme/reference-tokens/easings': typeof ThemeReferenceTokensEasingsRoute
-  '/theme/reference-tokens/font-weights': typeof ThemeReferenceTokensFontWeightsRoute
-  '/theme/reference-tokens/letter-spacings': typeof ThemeReferenceTokensLetterSpacingsRoute
-  '/theme/reference-tokens/line-heights': typeof ThemeReferenceTokensLineHeightsRoute
-  '/theme/reference-tokens/opacity': typeof ThemeReferenceTokensOpacityRoute
-  '/theme/reference-tokens/radii': typeof ThemeReferenceTokensRadiiRoute
-  '/theme/system-tokens/animations': typeof ThemeSystemTokensAnimationsRoute
-  '/theme/system-tokens/borders': typeof ThemeSystemTokensBordersRoute
-  '/theme/system-tokens/colors': typeof ThemeSystemTokensColorsRoute
-  '/theme/system-tokens/radii': typeof ThemeSystemTokensRadiiRoute
-  '/theme/system-tokens/shadows': typeof ThemeSystemTokensShadowsRoute
-  '/theme/system-tokens/spacing': typeof ThemeSystemTokensSpacingRoute
-  '/theme/system-tokens/typography': typeof ThemeSystemTokensTypographyRoute
-  '/theme/system-tokens/z-index': typeof ThemeSystemTokensZIndexRoute
-  '/docs/getting-started': typeof DocsGettingStartedIndexRoute
-  '/theme/system-tokens': typeof ThemeSystemTokensIndexRoute
+  '/docs/$': typeof DocsSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/components': typeof ComponentsIndexRoute
-  '/docs': typeof DocsIndexRoute
-  '/theme': typeof ThemeIndexRoute
-  '/theme/reference-tokens/aspect-ratios': typeof ThemeReferenceTokensAspectRatiosRoute
-  '/theme/reference-tokens/border-widths': typeof ThemeReferenceTokensBorderWidthsRoute
-  '/theme/reference-tokens/colors': typeof ThemeReferenceTokensColorsRoute
-  '/theme/reference-tokens/durations': typeof ThemeReferenceTokensDurationsRoute
-  '/theme/reference-tokens/easings': typeof ThemeReferenceTokensEasingsRoute
-  '/theme/reference-tokens/font-weights': typeof ThemeReferenceTokensFontWeightsRoute
-  '/theme/reference-tokens/letter-spacings': typeof ThemeReferenceTokensLetterSpacingsRoute
-  '/theme/reference-tokens/line-heights': typeof ThemeReferenceTokensLineHeightsRoute
-  '/theme/reference-tokens/opacity': typeof ThemeReferenceTokensOpacityRoute
-  '/theme/reference-tokens/radii': typeof ThemeReferenceTokensRadiiRoute
-  '/theme/system-tokens/animations': typeof ThemeSystemTokensAnimationsRoute
-  '/theme/system-tokens/borders': typeof ThemeSystemTokensBordersRoute
-  '/theme/system-tokens/colors': typeof ThemeSystemTokensColorsRoute
-  '/theme/system-tokens/radii': typeof ThemeSystemTokensRadiiRoute
-  '/theme/system-tokens/shadows': typeof ThemeSystemTokensShadowsRoute
-  '/theme/system-tokens/spacing': typeof ThemeSystemTokensSpacingRoute
-  '/theme/system-tokens/typography': typeof ThemeSystemTokensTypographyRoute
-  '/theme/system-tokens/z-index': typeof ThemeSystemTokensZIndexRoute
-  '/docs/getting-started': typeof DocsGettingStartedIndexRoute
-  '/theme/system-tokens': typeof ThemeSystemTokensIndexRoute
+  '/docs/$': typeof DocsSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/theme': typeof ThemeRouteRouteWithChildren
-  '/components/': typeof ComponentsIndexRoute
-  '/docs/': typeof DocsIndexRoute
-  '/theme/': typeof ThemeIndexRoute
-  '/theme/reference-tokens/aspect-ratios': typeof ThemeReferenceTokensAspectRatiosRoute
-  '/theme/reference-tokens/border-widths': typeof ThemeReferenceTokensBorderWidthsRoute
-  '/theme/reference-tokens/colors': typeof ThemeReferenceTokensColorsRoute
-  '/theme/reference-tokens/durations': typeof ThemeReferenceTokensDurationsRoute
-  '/theme/reference-tokens/easings': typeof ThemeReferenceTokensEasingsRoute
-  '/theme/reference-tokens/font-weights': typeof ThemeReferenceTokensFontWeightsRoute
-  '/theme/reference-tokens/letter-spacings': typeof ThemeReferenceTokensLetterSpacingsRoute
-  '/theme/reference-tokens/line-heights': typeof ThemeReferenceTokensLineHeightsRoute
-  '/theme/reference-tokens/opacity': typeof ThemeReferenceTokensOpacityRoute
-  '/theme/reference-tokens/radii': typeof ThemeReferenceTokensRadiiRoute
-  '/theme/system-tokens/animations': typeof ThemeSystemTokensAnimationsRoute
-  '/theme/system-tokens/borders': typeof ThemeSystemTokensBordersRoute
-  '/theme/system-tokens/colors': typeof ThemeSystemTokensColorsRoute
-  '/theme/system-tokens/radii': typeof ThemeSystemTokensRadiiRoute
-  '/theme/system-tokens/shadows': typeof ThemeSystemTokensShadowsRoute
-  '/theme/system-tokens/spacing': typeof ThemeSystemTokensSpacingRoute
-  '/theme/system-tokens/typography': typeof ThemeSystemTokensTypographyRoute
-  '/theme/system-tokens/z-index': typeof ThemeSystemTokensZIndexRoute
-  '/docs/getting-started/': typeof DocsGettingStartedIndexRoute
-  '/theme/system-tokens/': typeof ThemeSystemTokensIndexRoute
+  '/docs/$': typeof DocsSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/theme'
-    | '/components'
-    | '/docs'
-    | '/theme/'
-    | '/theme/reference-tokens/aspect-ratios'
-    | '/theme/reference-tokens/border-widths'
-    | '/theme/reference-tokens/colors'
-    | '/theme/reference-tokens/durations'
-    | '/theme/reference-tokens/easings'
-    | '/theme/reference-tokens/font-weights'
-    | '/theme/reference-tokens/letter-spacings'
-    | '/theme/reference-tokens/line-heights'
-    | '/theme/reference-tokens/opacity'
-    | '/theme/reference-tokens/radii'
-    | '/theme/system-tokens/animations'
-    | '/theme/system-tokens/borders'
-    | '/theme/system-tokens/colors'
-    | '/theme/system-tokens/radii'
-    | '/theme/system-tokens/shadows'
-    | '/theme/system-tokens/spacing'
-    | '/theme/system-tokens/typography'
-    | '/theme/system-tokens/z-index'
-    | '/docs/getting-started'
-    | '/theme/system-tokens'
+  fullPaths: '/' | '/docs/$'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/components'
-    | '/docs'
-    | '/theme'
-    | '/theme/reference-tokens/aspect-ratios'
-    | '/theme/reference-tokens/border-widths'
-    | '/theme/reference-tokens/colors'
-    | '/theme/reference-tokens/durations'
-    | '/theme/reference-tokens/easings'
-    | '/theme/reference-tokens/font-weights'
-    | '/theme/reference-tokens/letter-spacings'
-    | '/theme/reference-tokens/line-heights'
-    | '/theme/reference-tokens/opacity'
-    | '/theme/reference-tokens/radii'
-    | '/theme/system-tokens/animations'
-    | '/theme/system-tokens/borders'
-    | '/theme/system-tokens/colors'
-    | '/theme/system-tokens/radii'
-    | '/theme/system-tokens/shadows'
-    | '/theme/system-tokens/spacing'
-    | '/theme/system-tokens/typography'
-    | '/theme/system-tokens/z-index'
-    | '/docs/getting-started'
-    | '/theme/system-tokens'
-  id:
-    | '__root__'
-    | '/'
-    | '/theme'
-    | '/components/'
-    | '/docs/'
-    | '/theme/'
-    | '/theme/reference-tokens/aspect-ratios'
-    | '/theme/reference-tokens/border-widths'
-    | '/theme/reference-tokens/colors'
-    | '/theme/reference-tokens/durations'
-    | '/theme/reference-tokens/easings'
-    | '/theme/reference-tokens/font-weights'
-    | '/theme/reference-tokens/letter-spacings'
-    | '/theme/reference-tokens/line-heights'
-    | '/theme/reference-tokens/opacity'
-    | '/theme/reference-tokens/radii'
-    | '/theme/system-tokens/animations'
-    | '/theme/system-tokens/borders'
-    | '/theme/system-tokens/colors'
-    | '/theme/system-tokens/radii'
-    | '/theme/system-tokens/shadows'
-    | '/theme/system-tokens/spacing'
-    | '/theme/system-tokens/typography'
-    | '/theme/system-tokens/z-index'
-    | '/docs/getting-started/'
-    | '/theme/system-tokens/'
+  to: '/' | '/docs/$'
+  id: '__root__' | '/' | '/docs/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ThemeRouteRoute: typeof ThemeRouteRouteWithChildren
-  ComponentsIndexRoute: typeof ComponentsIndexRoute
-  DocsIndexRoute: typeof DocsIndexRoute
-  DocsGettingStartedIndexRoute: typeof DocsGettingStartedIndexRoute
+  DocsSplatRoute: typeof DocsSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/theme': {
-      id: '/theme'
-      path: '/theme'
-      fullPath: '/theme'
-      preLoaderRoute: typeof ThemeRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -364,227 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/theme/': {
-      id: '/theme/'
-      path: '/'
-      fullPath: '/theme/'
-      preLoaderRoute: typeof ThemeIndexRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/docs/': {
-      id: '/docs/'
-      path: '/docs'
-      fullPath: '/docs'
-      preLoaderRoute: typeof DocsIndexRouteImport
+    '/docs/$': {
+      id: '/docs/$'
+      path: '/docs/$'
+      fullPath: '/docs/$'
+      preLoaderRoute: typeof DocsSplatRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/components/': {
-      id: '/components/'
-      path: '/components'
-      fullPath: '/components'
-      preLoaderRoute: typeof ComponentsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/theme/system-tokens/z-index': {
-      id: '/theme/system-tokens/z-index'
-      path: '/system-tokens/z-index'
-      fullPath: '/theme/system-tokens/z-index'
-      preLoaderRoute: typeof ThemeSystemTokensZIndexRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/system-tokens/': {
-      id: '/theme/system-tokens/'
-      path: '/system-tokens'
-      fullPath: '/theme/system-tokens'
-      preLoaderRoute: typeof ThemeSystemTokensIndexRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/docs/getting-started/': {
-      id: '/docs/getting-started/'
-      path: '/docs/getting-started'
-      fullPath: '/docs/getting-started'
-      preLoaderRoute: typeof DocsGettingStartedIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/theme/system-tokens/typography': {
-      id: '/theme/system-tokens/typography'
-      path: '/system-tokens/typography'
-      fullPath: '/theme/system-tokens/typography'
-      preLoaderRoute: typeof ThemeSystemTokensTypographyRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/system-tokens/spacing': {
-      id: '/theme/system-tokens/spacing'
-      path: '/system-tokens/spacing'
-      fullPath: '/theme/system-tokens/spacing'
-      preLoaderRoute: typeof ThemeSystemTokensSpacingRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/system-tokens/shadows': {
-      id: '/theme/system-tokens/shadows'
-      path: '/system-tokens/shadows'
-      fullPath: '/theme/system-tokens/shadows'
-      preLoaderRoute: typeof ThemeSystemTokensShadowsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/system-tokens/radii': {
-      id: '/theme/system-tokens/radii'
-      path: '/system-tokens/radii'
-      fullPath: '/theme/system-tokens/radii'
-      preLoaderRoute: typeof ThemeSystemTokensRadiiRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/system-tokens/colors': {
-      id: '/theme/system-tokens/colors'
-      path: '/system-tokens/colors'
-      fullPath: '/theme/system-tokens/colors'
-      preLoaderRoute: typeof ThemeSystemTokensColorsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/system-tokens/borders': {
-      id: '/theme/system-tokens/borders'
-      path: '/system-tokens/borders'
-      fullPath: '/theme/system-tokens/borders'
-      preLoaderRoute: typeof ThemeSystemTokensBordersRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/system-tokens/animations': {
-      id: '/theme/system-tokens/animations'
-      path: '/system-tokens/animations'
-      fullPath: '/theme/system-tokens/animations'
-      preLoaderRoute: typeof ThemeSystemTokensAnimationsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/radii': {
-      id: '/theme/reference-tokens/radii'
-      path: '/reference-tokens/radii'
-      fullPath: '/theme/reference-tokens/radii'
-      preLoaderRoute: typeof ThemeReferenceTokensRadiiRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/opacity': {
-      id: '/theme/reference-tokens/opacity'
-      path: '/reference-tokens/opacity'
-      fullPath: '/theme/reference-tokens/opacity'
-      preLoaderRoute: typeof ThemeReferenceTokensOpacityRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/line-heights': {
-      id: '/theme/reference-tokens/line-heights'
-      path: '/reference-tokens/line-heights'
-      fullPath: '/theme/reference-tokens/line-heights'
-      preLoaderRoute: typeof ThemeReferenceTokensLineHeightsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/letter-spacings': {
-      id: '/theme/reference-tokens/letter-spacings'
-      path: '/reference-tokens/letter-spacings'
-      fullPath: '/theme/reference-tokens/letter-spacings'
-      preLoaderRoute: typeof ThemeReferenceTokensLetterSpacingsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/font-weights': {
-      id: '/theme/reference-tokens/font-weights'
-      path: '/reference-tokens/font-weights'
-      fullPath: '/theme/reference-tokens/font-weights'
-      preLoaderRoute: typeof ThemeReferenceTokensFontWeightsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/easings': {
-      id: '/theme/reference-tokens/easings'
-      path: '/reference-tokens/easings'
-      fullPath: '/theme/reference-tokens/easings'
-      preLoaderRoute: typeof ThemeReferenceTokensEasingsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/durations': {
-      id: '/theme/reference-tokens/durations'
-      path: '/reference-tokens/durations'
-      fullPath: '/theme/reference-tokens/durations'
-      preLoaderRoute: typeof ThemeReferenceTokensDurationsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/colors': {
-      id: '/theme/reference-tokens/colors'
-      path: '/reference-tokens/colors'
-      fullPath: '/theme/reference-tokens/colors'
-      preLoaderRoute: typeof ThemeReferenceTokensColorsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/border-widths': {
-      id: '/theme/reference-tokens/border-widths'
-      path: '/reference-tokens/border-widths'
-      fullPath: '/theme/reference-tokens/border-widths'
-      preLoaderRoute: typeof ThemeReferenceTokensBorderWidthsRouteImport
-      parentRoute: typeof ThemeRouteRoute
-    }
-    '/theme/reference-tokens/aspect-ratios': {
-      id: '/theme/reference-tokens/aspect-ratios'
-      path: '/reference-tokens/aspect-ratios'
-      fullPath: '/theme/reference-tokens/aspect-ratios'
-      preLoaderRoute: typeof ThemeReferenceTokensAspectRatiosRouteImport
-      parentRoute: typeof ThemeRouteRoute
     }
   }
 }
 
-interface ThemeRouteRouteChildren {
-  ThemeIndexRoute: typeof ThemeIndexRoute
-  ThemeReferenceTokensAspectRatiosRoute: typeof ThemeReferenceTokensAspectRatiosRoute
-  ThemeReferenceTokensBorderWidthsRoute: typeof ThemeReferenceTokensBorderWidthsRoute
-  ThemeReferenceTokensColorsRoute: typeof ThemeReferenceTokensColorsRoute
-  ThemeReferenceTokensDurationsRoute: typeof ThemeReferenceTokensDurationsRoute
-  ThemeReferenceTokensEasingsRoute: typeof ThemeReferenceTokensEasingsRoute
-  ThemeReferenceTokensFontWeightsRoute: typeof ThemeReferenceTokensFontWeightsRoute
-  ThemeReferenceTokensLetterSpacingsRoute: typeof ThemeReferenceTokensLetterSpacingsRoute
-  ThemeReferenceTokensLineHeightsRoute: typeof ThemeReferenceTokensLineHeightsRoute
-  ThemeReferenceTokensOpacityRoute: typeof ThemeReferenceTokensOpacityRoute
-  ThemeReferenceTokensRadiiRoute: typeof ThemeReferenceTokensRadiiRoute
-  ThemeSystemTokensAnimationsRoute: typeof ThemeSystemTokensAnimationsRoute
-  ThemeSystemTokensBordersRoute: typeof ThemeSystemTokensBordersRoute
-  ThemeSystemTokensColorsRoute: typeof ThemeSystemTokensColorsRoute
-  ThemeSystemTokensRadiiRoute: typeof ThemeSystemTokensRadiiRoute
-  ThemeSystemTokensShadowsRoute: typeof ThemeSystemTokensShadowsRoute
-  ThemeSystemTokensSpacingRoute: typeof ThemeSystemTokensSpacingRoute
-  ThemeSystemTokensTypographyRoute: typeof ThemeSystemTokensTypographyRoute
-  ThemeSystemTokensZIndexRoute: typeof ThemeSystemTokensZIndexRoute
-  ThemeSystemTokensIndexRoute: typeof ThemeSystemTokensIndexRoute
-}
-
-const ThemeRouteRouteChildren: ThemeRouteRouteChildren = {
-  ThemeIndexRoute: ThemeIndexRoute,
-  ThemeReferenceTokensAspectRatiosRoute: ThemeReferenceTokensAspectRatiosRoute,
-  ThemeReferenceTokensBorderWidthsRoute: ThemeReferenceTokensBorderWidthsRoute,
-  ThemeReferenceTokensColorsRoute: ThemeReferenceTokensColorsRoute,
-  ThemeReferenceTokensDurationsRoute: ThemeReferenceTokensDurationsRoute,
-  ThemeReferenceTokensEasingsRoute: ThemeReferenceTokensEasingsRoute,
-  ThemeReferenceTokensFontWeightsRoute: ThemeReferenceTokensFontWeightsRoute,
-  ThemeReferenceTokensLetterSpacingsRoute:
-    ThemeReferenceTokensLetterSpacingsRoute,
-  ThemeReferenceTokensLineHeightsRoute: ThemeReferenceTokensLineHeightsRoute,
-  ThemeReferenceTokensOpacityRoute: ThemeReferenceTokensOpacityRoute,
-  ThemeReferenceTokensRadiiRoute: ThemeReferenceTokensRadiiRoute,
-  ThemeSystemTokensAnimationsRoute: ThemeSystemTokensAnimationsRoute,
-  ThemeSystemTokensBordersRoute: ThemeSystemTokensBordersRoute,
-  ThemeSystemTokensColorsRoute: ThemeSystemTokensColorsRoute,
-  ThemeSystemTokensRadiiRoute: ThemeSystemTokensRadiiRoute,
-  ThemeSystemTokensShadowsRoute: ThemeSystemTokensShadowsRoute,
-  ThemeSystemTokensSpacingRoute: ThemeSystemTokensSpacingRoute,
-  ThemeSystemTokensTypographyRoute: ThemeSystemTokensTypographyRoute,
-  ThemeSystemTokensZIndexRoute: ThemeSystemTokensZIndexRoute,
-  ThemeSystemTokensIndexRoute: ThemeSystemTokensIndexRoute,
-}
-
-const ThemeRouteRouteWithChildren = ThemeRouteRoute._addFileChildren(
-  ThemeRouteRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ThemeRouteRoute: ThemeRouteRouteWithChildren,
-  ComponentsIndexRoute: ComponentsIndexRoute,
-  DocsIndexRoute: DocsIndexRoute,
-  DocsGettingStartedIndexRoute: DocsGettingStartedIndexRoute,
+  DocsSplatRoute: DocsSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

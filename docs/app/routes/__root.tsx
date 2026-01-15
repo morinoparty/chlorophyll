@@ -1,4 +1,5 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { RootProvider } from "fumadocs-ui/provider/tanstack";
 import { css } from "styled-system/css";
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
@@ -47,18 +48,20 @@ function RootComponent() {
                     color: "colorPalette.fg",
                 })}
             >
-                <ThemeScript />
-                <Header />
-                <main
-                    className={css({
-                        flex: 1,
-                        width: "100%",
-                    })}
-                >
-                    <Outlet />
-                </main>
-                <Footer />
-                <Scripts />
+                <RootProvider>
+                    <ThemeScript />
+                    <Header />
+                    <main
+                        className={css({
+                            flex: 1,
+                            width: "100%",
+                        })}
+                    >
+                        <Outlet />
+                    </main>
+                    <Footer />
+                    <Scripts />
+                </RootProvider>
             </body>
         </html>
     );

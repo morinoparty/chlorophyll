@@ -21,7 +21,8 @@
             "!**/styled-system",
             "!**/src/components/ui",
             "!**/env.d.ts",
-            "!**/storybook-static"
+            "!**/storybook-static",
+            "!**/.source"
         ],
         "lineWidth": 120
     },
@@ -37,7 +38,8 @@
             "!**/src/components/ui",
             "!**/env.d.ts",
             "!**/storybook-static",
-            "!**/routeTree.gen.ts"
+            "!**/routeTree.gen.ts",
+            "!**/.source"
         ],
         "rules": {
             "recommended": true,

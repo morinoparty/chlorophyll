@@ -1,1 +1,63 @@
 @layer reset, base, tokens, recipes, utilities;
+
+/* Tailwind CSS for Fumadocs */
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+
+/* Override Fumadocs CSS variables with Panda CSS semantic tokens */
+:root {
+    /* Background colors */
+    --fd-background: var(--mpc-colors-color-palette-bg-subtle);
+    --fd-background-muted: var(--mpc-colors-color-palette-bg);
+    --fd-secondary: var(--mpc-colors-color-palette-surface);
+    --fd-secondary-hover: var(--mpc-colors-color-palette-surface-hover);
+
+    /* Foreground colors */
+    --fd-foreground: var(--mpc-colors-color-palette-fg);
+    --fd-muted-foreground: var(--mpc-colors-color-palette-fg-muted);
+    --fd-secondary-foreground: var(--mpc-colors-color-palette-fg-subtle);
+
+    /* Border colors */
+    --fd-border: var(--mpc-colors-border-default);
+
+    /* Accent colors */
+    --fd-primary: var(--mpc-colors-accent-default);
+    --fd-primary-foreground: var(--mpc-colors-accent-fg);
+
+    /* Card */
+    --fd-card: var(--mpc-colors-color-palette-bg);
+    --fd-card-foreground: var(--mpc-colors-color-palette-fg);
+
+    /* Popover */
+    --fd-popover: var(--mpc-colors-color-palette-bg);
+    --fd-popover-foreground: var(--mpc-colors-color-palette-fg);
+
+    /* Accent */
+    --fd-accent: var(--mpc-colors-color-palette-surface);
+    --fd-accent-foreground: var(--mpc-colors-color-palette-fg);
+
+    /* Ring */
+    --fd-ring: var(--mpc-colors-accent-default);
+}
+
+/* Dark mode overrides - Fumadocs uses .dark class */
+.dark {
+    --fd-background: var(--mpc-colors-color-palette-bg-subtle);
+    --fd-background-muted: var(--mpc-colors-color-palette-bg);
+    --fd-secondary: var(--mpc-colors-color-palette-surface);
+    --fd-secondary-hover: var(--mpc-colors-color-palette-surface-hover);
+    --fd-foreground: var(--mpc-colors-color-palette-fg);
+    --fd-muted-foreground: var(--mpc-colors-color-palette-fg-muted);
+    --fd-secondary-foreground: var(--mpc-colors-color-palette-fg-subtle);
+    --fd-border: var(--mpc-colors-border-default);
+    --fd-primary: var(--mpc-colors-accent-default);
+    --fd-primary-foreground: var(--mpc-colors-accent-fg);
+    --fd-card: var(--mpc-colors-color-palette-bg);
+    --fd-card-foreground: var(--mpc-colors-color-palette-fg);
+    --fd-popover: var(--mpc-colors-color-palette-bg);
+    --fd-popover-foreground: var(--mpc-colors-color-palette-fg);
+    --fd-accent: var(--mpc-colors-color-palette-surface);
+    --fd-accent-foreground: var(--mpc-colors-color-palette-fg);
+    --fd-ring: var(--mpc-colors-accent-default);
+}
