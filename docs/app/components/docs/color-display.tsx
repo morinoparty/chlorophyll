@@ -41,6 +41,7 @@ const colorDisplayStyles = sva({
             color: "fg.default",
             width: "full",
             textAlign: "center",
+            margin: 0,
         },
         value: {
             display: { base: "none", md: "block" },
@@ -48,6 +49,7 @@ const colorDisplayStyles = sva({
             color: "fg.muted",
             width: "full",
             textAlign: "center",
+            margin: 0,
         },
     },
 });

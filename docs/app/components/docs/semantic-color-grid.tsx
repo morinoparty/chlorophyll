@@ -5,7 +5,7 @@ const gridStyles = sva({
     base: {
         grid: {
             display: "grid",
-            gridTemplateColumns: { base: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" },
+            gridTemplateColumns: { base: "repeat(2, 1fr)", md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)" },
             gap: "6",
         },
         card: {

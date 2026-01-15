@@ -35,6 +35,7 @@ export default defineConfig({
     resolve: {
         alias: {
             "styled-system/*": `${__dirname}/styled-system/*`,
+            "@components": `${__dirname}/components`,
             // Node.js pathモジュールのブラウザ向けポリフィル
             path: "path-browserify",
         },
