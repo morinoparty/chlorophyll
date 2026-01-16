@@ -95,13 +95,13 @@ export function Header() {
                 <div className={styles.rightSection}>
                     {/* Navigation - hidden on mobile */}
                     <nav className={styles.nav}>
-                        <Link to="/docs" className={styles.navLink}>
+                        <Link to="/docs/$" className={styles.navLink}>
                             Docs
                         </Link>
-                        <Link to="/components" className={styles.navLink}>
+                        <Link to="/docs/$" params={{ _splat: "token" }} className={styles.navLink}>
                             Components
                         </Link>
-                        <Link to="/theme" className={styles.navLink}>
+                        <Link to="/docs/$" params={{ _splat: "token" }} className={styles.navLink}>
                             Theme
                         </Link>
                     </nav>

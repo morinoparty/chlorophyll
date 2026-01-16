@@ -151,7 +151,9 @@ export function SidebarItem({ className, style, children, ...props }: ComponentP
 }
 
 export function SidebarFolderTrigger({ className, style, ...props }: ComponentProps<typeof Base.SidebarFolderTrigger>) {
-    const { depth, collapsible } = Base.useFolder()!;
+    const folder = Base.useFolder();
+    const depth = folder?.depth ?? 0;
+    const collapsible = folder?.collapsible ?? true;
 
     return (
         <Base.SidebarFolderTrigger

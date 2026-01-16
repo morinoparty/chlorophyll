@@ -70,6 +70,7 @@ export function PaletteToggle({
         <div className={container} data-palette-toggle="" {...props}>
             {palettes.map(([key, Icon]) => (
                 <button
+                    type="button"
                     key={key}
                     aria-label={key}
                     className={cn(itemVariants({ active: value === key }))}

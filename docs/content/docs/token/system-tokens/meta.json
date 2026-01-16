@@ -1,0 +1,4 @@
+{
+    "title": "System Tokens",
+    "pages": ["colors", "borders", "typography", "z-index", "shadows", "radii", "spacing", "animations"]
+}

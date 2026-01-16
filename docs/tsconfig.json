@@ -16,15 +16,5 @@
             "fumadocs-mdx:collections/*": ["./.source/*"]
         }
     },
-    "include": [
-        "app/**/*.ts",
-        "app/**/*.tsx",
-        "components/**/*.ts",
-        "components/**/*.tsx",
-        "lib/**/*.ts",
-        "styled-system/**/*.ts",
-        ".source/**/*.ts",
-        "source.config.ts",
-        "content/**/*.mdx"
-    ]
+    "include": ["app", "component", "lib", ".source", "source.config.ts", "content", "styled-system"]
 }

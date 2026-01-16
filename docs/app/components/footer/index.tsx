@@ -56,7 +56,7 @@ export function Footer() {
                         Docs
                     </a>
                     <a
-                        href="/components"
+                        href="/docs/token"
                         className={css({
                             color: "fg.muted",
                             textDecoration: "none",

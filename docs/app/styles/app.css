@@ -1,6 +1,5 @@
 @layer reset, base, tokens, recipes, utilities;
 
-/* Panda CSS generated styles */
 @import "../../styled-system/styles.css";
 
 /* Tailwind CSS for Fumadocs */
@@ -26,7 +25,7 @@
     --color-fd-primary-foreground: var(--mpc-colors-accent-fg);
 
     /* Card */
-    --color-fd-card: var(--mpc-colors-color-palette-bg);
+    --color-fd-card: var(--mpc-colors-color-palette-bg-subtle);
     --color-fd-card-foreground: var(--mpc-colors-color-palette-fg);
 
     /* Popover */
@@ -38,25 +37,5 @@
     --color-fd-accent-foreground: var(--mpc-colors-color-palette-fg);
 
     /* Ring */
-    --color-fd-ring: var(--mpc-colors-accent-default);
-}
-
-/* Dark mode overrides - Fumadocs uses .dark class */
-.dark {
-    --color-fd-background: var(--mpc-colors-color-palette-bg-subtle);
-    --color-fd-background-muted: var(--mpc-colors-color-palette-bg);
-    --color-fd-secondary: var(--mpc-colors-color-palette-surface);
-    --color-fd-secondary-hover: var(--mpc-colors-color-palette-surface-hover);
-    --color-fd-foreground: var(--mpc-colors-color-palette-fg);
-    --color-fd-muted-foreground: var(--mpc-colors-color-palette-fg-muted);
-    --color-fd-secondary-foreground: var(--mpc-colors-color-palette-fg-subtle);
-    --color-fd-primary: var(--mpc-colors-accent-default);
-    --color-fd-primary-foreground: var(--mpc-colors-accent-fg);
-    --color-fd-card: var(--mpc-colors-color-palette-bg);
-    --color-fd-card-foreground: var(--mpc-colors-color-palette-fg);
-    --color-fd-popover: var(--mpc-colors-color-palette-bg);
-    --color-fd-popover-foreground: var(--mpc-colors-color-palette-fg);
-    --color-fd-accent: var(--mpc-colors-color-palette-surface);
-    --color-fd-accent-foreground: var(--mpc-colors-color-palette-fg);
     --color-fd-ring: var(--mpc-colors-accent-default);
 }

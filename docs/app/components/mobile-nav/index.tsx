@@ -8,9 +8,9 @@ import { useState } from "react";
 import { sva } from "styled-system/css";
 
 const navigation = [
-    { title: "Docs", href: "/docs" },
-    { title: "Components", href: "/components" },
-    { title: "Theme", href: "/theme" },
+    { title: "Docs", href: "/docs/" },
+    { title: "Components", href: "/docs/" },
+    { title: "Theme", href: "/docs/token" },
 ];
 
 const mobileNavStyles = sva({

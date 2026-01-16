@@ -57,11 +57,12 @@ export function createPageTreeRenderer({
 
         return useMemo(() => {
             function renderSidebarList(items: PageTree.Node[]) {
-                return items.map((item, i) => {
+                return items.map((item) => {
                     if (item.type === "separator") {
-                        if (Separator) return <Separator key={i} item={item} />;
+                        const sepKey = `sep-${item.name ?? item.$id ?? ""}`;
+                        if (Separator) return <Separator key={sepKey} item={item} />;
                         return (
-                            <SidebarSeparator key={i}>
+                            <SidebarSeparator key={sepKey}>
                                 {item.icon}
                                 {item.name}
                             </SidebarSeparator>
@@ -70,7 +71,7 @@ export function createPageTreeRenderer({
 
                     if (item.type === "folder") {
                         return (
-                            <Folder key={i} item={item}>
+                            <Folder key={`folder-${item.index?.url ?? item.name}`} item={item}>
                                 {renderSidebarList(item.children)}
                             </Folder>
                         );
@@ -86,6 +87,6 @@ export function createPageTreeRenderer({
             }
 
             return <Fragment key={root.$id}>{renderSidebarList(root.children)}</Fragment>;
-        }, [Folder, Item, Separator, root]);
+        }, [Folder, Item, Separator, root, SidebarItem, SidebarSeparator]);
     };
 }
