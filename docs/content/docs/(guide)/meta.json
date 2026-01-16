@@ -1,5 +1,7 @@
 {
-    "title": "Docs",
+    "title": "Chlorophyll Guides",
     "root": true,
+    "icon": "Book",
+    "description": "The guide of Chlorophyll",
     "pages": ["index"]
 }

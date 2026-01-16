@@ -38,7 +38,8 @@ export function LayoutContextProvider({
 }
 
 export function LayoutHeader(props: ComponentProps<"header">) {
-    const { isNavTransparent } = use(LayoutContext)!;
+    const context = use(LayoutContext);
+    const isNavTransparent = context?.isNavTransparent ?? false;
 
     return (
         <header data-transparent={isNavTransparent} {...props}>
@@ -90,9 +91,9 @@ export function LayoutTabs({
 
     return (
         <div {...props} className={cn("flex flex-row items-end gap-6 overflow-auto [grid-area:main]", props.className)}>
-            {options.map((option, i) => (
+            {options.map((option) => (
                 <Link
-                    key={i}
+                    key={option.url}
                     href={option.url}
                     className={cn(
                         "inline-flex border-b-2 border-transparent transition-colors items-center pb-1.5 font-medium gap-2 text-fd-muted-foreground text-sm text-nowrap hover:text-fd-accent-foreground",

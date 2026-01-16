@@ -69,8 +69,8 @@ export function ColorDisplay({ tokenKey }: ColorDisplayProps) {
         <div className={styles.root}>
             <div className={styles.swatch} style={{ backgroundColor: cssVar }} />
             <div className={styles.info}>
-                <p className={styles.name}>{tokenKey}</p>
-                <p className={styles.value}>{hexValue}</p>
+                <div className={styles.name}>{tokenKey}</div>
+                <div className={styles.value}>{hexValue}</div>
             </div>
         </div>
     );

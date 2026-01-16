@@ -182,7 +182,18 @@ export function SidebarDrawerOverlay(props: ComponentProps<"div">) {
     if (mode !== "drawer") return;
     return (
         <Presence present={open}>
-            <div data-state={open ? "open" : "closed"} onClick={() => setOpen(false)} {...props} />
+            {/* biome-ignore lint/a11y/useSemanticElements: This is an overlay backdrop that closes the sidebar on click */}
+            <div
+                data-state={open ? "open" : "closed"}
+                onClick={() => setOpen(false)}
+                onKeyDown={(e) => {
+                    if (e.key === "Escape" || e.key === "Enter") setOpen(false);
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Close sidebar"
+                {...props}
+            />
         </Presence>
     );
 }
@@ -294,7 +305,9 @@ export function SidebarFolder({
 }
 
 export function SidebarFolderTrigger({ children, ...props }: CollapsibleTriggerProps) {
-    const { open, collapsible } = use(FolderContext)!;
+    const folderContext = use(FolderContext);
+    const open = folderContext?.open ?? false;
+    const collapsible = folderContext?.collapsible ?? true;
 
     if (collapsible) {
         return (
@@ -310,7 +323,10 @@ export function SidebarFolderTrigger({ children, ...props }: CollapsibleTriggerP
 
 export function SidebarFolderLink({ children, ...props }: LinkProps) {
     const ref = useRef<HTMLAnchorElement>(null);
-    const { open, setOpen, collapsible } = use(FolderContext)!;
+    const folderContext = use(FolderContext);
+    const open = folderContext?.open ?? false;
+    const setOpen = folderContext?.setOpen ?? (() => {});
+    const collapsible = folderContext?.collapsible ?? true;
     const { prefetch } = useSidebar();
     const pathname = usePathname();
     const active = props.href !== undefined && isActive(props.href, pathname, false);

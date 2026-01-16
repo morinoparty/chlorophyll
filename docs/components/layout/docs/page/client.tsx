@@ -34,7 +34,8 @@ const TocPopoverContext = createContext<{
 export function PageTOCPopover({ className, children, ...rest }: ComponentProps<"div">) {
     const ref = useRef<HTMLElement>(null);
     const [open, setOpen] = useState(false);
-    const { isNavTransparent } = use(LayoutContext)!;
+    const context = use(LayoutContext);
+    const isNavTransparent = context?.isNavTransparent ?? false;
 
     const onClick = useEffectEvent((e: Event) => {
         if (!open) return;
@@ -57,7 +58,7 @@ export function PageTOCPopover({ className, children, ...rest }: ComponentProps<
                     open,
                     setOpen,
                 }),
-                [setOpen, open],
+                [open],
             )}
         >
             <Collapsible
@@ -87,7 +88,8 @@ export function PageTOCPopover({ className, children, ...rest }: ComponentProps<
 
 export function PageTOCPopoverTrigger({ className, ...props }: ComponentProps<"button">) {
     const { text } = useI18n();
-    const { open } = use(TocPopoverContext)!;
+    const tocContext = use(TocPopoverContext);
+    const open = tocContext?.open ?? false;
     const items = useTOCItems();
     const active = useActiveAnchor();
     const selected = useMemo(() => items.findIndex((item) => active === item.url.slice(1)), [items, active]);
@@ -301,7 +303,7 @@ export function PageBreadcrumb({ includeRoot, includeSeparator, includePage, ...
                 const className = cn("truncate", i === items.length - 1 && "text-fd-primary font-medium");
 
                 return (
-                    <Fragment key={i}>
+                    <Fragment key={item.name}>
                         {i !== 0 && <ChevronRight className="size-3.5 shrink-0" />}
                         {item.url ? (
                             <Link href={item.url} className={cn(className, "transition-opacity hover:opacity-80")}>

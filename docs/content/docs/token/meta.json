@@ -1,5 +1,7 @@
 {
-    "title": "Theme",
+    "title": "Chlorophyll Theme",
     "root": true,
-    "pages": ["index", "---Reference Tokens---", "...reference-tokens", "---System Tokens---", "...system-tokens"]
+    "icon": "Braces",
+    "description": "The design tokens",
+    "pages": ["index", "---System Tokens---", "...system-tokens", "---Reference Tokens---", "...reference-tokens"]
 }

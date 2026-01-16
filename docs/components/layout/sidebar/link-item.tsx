@@ -40,8 +40,8 @@ export function createLinkItemRenderer({
                         </SidebarFolderTrigger>
                     )}
                     <SidebarFolderContent>
-                        {item.items.map((child, i) => (
-                            <SidebarLinkItem key={i} item={child} />
+                        {item.items.map((child) => (
+                            <SidebarLinkItem key={child.url ?? child.text} item={child} />
                         ))}
                     </SidebarFolderContent>
                 </SidebarFolder>
