@@ -1,7 +1,5 @@
 @layer reset, base, tokens, recipes, utilities;
 
-@import "../../styled-system/styles.css";
-
 /* Tailwind CSS for Fumadocs */
 @import "tailwindcss";
 @import "fumadocs-ui/css/neutral.css";
