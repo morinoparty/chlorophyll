@@ -14,7 +14,7 @@ export default defineConfig({
             colorPalette: "umi",
         },
     },
-    presets: ["@pandacss/preset-base", createPreset({ brandColor: "mori", grayColor: stone, radius: "md" })],
+    presets: ["@pandacss/preset-base", createPreset({ brandColor: "mori", grayColor: stone, radius: "xl" })],
     include: ["./app/**/*.{ts,tsx,js,jsx}"],
     exclude: [],
     jsxFramework: "react",

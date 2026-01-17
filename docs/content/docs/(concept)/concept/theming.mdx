@@ -1,0 +1,36 @@
+---
+title: Theming
+description: このガイドでは、Chlorophyllでのテーマに関する基本的な概念を説明します。
+---
+
+Chlorophyllでは、もりのパーティのテーマに合わせてデザイントークンが設定されています。
+このために、デフォルトのPanda Presetを用いることで、体系的で一貫性の持ったデザインアプローチを実現しています。
+
+## Color Palette
+
+もりのパーティのテーマには、森(mori)と海(umi)の2つのカラーパレットがあります。
+これらのカラーパレットは、Panda CSSのPresetを用いて設定され、Panda CSSの[Virtual Color](https://panda-css.com/docs/concepts/virtual-color)としてアクセスが可能です。
+
+```tsx
+import { css } from 'styled-system/css';
+
+function Root({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={css({  colorPalette: 'mori' })}>
+      {children}
+    </div>
+  );
+}
+```
+
+## Component
+
+### Variants
+
+コンポーネント間でバリアントを標準化することで、統一されたユーザーエクスペリエンスを実現します。
+Chlorophyllでは、以下の4つの共通バリアントを定義しています。
+
+- primary: 主色
+- secondary: サブカラー
+- outline: アウトライン
+- plain: プレーン

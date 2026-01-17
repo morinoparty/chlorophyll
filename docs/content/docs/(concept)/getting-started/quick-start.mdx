@@ -1,0 +1,72 @@
+---
+title: Quick Start
+description: Chlorophyllを使ってすぐに始める
+---
+
+## 基本的な使い方
+
+インストールが完了したら、すぐにコンポーネントを使い始めることができます。
+
+```tsx title="App.tsx"
+import { Button } from '@morinoparty/chlorophyll';
+
+export function App() {
+  return (
+    <Button colorPalette="green" onClick={() => alert('クリックされました！')}>
+      ボタン
+    </Button>
+  );
+}
+```
+
+## コンポーネントのインポート
+
+Chlorophyllのコンポーネントは名前付きエクスポートでインポートします。
+
+```tsx
+import { Button, Card, Input, Select } from '@morinoparty/chlorophyll';
+```
+
+## テーマのカスタマイズ
+
+Chlorophyllはデザイントークンを使用してテーマを管理しています。カスタムテーマを作成するには、プリセットを拡張します。
+
+```ts title="panda.config.ts"
+import { defineConfig } from '@pandacss/dev';
+import { chlorophyllPreset } from '@morinoparty/chlorophyll/preset';
+
+export default defineConfig({
+  presets: [chlorophyllPreset],
+  theme: {
+    extend: {
+      tokens: {
+        colors: {
+          // カスタムカラーを追加
+          brand: { value: '#10b981' },
+        },
+      },
+    },
+  },
+});
+```
+
+## ダークモード対応
+
+Chlorophyllはダークモードに対応しています。セマンティックトークンを使用することで、自動的にライト/ダークモードが切り替わります。
+
+```tsx
+import { css } from 'styled-system/css';
+
+function Card() {
+  return (
+    <div className={css({ bg: 'bg.subtle', color: 'fg.default' })}>
+      このカードはダークモードに対応しています
+    </div>
+  );
+}
+```
+
+## 次のステップ
+
+- [Theme](/docs/theme)でデザイントークンについて学ぶ
+- 各コンポーネントのドキュメントを確認する
