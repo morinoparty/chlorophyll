@@ -1,0 +1,89 @@
+---
+title: Architecture
+description: Chlorophyllのアーキテクチャと技術構成
+---
+
+## 技術スタック
+
+Chlorophyllは以下の技術を基盤としています。
+
+| 技術 | 用途 |
+|-----|------|
+| **Panda CSS** | スタイリング・デザイントークン管理 |
+| **Ark UI** | ヘッドレスUIコンポーネント |
+| **React** | UIライブラリ |
+| **TypeScript** | 型安全性 |
+
+## ディレクトリ構成
+
+```
+chlorophyll/
+├── src/
+│   ├── components/       # UIコンポーネント
+│   │   ├── ui/          # 基本コンポーネント
+│   │   └── [component]/ # 各コンポーネント
+│   └── theme/           # デザイントークン
+│       ├── tokens/      # Reference Tokens
+│       └── semantic-tokens/ # System Tokens
+├── docs/                # ドキュメントサイト
+└── preset/              # Panda CSSプリセット
+```
+
+## コンポーネント設計
+
+### Compound Componentパターン
+
+Chlorophyllのコンポーネントは、Compound Componentパターンで設計されています。これにより、柔軟な構造のカスタマイズが可能です。
+
+```tsx
+import { Card } from '@morinoparty/chlorophyll';
+
+// 必要なパーツのみを使用
+<Card.Root>
+  <Card.Header>
+    <Card.Title>タイトル</Card.Title>
+  </Card.Header>
+  <Card.Body>
+    コンテンツ
+  </Card.Body>
+  <Card.Footer>
+    <Button>アクション</Button>
+  </Card.Footer>
+</Card.Root>
+```
+
+### スタイルの分離
+
+各コンポーネントは、ロジックとスタイルが明確に分離されています。
+
+```
+component/
+├── index.tsx      # コンポーネントのエクスポート
+├── [name].tsx     # コンポーネントの実装
+└── [name].recipe.ts # Panda CSSレシピ
+```
+
+## デザイントークンの流れ
+
+```
+Reference Tokens (tokens/)
+        ↓
+System Tokens (semantic-tokens/)
+        ↓
+Component Tokens (recipes)
+        ↓
+生成されたCSS
+```
+
+この階層構造により、ダークモード対応やテーマのカスタマイズが容易になっています。
+
+## ビルドプロセス
+
+1. **Panda CSS codegen**: デザイントークンとユーティリティクラスを生成
+2. **TypeScript compile**: コンポーネントをコンパイル
+3. **バンドル**: ESM/CJS形式で出力
+
+```bash
+pnpm panda codegen  # トークン生成
+pnpm build         # ライブラリビルド
+```

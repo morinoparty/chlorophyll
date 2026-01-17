@@ -1,7 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts, useLocation } from "@tanstack/react-router";
 import { RootProvider } from "fumadocs-ui/provider/tanstack";
-import pandacss from "styled-system/styles.css?url";
 import { css } from "styled-system/css";
+import pandacss from "styled-system/styles.css?url";
 import appCss from "../app.css?url";
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";

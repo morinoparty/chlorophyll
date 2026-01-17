@@ -1,0 +1,43 @@
+---
+title: Installation
+description: Chlorophyllをプロジェクトに導入する方法
+---
+
+## パッケージのインストール
+
+Chlorophyllをインストールしてください。
+
+```bash
+pnpm add @morinoparty/chlorophyll
+```
+
+
+## Panda CSSの設定
+
+ChlorophyllはPanda CSSを使用しています。プロジェクトにPanda CSSがまだ設定されていない場合は、[Panda CSS公式ガイド](https://panda-css.com/docs/overview/getting-started)を参照してください。
+
+`panda.config.ts`にChlorophyllのプリセットを追加します。
+
+```ts title="panda.config.ts"
+import { defineConfig } from '@pandacss/dev';
+import { chlorophyllPreset } from '@morinoparty/chlorophyll/preset';
+
+export default defineConfig({
+  preflight: true,
+  presets: ['@pandacss/preset-base', chlorophyllPreset],
+  include: ['./src/**/*.{js,jsx,ts,tsx}'],
+  outdir: 'styled-system',
+});
+```
+
+## CSSの生成
+
+設定が完了したら、Panda CSSを実行してスタイルを生成します。
+
+```bash
+pnpm panda codegen
+```
+
+## 次のステップ
+
+インストールが完了したら、[Quick Start](/docs/getting-started/quick-start)でコンポーネントの使い方を学びましょう。

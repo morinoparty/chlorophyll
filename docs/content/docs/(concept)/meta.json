@@ -3,5 +3,5 @@
     "root": true,
     "icon": "Milestone",
     "description": "The concept of the project",
-    "pages": ["index"]
+    "pages": ["---Getting Started---", "...getting-started", "---Concept---", "...concept"]
 }

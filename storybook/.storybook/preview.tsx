@@ -133,7 +133,6 @@ const preview: Preview = {
                     <div
                         className={css({
                             colorPalette: palette,
-                            bg: "colorPalette.bg",
                             textStyle: "body",
                         })}
                     >

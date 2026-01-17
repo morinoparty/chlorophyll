@@ -6,6 +6,7 @@
     "scripts": {
         "check": "biome check ./ --write",
         "build": "pnpm -r build",
+        "dev": "pnpm -r dev",
         "dev:docs": "pnpm --filter @chlorophyll/docs dev",
         "dev:storybook": "pnpm --filter @chlorophyll/storybook dev",
         "test": "pnpm --filter @chlorophyll/storybook test",
