@@ -11,8 +11,6 @@
         "baseUrl": ".",
         "paths": {
             "styled-system/*": ["./styled-system/*"],
-            "@/*": ["./app/*"],
-            "@components/*": ["./components/*"],
             "fumadocs-mdx:collections/*": ["./.source/*"]
         }
     },

@@ -16,21 +16,21 @@ const navigation: NavSection[] = [
         title: "Getting Started",
         items: [
             { title: "Introduction", href: "/docs" },
-            { title: "Installation", href: "/docs/installation" },
-            { title: "Quick Start", href: "/docs/quick-start" },
+            { title: "Concept", href: "/docs/concept" },
+            { title: "Theme", href: "/docs/concept/introduction" },
         ],
     },
     {
         title: "Theming",
         items: [
-            { title: "Colors", href: "/docs/theming/colors" },
-            { title: "Typography", href: "/docs/theming/typography" },
-            { title: "Spacing", href: "/docs/theming/spacing" },
+            { title: "Colors", href: "/docs/theme/reference-tokens/colors" },
+            { title: "Typography", href: "/docs/theme/system-tokens/typography" },
+            { title: "Spacing", href: "/docs/theme/spacing" },
         ],
     },
     {
         title: "Components",
-        items: [{ title: "Button", href: "/components/button" }],
+        items: [{ title: "Button", href: "/docs/components/" }],
     },
 ];
 

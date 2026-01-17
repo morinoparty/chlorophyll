@@ -1,6 +1,6 @@
 import { createRootRoute, HeadContent, Outlet, Scripts, useLocation } from "@tanstack/react-router";
 import { RootProvider } from "fumadocs-ui/provider/tanstack";
-import "styled-system/styles.css";
+import pandacss from "styled-system/styles.css?url";
 import { css } from "styled-system/css";
 import appCss from "../app.css?url";
 import { Footer } from "../components/footer";
@@ -14,6 +14,7 @@ export const Route = createRootRoute({
             { name: "description", content: "Chlorophyll - A design system for Morinoparty projects" },
         ],
         links: [
+            process.env.NODE_ENV !== "development" && { rel: "stylesheet", href: pandacss },
             { rel: "icon", type: "image/svg+xml", href: "/chlorophyll.svg" },
             { rel: "stylesheet", href: appCss },
             { rel: "stylesheet", href: "https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" },

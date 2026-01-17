@@ -36,10 +36,11 @@ export default defineConfig({
         alias: {
             "styled-system": `${__dirname}/styled-system`,
             "@components": `${__dirname}/components`,
+            "fumadocs-mdx:collections/*": `${__dirname}/.source/*`,
+
             // Node.js pathモジュールのブラウザ向けポリフィル
             path: "path-browserify",
         },
-        noExternal: ["fumadocs-core", "fumadocs-ui", "@fumadocs/base-ui", "@fumadocs/ui"],
     },
     server: {
         port: 3000,
