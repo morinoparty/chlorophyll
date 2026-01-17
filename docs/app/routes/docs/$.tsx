@@ -3,7 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { useFumadocsLoader } from "fumadocs-core/source/client";
 import defaultMdxComponents from "fumadocs-ui/mdx";
-import { source } from "@/lib/source";
+import { source } from "../../lib/source";
 import { DocsLayout } from "../../../components/layout/docs";
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "../../../components/layout/docs/page";
 import { getMDXComponents } from "../../../mdx-components";

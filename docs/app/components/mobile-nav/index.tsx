@@ -10,7 +10,7 @@ import { sva } from "styled-system/css";
 const navigation = [
     { title: "Docs", href: "/docs/" },
     { title: "Components", href: "/docs/" },
-    { title: "Theme", href: "/docs/token" },
+    { title: "Theme", href: "/docs/theme" },
 ];
 
 const mobileNavStyles = sva({

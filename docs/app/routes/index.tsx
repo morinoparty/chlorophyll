@@ -50,10 +50,10 @@ function Home() {
                 A design system for Morinoparty projects built with Panda CSS and Ark UI
             </p>
             <div className={styles.actions}>
-                <Link to="/docs/$" params={{ _splat: "token" }}>
+                <Link to="/docs/$" >
                     <Button>Documentation</Button>
                 </Link>
-                <Link to="/docs/$" params={{ _splat: "token" }}>
+                <Link to="/docs/$" params={{ _splat: "theme" }}>
                     <Button>Tokens</Button>
                 </Link>
             </div>
